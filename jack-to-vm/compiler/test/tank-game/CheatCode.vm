@@ -1,0 +1,48 @@
+function CheatCode.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push constant 0
+pop this 1
+push pointer 0
+return
+function CheatCode.reset 0
+push argument 0
+pop pointer 0
+push constant 0
+pop this 1
+push constant 0
+return
+function CheatCode.complete 0
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call String.charAt 2
+push argument 1
+eq
+not
+if-goto ELSE0
+push this 1
+push constant 1
+add
+pop this 1
+goto END_IF0
+label ELSE0
+push constant 0
+pop this 1
+label END_IF0
+push this 1
+push this 0
+call String.length 1
+eq
+not
+if-goto END_IF1
+push constant 1
+neg
+return
+label END_IF1
+push constant 0
+return

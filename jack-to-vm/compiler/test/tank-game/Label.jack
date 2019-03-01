@@ -1,0 +1,24 @@
+class Label{
+	field int x, y, data;
+	field String label;
+
+	constructor Label new(int _x, int _y, int _data, String _label){
+		let x = _x;
+		let y = _y;
+		let data = _data;
+		let label = _label;
+		return this;
+	}
+
+	method void display(){
+		do Output.moveCursor(x, y);
+		do Output.printString(label);
+		do Output.printInt(data);
+		return;
+	}
+
+	method void assign(int _data){
+		let data = _data;
+		return;
+	}
+}

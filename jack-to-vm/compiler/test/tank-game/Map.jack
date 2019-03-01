@@ -1,0 +1,200 @@
+class Map{
+	field Array map8, map24;
+	field List tank_list;
+	constructor Map new(Array _map){
+		var int row, col, i, j, type;
+		var Tank tank;
+		let tank_list = List.new();
+		let row = 0;
+		let map8 = Array.new(30*45);
+		let map24 = _map;
+		while (row < 10){
+			let col = 0;
+			while (col < 15){
+				let i = 0;
+                let type = _map[row*15+col];
+                if((type=4)&Cheat.get_all_soft()) { let type = 3; }
+				while (i < 3){
+					let map8[(row*135)+(col*3)+i] = type;
+					let map8[(row*135)+(col*3)+i+45] = type;
+					let map8[(row*135)+(col*3)+i+90] = type;
+					let i = i + 1;
+				}
+				if ((type = 1) | (type = 2)){
+					let tank = Tank.new(_map[row*15+col], col, row, Rand.rand()&3);
+					do tank_list.insert(tank);
+				}
+				let col = col + 1;
+			}
+			let row = row + 1;
+		}
+		if (map24[127] = 0){
+			//QB
+			let i = 20;
+			while (i < 25){
+				let j = 25;
+				while (j < 30){
+					let map8[i+(j*45)] = 5;
+					let j = j + 1;
+				}
+				let i = i + 1;
+			}
+			//soft around QB
+			let i = 18;
+			while (i < 27){
+				let map8[23*45+i] = 3;
+				let map8[24*45+i] = 3;
+				let i = i + 1;
+			}
+			let i = 25;
+			while (i < 30){
+				let map8[i*45+18] = 3;
+				let map8[i*45+19] = 3;
+				let map8[i*45+25] = 3;
+				let map8[i*45+26] = 3;
+				let i = i + 1;
+			}
+		}
+		return this;
+	}
+
+	method void debug_draw(){
+		var int i, j;
+		var Image soft;
+		let soft = Album.get_soft();
+		let i = 0;
+		while (i < 30){
+			let j = 0;
+			while (j < 45){
+				if (~(map8[i*45+j] = 0)){
+					do soft.draw(j*8, i*8, 0);
+				}
+				let j = j + 1;
+			}
+			let i = i + 1;
+		}
+		return;
+	}
+
+    function void _draw_item(int row, int col, int type){
+        var int i, j;
+		var Image soft, hard, tank1, tank2;
+		let tank1 = Album.get_tank(1);
+		let tank2 = Album.get_tank(2);
+		let soft = Album.get_soft();
+		let hard = Album.get_hard();
+        if (type = 0){
+            do Image.clear(col*24, row*24, col*24+23, row*24+23);
+        }
+        if (type = 1){
+            do tank1.draw(col*24, row*24, 0);
+        }
+        if (type = 2){
+            do tank2.draw(col*24, row*24, 0);
+        }
+        if (type = 3){ //Soft
+            let i = 0;
+            while (i < 24){
+                let j = 0;
+                while (j < 24){
+                    do soft.draw(col*24+i, row*24+j, 0);
+                    let j = j + 8;
+                }
+                let i = i + 8;
+            }
+        }
+        if (type = 4){ //Hard
+            do hard.draw(col*24, row*24, 0);
+        }
+        return;
+    }
+
+	method void draw(){
+		var int row, col, i, j, type;
+        var Image QB, soft;
+		let QB = Album.get_QB();
+		let soft = Album.get_soft();
+		let row = 0;
+		while (row < 10){
+			let col = 0;
+			while (col < 15){
+                let type = map24[row*15+col];
+                //if((type=4)&Cheat.get_all_soft()) { let type = 3; }
+                do Map._draw_item(row, col, type);
+				let col = col + 1;
+			}
+			let row = row + 1;
+		}
+		if (map24[127] = 0){
+			do QB.draw(160, 200, 0);
+			let i = 0;
+			while (i < 9){
+				do soft.draw(144+(i*8), 184, 0);
+				do soft.draw(144+(i*8), 192, 0);
+				let i = i + 1;
+			}
+			let i = 0;
+			while (i < 5){
+				do soft.draw(144, 200+(i*8), 0);
+				do soft.draw(152, 200+(i*8), 0);
+				let i = i + 1;
+			}
+			let i = 0;
+			while (i < 5){
+				do soft.draw(200, 200+(i*8), 0);
+				do soft.draw(208, 200+(i*8), 0);
+				let i = i + 1;
+			}
+		}
+		return;
+	}
+
+	method boolean check(int x1, int y1, int x2, int y2){
+		var int i, j;
+		var boolean flag;
+		let flag = false;
+		if ((x1 < 0) | (y1 < 0) | (x2 > 44) | (y2 > 29)){
+			let flag = true;
+		}
+		let i = x1;
+		while (i < (x2+1)){
+			let j = y1;
+			while (j < (y2+1)){
+				let flag = flag | (~(map8[j*45+i]=0));
+				let j = j + 1;
+			}
+			let i = i + 1;
+		}
+		return ~flag;
+	}
+	method void update(int x1, int y1, int x2, int y2, int type){
+		var int i, j;
+		if(type = 0){
+			do Image.clear(x1*8, y1*8, x2*8+7, y2*8+7);
+		}
+		let i = x1;
+		while (i < (x2+1)){
+			let j = y1;
+			while (j < (y2+1)){
+				let map8[j*45+i] = type;
+				let j = j + 1;
+			}
+			let i = i + 1;
+		}
+		return;
+	}
+
+	method int peek(int x, int y){
+		return map8[y*45+x];
+	}
+
+	method List get_tank_list(){
+		return tank_list;
+	}
+	method void destroy(){
+		do Memory.deAlloc(map8);
+		do Memory.deAlloc(map24);
+		return;
+	}
+
+}

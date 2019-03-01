@@ -1,0 +1,55 @@
+function AI.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+call Rand.rand 0
+push constant 3
+and
+pop this 1
+push pointer 0
+return
+function AI.play 0
+push argument 0
+pop pointer 0
+push this 0
+call Tank.dead 1
+not
+not
+if-goto END_IF0
+call Rand.rand 0
+push constant 2
+and
+push constant 0
+eq
+not
+if-goto ELSE1
+push this 0
+push this 1
+call Tank.move 2
+not
+not
+if-goto END_IF2
+call Rand.rand 0
+push constant 3
+and
+pop this 1
+label END_IF2
+goto END_IF1
+label ELSE1
+call Rand.rand 0
+push constant 20
+lt
+not
+if-goto END_IF3
+push this 0
+push this 0
+call Tank.get_dir 1
+call Tank.shoot 2
+pop temp 0
+label END_IF3
+label END_IF1
+label END_IF0
+push constant 0
+return

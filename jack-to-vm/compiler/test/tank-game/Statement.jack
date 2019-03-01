@@ -1,0 +1,45 @@
+class Statement{
+	static Label life, enemy, score;
+	static String s1, s2, s3;
+	
+	function void init(){
+		let life = Label.new(3, 48, 0, "Life : ");
+		let enemy = Label.new(5, 48, 0, "Enemy : ");
+		let score = Label.new(7, 48, 0, "Score : ");
+		let s1 = "move:arrow key";
+		let s2 = "shoot:space";
+		let s3 = "restart:Q";
+		return;
+	}
+
+	function void draw_frame(){
+		do Screen.setColor(true);
+		do Screen.drawRectangle(0, 0, 511, 7);
+		do Screen.drawRectangle(0, 248, 511, 255);
+		do Screen.drawRectangle(0, 8, 11, 247);
+		do Screen.drawRectangle(500, 8, 511, 247);
+		do Screen.drawRectangle(372, 8, 379, 247);
+		do Output.moveCursor(13,48);
+		do Output.printString(s1);
+		do Output.moveCursor(15,48);
+		do Output.printString(s2);
+		do Output.moveCursor(17,48);
+		do Output.printString(s3);
+		return;
+	}
+
+	function void update(int _life, int _enemy, int _score){
+		do life.assign(_life);
+		do enemy.assign(_enemy);
+		do score.assign(_score);
+		do Statement.display();
+		return;
+	}
+
+	function void display(){
+		do life.display();
+		do enemy.display();
+		do score.display();
+		return;
+	}
+}

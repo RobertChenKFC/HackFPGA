@@ -1,0 +1,52 @@
+class List{
+    field Node head, pre, ptr;
+
+	constructor List new(){
+        let head = 0;
+        let pre = 0;
+        let ptr = 0;
+        return this;
+    }
+    method void reset()
+    {
+        let ptr = head;
+        let pre = 0;
+        return;
+    }
+	method boolean end(){
+		if (ptr = 0){
+			return true;
+		}
+		return false;
+	}
+    method boolean next()
+    {
+        if(ptr=0) {return false;}
+        let pre = ptr;
+        let ptr = ptr.get_next();
+        return ~(ptr=0);
+    }
+    method int get()
+    {
+        if(ptr=0) {return 0;}
+        return ptr.get_data();
+    }
+    method void insert(int data)
+    {
+        var Node tmp;
+        let tmp = Node.new(data, head);
+        let head = tmp;
+        return;
+    }
+    method void delete()
+    {
+        var Node tmp;
+        if(ptr = 0) {return;}
+        if(pre = 0) { let head = ptr.get_next(); }
+        else { do pre.set_next(ptr.get_next()); }
+        let tmp = ptr;
+        let ptr = ptr.get_next();
+        do Memory.deAlloc(tmp);
+        return;
+    }
+}

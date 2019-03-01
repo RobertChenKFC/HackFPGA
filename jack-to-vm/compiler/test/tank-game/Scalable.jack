@@ -1,0 +1,40 @@
+class Scalable{
+
+    field int _width, _height, _times;
+    field Array _map;
+
+    constructor Scalable new(int width, int height, int times, Array map)
+    {
+        let _width = width;
+        let _height = height;
+        let _times = times;
+        let _map = map;
+        return this;
+    }
+
+    method void draw(int x, int y)
+    {
+        var int i, j, k, l, t;
+        let i = 0;
+        let l = 0;
+        let k = 1;
+        do Screen.setColor(true);
+        while(i < _height)
+        {
+            let j = 0;
+            while (j < _width)
+            {
+                if(~(k&_map[l]=0)) { do Screen.drawRectangle(j*_times+x, i*_times+y, (j+1)*_times+x-1, (i+1)*_times+y-1); }
+                if(k < 0) 
+                {
+                    let k = 1;
+                    let l = l + 1;
+                }
+                else { let k = k + k; }
+                let j = j + 1;
+            }
+            let i = i + 1;
+        }
+        return;
+    }
+}

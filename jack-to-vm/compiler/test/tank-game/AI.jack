@@ -1,0 +1,30 @@
+class AI
+{
+    field Tank tank;
+    field int now_dir;
+
+    constructor AI new(Tank _tank)
+    {
+        let tank = _tank;
+        let now_dir = Rand.rand()&3;
+        return this;
+    }
+
+    method void play()
+    {
+        if(~tank.dead())
+        {
+            if(Rand.rand()&2=0)
+            {
+                if(~tank.move(now_dir)){ let now_dir = Rand.rand()&3;}
+            }
+            else
+            {
+                if (Rand.rand()<20){
+                    do tank.shoot(tank.get_dir());
+                }
+            }
+        }
+        return;
+    }
+}
