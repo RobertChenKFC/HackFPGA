@@ -5,39 +5,73 @@
 #include <stdexcept>
 #include <cctype>
 
-std::string BitString(std::int16_t x, int bits = 16) {
+void PrintBinary(std::fstream &out, std::int16_t x, int bits = 15) {
   std::string s;
   while (bits--)
-    s.push_back(static_cast<char>((x >> bits) & 1) + '0');
-  return s;
+    out << ((x >> bits) & 1);
 }
 
 std::unordered_map<std::string, std::int16_t> baseSymbolTable;
-std::unordered_map<std::string, std::string> instruction;
+std::unordered_map<std::string, std::string> destinations;
+std::unordered_map<std::string, std::string> computations;
+std::unordered_map<std::string, std::string> jumps;
 void Initialize() {
-  baseSymbolTable["SP"] =     "000000000000000";
-  baseSymbolTable["LCL"] =    "000000000000001";
-  baseSymbolTable["ARG"] =    "000000000000010";
-  baseSymbolTable["THIS"] =   "000000000000011";
-  baseSymbolTable["THAT"] =   "000000000000100";
-  baseSymbolTable["R0"] =     "000000000000000";
-  baseSymbolTable["R1"] =     "000000000000001";
-  baseSymbolTable["R2"] =     "000000000000010";
-  baseSymbolTable["R3"] =     "000000000000011";
-  baseSymbolTable["R4"] =     "000000000000100";
-  baseSymbolTable["R5"] =     "000000000000101";
-  baseSymbolTable["R6"] =     "000000000000110";
-  baseSymbolTable["R7"] =     "000000000000111";
-  baseSymbolTable["R8"] =     "000000000001000";
-  baseSymbolTable["R9"] =     "000000000001001";
-  baseSymbolTable["R10"] =    "000000000001010";
-  baseSymbolTable["R11"] =    "000000000001011";
-  baseSymbolTable["R12"] =    "000000000001100";
-  baseSymbolTable["R13"] =    "000000000001101";
-  baseSymbolTable["R14"] =    "000000000001110";
-  baseSymbolTable["R15"] =    "000000000001111";
-  baseSymbolTable["SCREEN"] = "100000000000000";
-  baseSymbolTable["KBD"] =    "110000000000000";
+  baseSymbolTable["SP"] =     0;
+  baseSymbolTable["LCL"] =    1;
+  baseSymbolTable["ARG"] =    2;
+  baseSymbolTable["THIS"] =   3;
+  baseSymbolTable["THAT"] =   4;
+  baseSymbolTable["SCREEN"] = 16384;
+  baseSymbolTable["KBD"] =    24576;
+  for (std::int16_t i = 0; i < 16; ++i)
+    baseSymbolTable["R" + std::to_string(i)] = i;
+
+  destinations[""]    = "000";
+  destinations["M"]   = "001";
+  destinations["D"]   = "010";
+  destinations["DM"]  = "011";
+  destinations["A"]   = "100";
+  destinations["AM"]  = "101";
+  destinations["AD"]  = "110";
+  destinations["ADM"] = "111";
+
+  computations["0"]   = "0101010";
+  computations["1"]   = "0111111";
+  computations["-1"]  = "0111010";
+  computations["D"]   = "0001100";
+  computations["A"]   = "0110000";
+  computations["!D"]  = "0001101";
+  computations["!A"]  = "0110001";
+  computations["-D"]  = "0001111";
+  computations["-A"]  = "0110011";
+  computations["D+1"] = "0011111";
+  computations["A+1"] = "0110111";
+  computations["D-1"] = "0001110";
+  computations["A-1"] = "0110010";
+  computations["D+A"] = "0000010";
+  computations["D-A"] = "0010011";
+  computations["A-D"] = "0000111";
+  computations["D&A"] = "0000000";
+  computations["D|A"] = "0010101";
+  computations["M"]   = "1110000";
+  computations["!M"]  = "1110001";
+  computations["-M"]  = "1110011";
+  computations["M+1"] = "1110111";
+  computations["M-1"] = "1110010";
+  computations["D+M"] = "1000010";
+  computations["D-M"] = "1010011";
+  computations["M-D"] = "1000111";
+  computations["D&M"] = "1000000";
+  computations["D|M"] = "1010101";
+
+  jumps[""]     = "000";
+  jumps["JGT"]  = "001";
+  jumps["JEQ"]  = "010";
+  jumps["JGE"]  = "011";
+  jumps["JLT"]  = "100";
+  jumps["JNE"]  = "101";
+  jumps["JLT"]  = "110";
+  jumps["JMP"]  = "111";
 }
 
 bool IsNumber(const std::string &str) {
@@ -51,24 +85,111 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
   std::fstream outputFile(outputFileName, std::ios::out);
 
   std::string line;
-  std::unordered_map<std::string, std::int16_t> labelTable;
+
   std::unordered_map<std::string, std::int16_t> symbolTable(baseSymbolTable);
-  std::int16_t asmLineNumber = 0, hackLineNumber = 0;
+  std::unordered_map<std::string, std::int16_t> labelTable;
+  std::int16_t hackLineNumber = 0;
   std::int16_t symbolNumber = 16;
+  int asmLineNumber = 0;
   while (std::getline(inputFile, line)) {
     ++asmLineNumber;
+    line = line.substr(line.find_first_not_of(' '));
+    line.pop_back(); // Remove newline
+    if (line.length() == 0)
+      continue;
     if (line.front() == '(') {
       // Label
-    } else if (line.front() == '@') {
-      // A instruction
+      auto label = line.substr(1, line.length() - 2);
+      if (labelTable.find(label) != labelTable.end())
+        throw std::runtime_error("Line " + std::to_string(asmLineNumber) + ": duplicate label " + label);
+      labelTable[label] = hackLineNumber;
+    } else if (line.front() != '/') {
+      // A instruction or C instruction
       ++hackLineNumber;
-      auto address = line.substr(1);
-      if (!IsNumber(address) && symbolTable.find(address) == symbolTable.end())
-        symbolTable[address] = symbolNumber++;
-    } else {
-      // C instruction
-      ++hackLineNumber;
+    }
+  }
 
+  inputFile.clear();
+  inputFile.seekg(std::ios::beg);
+  asmLineNumber = 0;
+  while (std::getline(inputFile, line)) {
+    ++asmLineNumber;
+    line = line.substr(line.find_first_not_of(' '));
+    line.pop_back(); // Remove newline
+    if (line.length() == 0)
+      continue;
+    if (line.front() == '@') {
+      // A instruction
+      outputFile << "0";
+      auto addressStr = line.substr(1);
+      addressStr = addressStr.substr(0, addressStr.find_first_of(' '));
+      std::int16_t address;
+      if (IsNumber(addressStr)) {
+        address = static_cast<std::int16_t>(std::stoi(addressStr));
+      } else {
+        auto addressIt = labelTable.find(addressStr);
+        if (addressIt == labelTable.end()) {
+          addressIt = symbolTable.find(addressStr);
+          if (addressIt == symbolTable.end()) {
+            symbolTable[addressStr] = address = symbolNumber++;
+          } else {
+            address = addressIt->second;
+          }
+        } else {
+          address = addressIt->second;
+        }
+      }
+      PrintBinary(outputFile, address);
+      outputFile << std::endl;
+    } else if (line.front() != '(' && line.front() != '/') {
+      // C instruction
+      outputFile << "111";
+      auto destPos = line.find('=');
+      std::string destination;
+      if (destPos == std::string::npos) {
+        // No destination
+        destPos = 0;
+        destination = destinations[""];
+      } else {
+        // Destination
+        auto destStr = line.substr(0, destPos++);
+        auto destIt = destinations.find(destStr);
+        if (destIt == destinations.end())
+          throw std::runtime_error("Line " + std::to_string(asmLineNumber) + ": invalid destination " + destStr);
+        destination = destIt->second;
+      }
+
+      auto compPos = line.find(';');
+      if (compPos == std::string::npos) {
+        // Compuation (no jump)
+        auto compStr = line.substr(destPos);
+        compStr = compStr.substr(0, compStr.find_first_of(' '));
+        auto compIt = computations.find(compStr);
+        if (compIt == computations.end())
+          throw std::runtime_error("Line " + std::to_string(asmLineNumber) + ": invalid computation " + compStr);
+        outputFile << compIt->second;
+
+        outputFile << destination;
+
+        outputFile << jumps[""];
+      } else {
+        // Compuation and jump
+        auto compStr = line.substr(destPos, compPos - destPos);
+        auto compIt = computations.find(compStr);
+        if (compIt == computations.end())
+          throw std::runtime_error("Line " + std::to_string(asmLineNumber) + ": invalid computation " + compStr);
+        outputFile << compIt->second;
+
+        outputFile << destination;
+
+        auto jumpStr = line.substr(compPos + 1);
+        jumpStr = jumpStr.substr(0, jumpStr.find_first_of(' '));
+        auto jumpIt = jumps.find(jumpStr);
+        if (jumpIt == jumps.end())
+          throw std::runtime_error("Line " + std::to_string(asmLineNumber) + ": invalid jump " + compStr);
+        outputFile << jumpIt->second;
+      }
+      outputFile << std::endl;
     }
   }
 }
@@ -78,6 +199,7 @@ int main(int argc, char **argv) {
     std::cout << "Usage: " << std::endl
       << "    ./JackAssembler FILE.asm...    Assembles all FILE.asm." << std::endl;
   }
+  Initialize();
   for (int i = 1; i < argc; ++i) {
     std::string inputFileName = argv[i];
     std::string outputFileName = inputFileName.substr(0, inputFileName.find_last_of('.')) + ".hack";
