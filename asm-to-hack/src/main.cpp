@@ -29,11 +29,11 @@ void Initialize() {
   destinations[""]    = "000";
   destinations["M"]   = "001";
   destinations["D"]   = "010";
-  destinations["DM"]  = "011";
+  destinations["MD"]  = "011";
   destinations["A"]   = "100";
   destinations["AM"]  = "101";
   destinations["AD"]  = "110";
-  destinations["ADM"] = "111";
+  destinations["AMD"] = "111";
 
   computations["0"]   = "0101010";
   computations["1"]   = "0111111";
@@ -70,7 +70,7 @@ void Initialize() {
   jumps["JGE"]  = "011";
   jumps["JLT"]  = "100";
   jumps["JNE"]  = "101";
-  jumps["JLT"]  = "110";
+  jumps["JLE"]  = "110";
   jumps["JMP"]  = "111";
 }
 
@@ -101,7 +101,8 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
       // Label
       auto label = line.substr(1, line.length() - 2);
       if (labelTable.find(label) != labelTable.end())
-        throw std::runtime_error("Line " + std::to_string(asmLineNumber) + ": duplicate label " + label);
+        throw std::runtime_error("Line " + std::to_string(asmLineNumber) +
+            ": duplicate label " + label);
       labelTable[label] = hackLineNumber;
     } else if (line.front() != '/') {
       // A instruction or C instruction
@@ -155,7 +156,8 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
         auto destStr = line.substr(0, destPos++);
         auto destIt = destinations.find(destStr);
         if (destIt == destinations.end())
-          throw std::runtime_error("Line " + std::to_string(asmLineNumber) + ": invalid destination " + destStr);
+          throw std::runtime_error("Line " + std::to_string(asmLineNumber) +
+              ": invalid destination " + destStr);
         destination = destIt->second;
       }
 
@@ -166,7 +168,8 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
         compStr = compStr.substr(0, compStr.find_first_of(' '));
         auto compIt = computations.find(compStr);
         if (compIt == computations.end())
-          throw std::runtime_error("Line " + std::to_string(asmLineNumber) + ": invalid computation " + compStr);
+          throw std::runtime_error("Line " + std::to_string(asmLineNumber) +
+              ": invalid computation " + compStr);
         outputFile << compIt->second;
 
         outputFile << destination;
@@ -177,7 +180,8 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
         auto compStr = line.substr(destPos, compPos - destPos);
         auto compIt = computations.find(compStr);
         if (compIt == computations.end())
-          throw std::runtime_error("Line " + std::to_string(asmLineNumber) + ": invalid computation " + compStr);
+          throw std::runtime_error("Line " + std::to_string(asmLineNumber) +
+              ": invalid computation " + compStr);
         outputFile << compIt->second;
 
         outputFile << destination;
@@ -186,7 +190,8 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
         jumpStr = jumpStr.substr(0, jumpStr.find_first_of(' '));
         auto jumpIt = jumps.find(jumpStr);
         if (jumpIt == jumps.end())
-          throw std::runtime_error("Line " + std::to_string(asmLineNumber) + ": invalid jump " + compStr);
+          throw std::runtime_error("Line " + std::to_string(asmLineNumber) +
+              ": invalid jump " + jumpStr);
         outputFile << jumpIt->second;
       }
       outputFile << std::endl;
@@ -206,7 +211,7 @@ int main(int argc, char **argv) {
     try {
       Assemble(inputFileName, outputFileName);
     } catch (const std::exception &e) {
-      std::cout << "Error while assembling " << inputFileName << std::endl
+      std::cout << "Error while assembling " << inputFileName << ':' << std::endl
         << e.what() << std::endl;
     }
   }
