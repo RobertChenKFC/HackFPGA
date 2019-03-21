@@ -1,9 +1,10 @@
+#include <cctype>
 #include <cstdint>
 #include <fstream>
 #include <iostream>
 #include <unordered_map>
 #include <stdexcept>
-#include <cctype>
+#include <sstream>
 
 void PrintBinary(std::fstream &out, std::int16_t x, int bits = 15) {
   std::string s;
@@ -92,20 +93,18 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
   std::int16_t symbolNumber = 16;
   int asmLineNumber = 0;
   while (std::getline(inputFile, line)) {
-    ++asmLineNumber;
-    line = line.substr(line.find_first_not_of(' '));
-    line.pop_back(); // Remove newline
-    if (line.length() == 0)
-      continue;
-    if (line.front() == '(') {
+    std::stringstream input(line);
+
+    char front;
+    inputFile >> std::ws >> front;
+
+    if (front == '(') {
       // Label
-      auto label = line.substr(1, line.length() - 2);
-      if (labelTable.find(label) != labelTable.end())
-        throw std::runtime_error("Line " + std::to_string(asmLineNumber) +
-            ": duplicate label " + label);
+      std::string label;
+      std::getline(input, label, ')');
       labelTable[label] = hackLineNumber;
-    } else if (line.front() != '/') {
-      // A instruction or C instruction
+    } else if (front != '/') {
+      // A or C instruction
       ++hackLineNumber;
     }
   }
@@ -115,15 +114,18 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
   asmLineNumber = 0;
   while (std::getline(inputFile, line)) {
     ++asmLineNumber;
-    line = line.substr(line.find_first_not_of(' '));
-    line.pop_back(); // Remove newline
-    if (line.length() == 0)
-      continue;
+    std::stringstream input(line);
+
+    char front;
+    input >> std::ws >> front;
+
     if (line.front() == '@') {
       // A instruction
       outputFile << "0";
-      auto addressStr = line.substr(1);
-      addressStr = addressStr.substr(0, addressStr.find_first_of(' '));
+
+      std::string addressStr;
+      input >> addressStr;
+
       std::int16_t address;
       if (IsNumber(addressStr)) {
         address = static_cast<std::int16_t>(std::stoi(addressStr));
@@ -142,9 +144,12 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
       }
       PrintBinary(outputFile, address);
       outputFile << std::endl;
-    } else if (line.front() != '(' && line.front() != '/') {
+    } else if (front != '(' && front != '/') {
       // C instruction
       outputFile << "111";
+
+      line.pop_back(); // remove newline
+
       auto destPos = line.find('=');
       std::string destination;
       if (destPos == std::string::npos) {
