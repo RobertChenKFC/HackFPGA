@@ -14,5 +14,9 @@ add_subdirectory(../core core-build)
 
 add_executable(JackCompiler src/main.cpp)
 target_compile_options(JackCompiler PRIVATE ${WARNING_FLAGS})
-target_link_libraries(JackCompiler PRIVATE core stdc++fs)
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    target_link_libraries(JackCompiler PRIVATE core c++fs)
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    target_link_libraries(JackCompiler PRIVATE core stdc++fs)
+endif()
 
