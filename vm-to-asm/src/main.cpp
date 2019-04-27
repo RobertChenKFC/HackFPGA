@@ -376,6 +376,14 @@ void Bootstrap(std::fstream &outputFile) {
   Call(outputFile, "Sys.init", 0);
 }
 
+void PrintHelp() {
+  std::cout << "Usage: " << std::endl
+    << "    ./VMTranslator FILE.vm...    Translates all FILE.vm." << std::endl
+    << "Options: " << std::endl
+    << "    --help                       Display this information." << std::endl
+    << "    --no-bootstrap               Translate vm-file without bootstrap code." << std::endl;
+}
+
 int main(int argc, char **argv) {
   // TODO: add options for no os and no bootstrap
   std::vector<std::string> inputFileNames;
@@ -385,11 +393,8 @@ int main(int argc, char **argv) {
     std::string arg = argv[i];
     if (arg.front() == '-') {
       if (arg == "--help") {
-        std::cout << "Usage: " << std::endl
-          << "    ./VMTranslator FILE.vm...    Translates all FILE.vm." << std::endl
-          << "Options: " << std::endl
-          << "    --help                       Display this information." << std::endl
-          << "    --no-bootstrap               Translate vm-file without bootstrap code." << std::endl;
+        PrintHelp();
+        return 0;
       } else if (arg == "-o") {
         if (i + 1 >= argc) {
           std::cout << "Missing filename after \"-o\"" << std::endl;
@@ -405,6 +410,10 @@ int main(int argc, char **argv) {
     } else {
       inputFileNames.push_back(argv[i]);
     }
+  }
+  if (inputFileNames.empty()) {
+    PrintHelp();
+    return 0;
   }
 
   std::fstream outputFile(outputFileName, std::ios::out);
