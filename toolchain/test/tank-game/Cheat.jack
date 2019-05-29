@@ -1,0 +1,73 @@
+class Cheat{
+	static boolean penetrate, seperate, triple, nocd, all_soft, imba;
+
+	function void init(){
+		let penetrate = false;
+		let seperate = false;
+		let triple = false;
+		let nocd = false;
+		let all_soft = false;
+		let imba = false;
+		return;
+	}
+	function boolean get_penetrate(){
+		return penetrate;
+	}
+	function boolean get_seperate(){
+		return seperate;
+	}
+	function boolean get_triple(){
+		return triple;
+	}
+	function boolean get_nocd(){
+		return nocd;
+	}
+	function boolean get_all_soft(){
+		return all_soft;
+	}
+	function boolean get_imba(){
+		return imba;
+	}
+	function void set_penetrate(){
+        var Image img;
+        let img = Album.get_penetrate();
+        do img.draw(0, 0, 0);
+		let penetrate = true;
+		return;
+	}
+	function void set_seperate(){
+        var Image img;
+        let img = Album.get_seperate();
+        do img.draw(30, 0, 0);
+		let seperate = true;
+		return;
+	}
+	function void set_triple(){
+        var Image img;
+        let img = Album.get_triple();
+        do img.draw(60, 0, 0);
+		let triple = true;
+		return;
+	}
+	function void set_nocd(){
+        var Image img;
+        let img = Album.get_nocd();
+        do img.draw(90, 0, 0);
+		let nocd = true;
+		return;
+	}
+	function void set_all_soft(){
+        var Image img;
+        let img = Album.get_all_soft();
+        do img.draw(120, 0, 0);
+		let all_soft = true;
+		return;
+	}
+	function void set_imba(){
+        var Image img;
+        let img = Album.get_imba();
+        do img.draw(150, 0, 0);
+		let imba = true;
+		return;
+	}
+}

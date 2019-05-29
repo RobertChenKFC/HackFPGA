@@ -1,0 +1,155 @@
+class Menu
+{
+    field Array list;
+    field int now;
+    field int row, col, n, width;
+    field boolean auto_clean;
+    field List cheat_list;
+
+    constructor Menu new(int _row, int _col, int _n, Array _list, boolean _auto_clean)
+    {
+        var int i;
+        var String str;
+        let row = _row;
+        let col = _col;
+        let n = _n;
+        let auto_clean = _auto_clean;
+        let now = 0;
+        let list = _list;
+        let cheat_list = List.new();
+
+        let i = 0;
+        let width = 0;
+        while(i<n)
+        {
+            let str = list[i];
+            if(str.length() > width) { let width = str.length(); }
+            let i = i+1;
+        }
+        return this;
+    }
+    function void _xor(int row, int col)
+    {
+        var int origin, i, tmp;
+        let origin = 16384+(row*352)+(col/2);
+        let i = 0;
+        while(i<352)
+        {
+            let tmp = Memory.peek(origin+i);
+            if(col&1=0) { let tmp = (-256&~tmp)|(255&tmp); }
+            else { let tmp = (-256&tmp)|(255&~tmp); }
+            do Memory.poke(origin+i, ~tmp);
+            let i = i+32;
+        }
+        return;
+    }
+    method void _draw_select(boolean color)
+    {
+        var String str;
+        var int j, w;
+        let str = list[now];
+        let j = 0;
+        while(j<str.length())
+        {
+            do Menu._xor(row+now+now,col+j);
+            let j = j+1;
+        }
+        return;
+    }
+    method char _input()
+    {
+        var char pre, in;
+        let in = 0;
+        while(in=0){let in = Keyboard.keyPressed();}
+        while(~(in=0))
+        {
+            let pre = in;
+            let in = Keyboard.keyPressed();
+        }
+        return pre;
+    }
+    method void _reset_cheat()
+    {
+        var CheatCode code;
+        do cheat_list.reset();
+        while(~cheat_list.end())
+        {
+            let code = cheat_list.get();
+            do code.reset();
+            do cheat_list.next();
+        }
+        return;
+    }
+    method int _check_cheat(char c)
+    {
+        var CheatCode code;
+        var int i;
+        let i = 0;
+        do cheat_list.reset();
+        while(~cheat_list.end())
+        {
+            let code = cheat_list.get();
+            if(code.complete(c)) { return n+i; }
+            let i = i+1;
+            do cheat_list.next();
+        }
+        return -2;
+    }
+
+    method int run()
+    {
+        var int i;
+        var char c;
+        var int flag;
+        let i = 0;
+        while(i<n)
+        {
+            do Output.moveCursor(row+(i+i), col);
+            do Output.printString(list[i]);
+            let i = i+1;
+        }
+        do _reset_cheat();
+        do _draw_select(1);
+        let flag = -2;
+        while(flag=-2)
+        {
+            let c = _input();
+            let flag = _check_cheat(c);
+            if(flag=-2)
+            { 
+                if((c = 131)&(now>0))
+                {
+                    do _draw_select(0);
+                    let now = now-1;
+                    do _draw_select(1);
+                }
+                if((c = 133)&(now+1<n))
+                {
+                    do _draw_select(0);
+                    let now = now+1;
+                    do _draw_select(1);
+                }
+                if(c = 32) //Space key
+                {
+                    let flag = now;
+                }
+                if(c = 81) //Q
+                {
+                    let flag = -1;
+                }
+            }
+        }
+        do _draw_select(0);
+        if(auto_clean)
+        {
+            do Screen.setColor(false);
+            do Screen.drawRectangle(col*8, row*11, (col+width)*8-1, (row+n+n)*11-1);
+        }
+        return flag;
+    }
+    method void add_cheat(String code)
+    {
+        do cheat_list.insert(CheatCode.new(code));
+        return;
+    }
+}

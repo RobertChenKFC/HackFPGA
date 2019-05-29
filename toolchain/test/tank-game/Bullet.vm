@@ -1,0 +1,240 @@
+function Bullet.init 0
+call Album.get_bullet 0
+pop static 0
+push constant 0
+return
+function Bullet.set_map 0
+push argument 0
+pop static 1
+push constant 0
+return
+function Bullet.new 0
+push constant 4
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push argument 2
+pop this 2
+push argument 3
+pop this 3
+push pointer 0
+return
+function Bullet.move 2
+push argument 0
+pop pointer 0
+push static 1
+push this 0
+push this 1
+call Map.peek 3
+pop local 0
+push local 0
+push constant 1
+eq
+push local 0
+push constant 2
+eq
+or
+not
+not
+if-goto END_IF0
+push this 0
+push constant 8
+call Math.multiply 2
+push this 1
+push constant 8
+call Math.multiply 2
+push this 0
+push constant 8
+call Math.multiply 2
+push constant 7
+add
+push this 1
+push constant 8
+call Math.multiply 2
+push constant 7
+add
+call Image.clear 4
+pop temp 0
+label END_IF0
+push constant 0
+pop local 1
+push this 2
+push constant 0
+eq
+push this 1
+push constant 1
+sub
+push constant 1
+neg
+gt
+and
+not
+if-goto ELSE1
+push this 1
+push constant 1
+sub
+pop this 1
+push constant 1
+neg
+pop local 1
+goto END_IF1
+label ELSE1
+push this 2
+push constant 1
+eq
+push this 0
+push constant 1
+add
+push constant 45
+lt
+and
+not
+if-goto ELSE2
+push this 0
+push constant 1
+add
+pop this 0
+push constant 1
+neg
+pop local 1
+goto END_IF2
+label ELSE2
+push this 2
+push constant 2
+eq
+push this 1
+push constant 1
+add
+push constant 30
+lt
+and
+not
+if-goto ELSE3
+push this 1
+push constant 1
+add
+pop this 1
+push constant 1
+neg
+pop local 1
+goto END_IF3
+label ELSE3
+push this 2
+push constant 3
+eq
+push this 0
+push constant 1
+sub
+push constant 1
+neg
+gt
+and
+not
+if-goto END_IF4
+push this 0
+push constant 1
+sub
+pop this 0
+push constant 1
+neg
+pop local 1
+label END_IF4
+label END_IF3
+label END_IF2
+label END_IF1
+push local 1
+not
+if-goto END_IF5
+push static 1
+push this 0
+push this 1
+call Map.peek 3
+pop local 0
+push local 0
+push constant 0
+eq
+not
+if-goto END_IF6
+push static 0
+push this 0
+push constant 8
+call Math.multiply 2
+push this 1
+push constant 8
+call Math.multiply 2
+push this 2
+call Image.draw 4
+pop temp 0
+push constant 1
+neg
+return
+label END_IF6
+push local 0
+push constant 1
+eq
+push local 0
+push constant 2
+eq
+or
+not
+if-goto END_IF7
+push this 0
+push this 1
+call Game.attack_tank 2
+pop temp 0
+label END_IF7
+push local 0
+push constant 3
+eq
+not
+if-goto END_IF8
+push static 1
+push this 0
+push this 1
+push this 0
+push this 1
+push constant 0
+call Map.update 6
+pop temp 0
+label END_IF8
+push local 0
+push constant 5
+eq
+not
+if-goto END_IF9
+push constant 21
+push constant 27
+call Bomb.new 2
+call Game.add_bomb 1
+pop temp 0
+call Game.over 0
+pop temp 0
+label END_IF9
+push local 0
+push constant 4
+eq
+not
+push this 3
+push constant 1
+eq
+and
+call Cheat.get_penetrate 0
+push constant 1
+neg
+eq
+and
+not
+if-goto END_IF10
+push constant 1
+neg
+return
+label END_IF10
+label END_IF5
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

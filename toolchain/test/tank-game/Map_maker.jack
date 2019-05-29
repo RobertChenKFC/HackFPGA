@@ -1,0 +1,117 @@
+class Map_maker
+{
+    static String exit;
+    static Menu type_menu;
+    static Array map;
+
+    function void init()
+    {
+        var Array list;
+        let list = Array.new(6);
+        let list[0] = "Erase";
+        let list[1] = "Yourself";
+        let list[2] = "Enemy";
+        let list[3] = "Soft";
+        let list[4] = "Hard";
+        let list[5] = "[Start]";
+        let type_menu = Menu.new(5, 48, 6, list, false);
+        let exit = "Q: go back";
+        return;
+    }
+
+    function Array make()
+    {
+        var int type;
+        var int i;
+        let map = Array.new(10*15);
+        let i = 0;
+        while(i<150)
+        {
+            let map[i] = 0;
+            let i = i+1;
+        }
+        do Map_maker._draw_frame();
+        let type = 0;
+        while(~(type=5))
+        {
+            let type = type_menu.run();
+            if(~((type=5)|(type=-1))) { do Map_maker._edit(type); }
+        }
+        return map;
+    }
+
+    function void _edit(int type)
+    {
+        var int row, col;
+        var char input;
+        let row = 0;
+        let col = 0;
+        let input = 0;
+        do Map._draw_item(row, col, type);
+        do Map_maker._draw_select(row, col);
+        while(~(input=81)) //Q
+        {
+            do Output.moveCursor(22, 63);
+            let input = Keyboard.readChar();
+            if((input=131)&(row>0))
+            {
+                do Map._draw_item(row, col, map[row*15+col]);
+                let row = row-1;
+                do Map._draw_item(row, col, type);
+                do Map_maker._draw_select(row, col);
+            }
+            if((input=132)&(col<14))
+            {
+                do Map._draw_item(row, col, map[row*15+col]);
+                let col = col+1;
+                do Map._draw_item(row, col, type);
+                do Map_maker._draw_select(row, col);
+            }
+            if((input=133)&(row<9))
+            {
+                do Map._draw_item(row, col, map[row*15+col]);
+                let row = row+1;
+                do Map._draw_item(row, col, type);
+                do Map_maker._draw_select(row, col);
+            }
+            if((input=130)&(col>0))
+            {
+                do Map._draw_item(row, col, map[row*15+col]);
+                let col = col-1;
+                do Map._draw_item(row, col, type);
+                do Map_maker._draw_select(row, col);
+            }
+            if((input=32)) //space
+            {
+                let map[row*15+col] = type;
+            }
+        }
+        do Map._draw_item(row, col, map[row*15+col]);
+        return;
+    }
+
+    function void _draw_select(int row, int col)
+    {
+        var int x, y;
+        let x = col*24;
+        let y = row*24;
+		do Image.fill(x, y, x+23, y);
+		do Image.fill(x, y+23, x+23, y+23);
+		do Image.fill(x, y, x, y+23);
+		do Image.fill(x+23, y, x+23, y+23);
+        return;
+    }
+
+	function void _draw_frame(){
+        do Screen.clearScreen();
+		do Screen.setColor(true);
+		do Screen.drawRectangle(0, 0, 511, 7);
+		do Screen.drawRectangle(0, 248, 511, 255);
+		do Screen.drawRectangle(0, 8, 11, 247);
+		do Screen.drawRectangle(500, 8, 511, 247);
+		do Screen.drawRectangle(372, 8, 379, 247);
+        do Output.moveCursor(19, 48);
+        do Output.printString(exit);
+		return;
+	}
+}

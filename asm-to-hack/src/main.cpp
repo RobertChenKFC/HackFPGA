@@ -163,7 +163,10 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
       // C instruction
       outputFile << "111";
 
-      line.pop_back(); // remove newline
+      while (std::isspace(line.back()))
+        line.pop_back();
+      // DEBUG
+      // std::cout << "Current C instruction: " << line << std::endl;
 
       auto destPos = line.find('=');
       std::string destination;

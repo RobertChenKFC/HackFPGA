@@ -1,0 +1,17 @@
+class Rand
+{
+    static int a, t;
+
+    function void reset(int _a, int _t)
+    {
+        let a = _a;
+        let t = _t;
+        return;
+    }
+    function int rand()
+    {
+        let a = a*a+t/16&127;
+        let t = t+1;
+        return a;
+    }
+}

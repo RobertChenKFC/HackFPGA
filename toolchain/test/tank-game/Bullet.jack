@@ -1,0 +1,71 @@
+class Bullet{
+	static Image img;
+	static Map map;
+	field int x, y, dir, owner;
+
+	function void init(){
+		let img = Album.get_bullet();
+		return;
+	}
+	function void set_map(Map _map){
+		let map = _map;
+		return;
+	}
+	constructor Bullet new(int _x, int _y, int _dir, int _owner){
+		let x = _x;
+		let y = _y;
+		let dir = _dir;
+		let owner = _owner;
+		return this;
+	}
+
+	method boolean move(){
+		var int type;
+        var boolean flag;
+		let type = map.peek(x, y);
+		if(~((type = 1)|(type = 2))) {
+			do Image.clear(x*8, y*8, x*8+7, y*8+7);
+		}
+        let flag = false;
+		if ((dir = 0)&(y-1 > -1)){
+            let y = y - 1;
+            let flag = true;
+		}
+		else{if ((dir = 1)&(x+1 < 45)){
+            let x = x + 1;
+            let flag = true;
+		}
+		else{if ((dir = 2)&(y+1 < 30)){
+            let y = y + 1;
+            let flag = true;
+		}
+		else{if ((dir = 3)&(x-1 > -1)){
+            let x = x - 1;
+            let flag = true;
+		}}}}
+
+        if(flag){
+            let type = map.peek(x, y);
+            if (type = 0){
+                do img.draw(x*8, y*8, dir);
+                return true;
+            }
+            if ((type = 1) | (type = 2)){
+                do Game.attack_tank(x, y);
+            }
+            if (type = 3){
+                do map.update(x, y, x, y, 0);
+            }
+			if (type = 5){
+                do Game.add_bomb(Bomb.new(21, 27));
+				do Game.over();
+			}
+			if (~(type = 4) & (owner = 1) & (Cheat.get_penetrate() = true)){
+				return true;
+			}
+        }
+        do Memory.deAlloc(this);
+		return false;
+	}
+
+}

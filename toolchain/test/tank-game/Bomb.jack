@@ -1,0 +1,29 @@
+class Bomb{
+	static Array bomb;
+	field int now, x, y;
+	function void init(){
+		let bomb = Array.new(3);
+		let bomb[0] = Album.get_bomb(1);
+		let bomb[1] = Album.get_bomb(2);
+		let bomb[2] = Album.get_bomb(3);
+		return;
+	}
+	constructor Bomb new(int _x, int _y){
+		let x = _x;
+		let y = _y;
+		let now = 0;
+		return this;
+	}
+	method boolean explode(){
+		var Image img;
+		if (now = 3) {
+			do Image.clear(x*8, y*8, x*8+23, y*8+23);
+			do Memory.deAlloc(this);
+			return false;
+		}
+		let img = bomb[now];
+		do img.draw(x*8, y*8, 0);
+		let now = now+1;
+		return true;
+	}
+}

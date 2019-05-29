@@ -1,0 +1,36 @@
+function Label.new 0
+push constant 4
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push argument 2
+pop this 2
+push argument 3
+pop this 3
+push pointer 0
+return
+function Label.display 0
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Output.moveCursor 2
+pop temp 0
+push this 3
+call Output.printString 1
+pop temp 0
+push this 2
+call Output.printInt 1
+pop temp 0
+push constant 0
+return
+function Label.assign 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 2
+push constant 0
+return

@@ -1,0 +1,104 @@
+class Author
+{
+    static Array skg, achin, tenyoku;
+
+    function void init()
+    {
+        var Array map;
+        let map = Array.new(23);
+        let map[0] = "      ;LLC      ";
+        let map[1] = "     ;ffLGCG    ";
+        let map[2] = "    ;itiLCG@L   ";
+        let map[3] = "   ifii;lLGG@l  ";
+        let map[4] = "  tttLCLLltGGLl ";
+        let map[5] = " ;LLLG@@@@@C@GG ";
+        let map[6] = " ;CfCC@@G@@@@G@f";
+        let map[7] = " lCtL:..:iilL@@G";
+        let map[8] = " ftlLft;;::ifL@@";
+        let map[9] = " f;G@@t@LliitL@@";
+        let map[10] = "li,@@@@@L@:@@L@ ";
+        let map[11] = ";t:C@@@@f@@@@@@ ";
+        let map[12] = "i::G@@t;l@@@@@@ ";
+        let map[13] = ".:ii;ii fG@@@GL ";
+        let map[14] = ".;lltt,:Lf@@@LL ";
+        let map[15] = " :lttl@LfffLLLf ";
+        let map[16] = " ittt;LLCffffL  ";
+        let map[17] = " tLf@GCCLfLff,  ";
+        let map[18] = "LL@CtfLG@LL:    ";
+        let map[19] = "GCGGCCGCLLL     ";
+        let map[20] = "C@@@tfLCCC,     ";
+        let map[21] = "@     CCG@      ";
+        let map[22] = "@ skg @@@@@     ";
+        let skg = map;
+        let map = Array.new(23);
+        let map[0] = "  L@@@@@@@@C@@@G     ";
+        let map[1] = "  G@@@@G@@@@@@@C@    ";
+        let map[2] = "  C@@iC@@@@@@ClLC    ";
+        let map[3] = " @L@@:l@@@@@@@G@C:   ";
+        let map[4] = " @@@@,:C@@@@@@@@@@   ";
+        let map[5] = " @@@t  ,G@@@@@@@@@   ";
+        let map[6] = " @@@l,.. G@fC@Ct@@   ";
+        let map[7] = ";@@ @@Gf,t@@@@@@ @@  ";
+        let map[8] = "@@@@@@@@C@@@@@@@@@@  ";
+        let map[9] = "@C@@@@@@ @@@@@@@@@@  ";
+        let map[10] = "@@@@@@@@ f@@@@@@@@@  ";
+        let map[11] = "@@@@@@G:  @@@@@@l@@  ";
+        let map[12] = "@@@;@lC    Gi .@@@@  ";
+        let map[13] = "@@@L.:fLCGC llit@@@  ";
+        let map[14] = "@@@@litL. f@L,:L@@@  ";
+        let map[15] = "@@@@t :t   G .l@@@@i ";
+        let map[16] = "@@@@@i L   . :G@@@@i ";
+        let map[17] = "fL@@@C, :i   t@@@@@i ";
+        let map[18] = "@GG@@@G     i@@@@@@@ ";
+        let map[19] = "@t@@@@@@:,:fG@@@@@@@ ";
+        let map[20] = "@@@@@@@@@GCCCG@@@@@@ ";
+        let map[21] = "Gl@@@       LG@@@@@@@";
+        let map[22] = "Gl@@@ AChin LG@@@@@@@";
+        let achin = map;
+        let map = Array.new(23);
+        let map[0] = "    @@@@@@@@@          ";
+        let map[1] = "   @@@@@@@@@@@         ";
+        let map[2] = "  @@@ll;ilfC@@G        ";
+        let map[3] = " .@@:  ,:;itLC@        ";
+        let map[4] = " @@@:   .;i;lfG        ";
+        let map[5] = " @@@.,@@@LtlftL        ";
+        let map[6] = " @@;@i:tGCLC@@@        ";
+        let map[7] = " @@flC@@@L@@CC@l       ";
+        let map[8] = ",fG..t;tfll@@CGf       ";
+        let map[9] = " f:  .:li;.CLti        ";
+        let map[10] = " fi..,lLi.:fLff        ";
+        let map[11] = " : .,ifLtCG@GC;        ";
+        let map[12] = "   .,;ififLGGC.        ";
+        let map[13] = "    ,:;CCil@@C         ";
+        let map[14] = "    ,::;iC@GL:         ";
+        let map[15] = "    .i::iffLC          ";
+        let map[16] = "     lt;ifLGG          ";
+        let map[17] = "     ,l@@@@@G          ";
+        let map[18] = "     ..;@@@@@@@@       ";
+        let map[19] = "   @  .iG@G@@@@@l,  ,: ";
+        let map[20] = " f@@..,lCGG@@@@@@Lll@@@";
+        let map[21] = "@@@G .:lff@@         @@";
+        let map[22] = "@@@G .:lff@@ Tenyoku @@";
+        let tenyoku = map;
+        return;
+    }
+    function void draw()
+    {
+        var int i;
+        do Screen.clearScreen();
+        let i = 0;
+        while(i<23)
+        {
+            do Output.moveCursor(i, 23);
+            do Output.printString(skg[i]);
+
+            do Output.moveCursor(i, 0);
+            do Output.printString(achin[i]);
+
+            do Output.moveCursor(i, 40);
+            do Output.printString(tenyoku[i]);
+            let i = i+1;
+        }
+        return;
+    }
+}
