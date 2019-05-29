@@ -40,5 +40,5 @@ output_asm = ['-o', '/tmp/tmp.asm']
 subprocess.call(['./VMTranslator'] + input_files + jack_os + output_asm)
 # print(['./VMTranslator'] + input_files + ['jack-os/*.vm'] + output_asm)
 subprocess.call(['./HackAssembler', '/tmp/tmp.asm'])
-os.rename('/tmp/tmp.asm', output_file)
+os.rename('/tmp/tmp.hack', output_file)
 # print(['./HackAssembler', '/tmp/tmp.asm'])
