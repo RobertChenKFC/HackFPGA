@@ -96,7 +96,7 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
     std::stringstream input(line);
 
     char front;
-    inputFile >> std::ws >> front;
+    input >> std::ws >> front;
 
     if (front == '(') {
       // Label
@@ -116,15 +116,30 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
     ++asmLineNumber;
     std::stringstream input(line);
 
+    input >> std::ws;
+    std::getline(input, line);
+    input = std::stringstream(line);
     char front;
-    input >> std::ws >> front;
+    input >> front;
 
-    if (line.front() == '@') {
+    // DEBUG
+    /*
+    std::string noNewline = line;
+    while (!noNewline.empty() && std::isspace(noNewline.back()))
+      noNewline.pop_back();
+    std::cout << "line got: " << noNewline
+      << " (length " << noNewline.length() << ")" << std::endl;
+    */
+
+    if (front == '@') {
       // A instruction
       outputFile << "0";
 
       std::string addressStr;
       input >> addressStr;
+
+      // DEBUG
+      // std::cout << "Address: " << addressStr << std::endl;
 
       std::int16_t address;
       if (IsNumber(addressStr)) {
@@ -144,7 +159,7 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
       }
       PrintBinary(outputFile, address);
       outputFile << std::endl;
-    } else if (front != '(' && front != '/') {
+    } else if (front != '(' && front != '/' && !std::isspace(front)) {
       // C instruction
       outputFile << "111";
 
