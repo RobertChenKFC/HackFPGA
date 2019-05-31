@@ -9,7 +9,7 @@ VMCommand::VMCommand(Operation op) :
 
 }
 
-VMCommand::VMCommand(Operation op, Segment segment, std::int16_t offset) :
+VMCommand::VMCommand(Operation op, Segment segment, Word offset) :
   op_(op),
   segment_(segment),
   n_(offset)
@@ -24,7 +24,7 @@ VMCommand::VMCommand(Operation op, const std::string &label) :
 
 }
 
-VMCommand::VMCommand(Operation op, const std::string &func, std::int16_t n) :
+VMCommand::VMCommand(Operation op, const std::string &func, Word n) :
   op_(op),
   str_(func),
   n_(n)
@@ -167,7 +167,7 @@ VMCommands::VMCommands(const std::string &inputFileName) :
   while (inputFile >> str) {
     VMCommand::Operation op = operations_[str];
     if (op == VMCommand::Operation::PUSH || op == VMCommand::Operation::POP) {
-      std::int16_t offset;
+      Word offset;
       inputFile >> str >> offset;
       VMCommand::Segment segment = segments_[str];
       vmCommands_.push_back(VMCommand(op, segment, offset));
@@ -176,7 +176,7 @@ VMCommands::VMCommands(const std::string &inputFileName) :
       inputFile >> str;
       vmCommands_.push_back(VMCommand(op, str));
     } else if (op == VMCommand::Operation::FUNCTION || op == VMCommand::Operation::CALL) {
-      std::int16_t n;
+      Word n;
       inputFile >> str >> n;
       vmCommands_.push_back(VMCommand(op, str, n));
     } else {
@@ -235,7 +235,7 @@ void VMCommands::add(const VMCommands &vmCommands) {
   std::size_t begin = vmCommands_.size();
   vmCommands_.reserve(vmCommands_.size() + vmCommands.size());
   vmCommands_.insert(vmCommands_.end(), vmCommands.begin(), vmCommands.end());
-  std::int16_t maxStatic = -1;
+  Word maxStatic = -1;
   std::string functionName;
   for (std::size_t i = begin; i < vmCommands_.size(); ++i) {
     auto &vmCommand = vmCommands_[i];
@@ -258,7 +258,7 @@ void VMCommands::add(VMCommands &&vmCommands) {
   std::size_t begin = vmCommands_.size();
   vmCommands_.reserve(vmCommands_.size() + vmCommands.size());
   std::move(vmCommands.begin(), vmCommands.end(), std::back_inserter(vmCommands_));
-  std::int16_t maxStatic = -1;
+  Word maxStatic = -1;
   std::string functionName;
   for (std::size_t i = begin; i < vmCommands_.size(); ++i) {
     auto &vmCommand = vmCommands_[i];
@@ -305,11 +305,11 @@ std::size_t VMCommands::size() const {
   return vmCommands_.size();
 }
 
-void VMCommands::setMemoryPtr(std::int16_t *ptr) {
+void VMCommands::setMemoryPtr(Word *ptr) {
   memory_ = ptr;
 }
 
-void VMCommands::setKey(std::int16_t key) {
+void VMCommands::setKey(Word key) {
   memory_[KBD] = key;
 }
 
@@ -337,12 +337,12 @@ void VMCommands::initExecution() {
       auto it = functionTable.find(vmCommand.str_);
       if (it == functionTable.end())
         throw std::runtime_error("Function \"" + vmCommand.str_ + "\" is undefined");
-      vmCommand.label_ = static_cast<std::int16_t>(it->second);
+      vmCommand.label_ = static_cast<Word>(it->second);
     } else if (vmCommand.op_ == VMCommand::Operation::GOTO || vmCommand.op_ == VMCommand::Operation::IF_GOTO) {
       auto it = labelTable.find(vmCommand.str_);
       if (it == labelTable.end())
         throw std::runtime_error("Label \"" + vmCommand.str_ + "\" is undefined");
-      vmCommand.label_ = static_cast<std::int16_t>(it->second);
+      vmCommand.label_ = static_cast<Word>(it->second);
     }
   }
 
@@ -366,7 +366,7 @@ bool VMCommands::execute(std::size_t steps) {
     const auto &vmCommand = vmCommands_[pos];
 
     bool jump = false;
-    std::int16_t currentLCL;
+    Word currentLCL;
     std::size_t returnPos;
     switch (vmCommand.op_) {
       case VMCommand::Operation::ADD:
@@ -419,11 +419,11 @@ bool VMCommands::execute(std::size_t steps) {
         --memory_[SP];
         break;
       case VMCommand::Operation::FUNCTION:
-        for (std::int16_t k = 0; k < vmCommand.n_; ++k)
+        for (Word k = 0; k < vmCommand.n_; ++k)
           push_(VMCommand::Segment::CONSTANT, 0);
         break;
       case VMCommand::Operation::CALL:
-        push_(VMCommand::Segment::CONSTANT, static_cast<std::int16_t>(pos + 1));
+        push_(VMCommand::Segment::CONSTANT, static_cast<Word>(pos + 1));
         push_(VMCommand::Segment::CONSTANT, memory_[LCL]);
         push_(VMCommand::Segment::CONSTANT, memory_[ARG]);
         push_(VMCommand::Segment::CONSTANT, memory_[THIS]);
@@ -467,14 +467,14 @@ void VMCommands::reset() {
   memory_[SP] = STACK;
 }
 
-std::int16_t VMCommands::numStatics_ = 0;
+Word VMCommands::numStatics_ = 0;
 void VMCommands::clear() {
   initializedExecution_ = false;
   numStatics_ = 0;
   vmCommands_.clear();
 }
 
-void VMCommands::push_(VMCommand::Segment segment, std::int16_t offset) const {
+void VMCommands::push_(VMCommand::Segment segment, Word offset) const {
   switch (segment) {
     case VMCommand::Segment::STATIC:
       memory_[memory_[SP]] = memory_[STATIC + offset];
@@ -506,7 +506,7 @@ void VMCommands::push_(VMCommand::Segment segment, std::int16_t offset) const {
   ++memory_[SP];
 }
 
-void VMCommands::pop_(VMCommand::Segment segment, std::int16_t offset) const {
+void VMCommands::pop_(VMCommand::Segment segment, Word offset) const {
   --memory_[SP];
   switch (segment) {
     case VMCommand::Segment::STATIC:

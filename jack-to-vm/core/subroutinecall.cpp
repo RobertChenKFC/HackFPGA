@@ -48,7 +48,8 @@ Node::SymbolTable DirectSubroutineCall::toVMCommands(VMCommands &vmCommands, Nod
   for (const auto &expression : expressionList_)
     expression->toVMCommands(vmCommands, symbolTable);
   vmCommands.add(VMCommand(VMCommand::Operation::CALL,
-        symbolTable.className + "." + name_.val(), static_cast<std::int16_t>(expressionList_.size()) + 1));
+        symbolTable.className + "." + name_.val(),
+        static_cast<Word>(expressionList_.size()) + 1));
 
   return symbolTable;
 }
@@ -104,54 +105,61 @@ Node::SymbolTable IndirectSubroutineCall::toVMCommands(VMCommands &vmCommands, N
   auto it = symbolTable.localTable.find(className_.val()), end = symbolTable.localTable.end();
   if (it != end) {
     vmCommands.add(VMCommand(
-          VMCommand::Operation::PUSH, VMCommand::Segment::LOCAL, static_cast<std::int16_t>(it->second.idx)));
+          VMCommand::Operation::PUSH, VMCommand::Segment::LOCAL,
+          static_cast<Word>(it->second.idx)));
     for (const auto &expression : expressionList_)
       expression->toVMCommands(vmCommands, symbolTable);
 
     vmCommands.add(VMCommand(VMCommand::Operation::CALL,
-          it->second.type.val() + "." + subroutineName_.val(), static_cast<std::int16_t>(expressionList_.size()) + 1));
+          it->second.type.val() + "." + subroutineName_.val(),
+          static_cast<Word>(expressionList_.size()) + 1));
   } else {
     // Argument object instance
     it = symbolTable.argumentTable.find(className_.val()), end = symbolTable.argumentTable.end();
     if (it != end) {
       vmCommands.add(VMCommand(
-            VMCommand::Operation::PUSH, VMCommand::Segment::ARGUMENT, static_cast<std::int16_t>(it->second.idx)));
+            VMCommand::Operation::PUSH, VMCommand::Segment::ARGUMENT,
+            static_cast<Word>(it->second.idx)));
       for (const auto &expression : expressionList_)
         expression->toVMCommands(vmCommands, symbolTable);
 
       vmCommands.add(VMCommand(VMCommand::Operation::CALL,
-            it->second.type.val() + "." + subroutineName_.val(), static_cast<std::int16_t>(expressionList_.size()) + 1));
+            it->second.type.val() + "." + subroutineName_.val(),
+            static_cast<Word>(expressionList_.size()) + 1));
     } else {
       // Field object instance
       it = symbolTable.fieldTable.find(className_.val()), end = symbolTable.fieldTable.end();
       if (it != end) {
         vmCommands.add(VMCommand(
-              VMCommand::Operation::PUSH, VMCommand::Segment::THIS, static_cast<std::int16_t>(it->second.idx)));
+              VMCommand::Operation::PUSH, VMCommand::Segment::THIS,
+              static_cast<Word>(it->second.idx)));
         for (const auto &expression : expressionList_)
           expression->toVMCommands(vmCommands, symbolTable);
 
         vmCommands.add(VMCommand(VMCommand::Operation::CALL,
               it->second.type.val() + "." + subroutineName_.val(),
-              static_cast<std::int16_t>(expressionList_.size()) + 1));
+              static_cast<Word>(expressionList_.size()) + 1));
       } else {
         // Static object instance
         it = symbolTable.staticTable.find(className_.val()), end = symbolTable.staticTable.end();
         if (it != end) {
           vmCommands.add(VMCommand(
-                VMCommand::Operation::PUSH, VMCommand::Segment::STATIC, static_cast<std::int16_t>(it->second.idx)));
+                VMCommand::Operation::PUSH, VMCommand::Segment::STATIC,
+                static_cast<Word>(it->second.idx)));
           for (const auto &expression : expressionList_)
             expression->toVMCommands(vmCommands, symbolTable);
 
           vmCommands.add(VMCommand(VMCommand::Operation::CALL,
                 it->second.type.val() + "." + subroutineName_.val(),
-                static_cast<std::int16_t>(expressionList_.size()) + 1));
+                static_cast<Word>(expressionList_.size()) + 1));
         } else {
           // Static function call
           for (const auto &expression : expressionList_)
             expression->toVMCommands(vmCommands, symbolTable);
 
           vmCommands.add(VMCommand(VMCommand::Operation::CALL,
-                className_.val() + "." + subroutineName_.val(), static_cast<std::int16_t>(expressionList_.size())));
+                className_.val() + "." + subroutineName_.val(),
+                static_cast<Word>(expressionList_.size())));
         }
       }
     }

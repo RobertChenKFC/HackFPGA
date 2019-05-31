@@ -83,13 +83,14 @@ Node::SymbolTable SubroutineNode::toVMCommands(VMCommands &vmCommands, Node::Sym
 
   std::size_t nVars = symbolTable.localTable.size();
   vmCommands.add(VMCommand(
-        VMCommand::Operation::FUNCTION, symbolTable.className + "." + name_.val(), static_cast<std::int16_t>(nVars)));
+        VMCommand::Operation::FUNCTION, symbolTable.className + "." + name_.val(),
+        static_cast<Word>(nVars)));
   if (isMethod) {
     vmCommands.add(VMCommand(VMCommand::Operation::PUSH, VMCommand::Segment::ARGUMENT, 0));
     vmCommands.add(VMCommand(VMCommand::Operation::POP, VMCommand::Segment::POINTER, 0));
   } else if (keyword_.isKeyword("constructor")) {
     vmCommands.add(VMCommand(VMCommand::Operation::PUSH, VMCommand::Segment::CONSTANT,
-          static_cast<std::int16_t>(symbolTable.fieldTable.size())));
+          static_cast<Word>(symbolTable.fieldTable.size())));
     vmCommands.add(VMCommand(VMCommand::Operation::CALL, "Memory.alloc", 1));
     vmCommands.add(VMCommand(VMCommand::Operation::POP, VMCommand::Segment::POINTER, 0));
   }

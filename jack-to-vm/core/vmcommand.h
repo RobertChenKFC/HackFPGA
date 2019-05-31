@@ -8,6 +8,8 @@
 
 #define TO_SEGMENT_STRING(X) SEGMENT_STRINGS[static_cast<int>(X)]
 
+using Word = std::int32_t;
+
 class VMCommand {
 public:
   enum class Operation {
@@ -53,9 +55,9 @@ public:
   };
 
   VMCommand(Operation op);
-  VMCommand(Operation op, Segment segment, std::int16_t offset);
+  VMCommand(Operation op, Segment segment, Word offset);
   VMCommand(Operation op, const std::string &label);
-  VMCommand(Operation op, const std::string &func, std::int16_t n);
+  VMCommand(Operation op, const std::string &func, Word n);
   VMCommand() = default;
   VMCommand(const VMCommand &) = default;
   VMCommand(VMCommand &&) = default;
@@ -73,8 +75,8 @@ private:
   Operation op_;
   Segment segment_;
   std::string str_;
-  std::int16_t label_;
-  std::int16_t n_;
+  Word label_;
+  Word n_;
 };
 
 class VMCommands {
@@ -102,8 +104,8 @@ public:
   const VMCommand& operator[](std::size_t idx) const;
   std::size_t size() const;
 
-  void setMemoryPtr(std::int16_t *ptr);
-  void setKey(std::int16_t key);
+  void setMemoryPtr(Word *ptr);
+  void setKey(Word key);
   void initExecution();
   bool execute(std::size_t steps);
 
@@ -113,19 +115,20 @@ public:
   void toVMCode(std::fstream &outputFile) const;
 
 private:
-  void push_(VMCommand::Segment segment, std::int16_t offset) const;
-  void pop_(VMCommand::Segment segment, std::int16_t offset) const;
+  void push_(VMCommand::Segment segment, Word offset) const;
+  void pop_(VMCommand::Segment segment, Word offset) const;
 
   static bool initialized_;
   static std::unordered_map<std::string, VMCommand::Operation> operations_;
   static std::unordered_map<std::string, VMCommand::Segment> segments_;
 
-  std::int16_t *memory_;
-  static constexpr std::int16_t SP = 0, LCL = 1, ARG = 2, THIS = 3, THAT = 4, TEMP = 5;
-  static constexpr std::int16_t STATIC = 16, STACK = 256, HEAP = 2048, KBD = 24576;
+  Word *memory_;
+  // TODO: change segment offset
+  static constexpr Word SP = 0, LCL = 1, ARG = 2, THIS = 3, THAT = 4, TEMP = 5;
+  static constexpr Word STATIC = 16, STACK = 256, HEAP = 2048, KBD = 24576;
 
   bool initializedExecution_;
-  static std::int16_t numStatics_;
+  static Word numStatics_;
   std::size_t startPos_;
   std::size_t curPos_;
   std::vector<VMCommand> vmCommands_;

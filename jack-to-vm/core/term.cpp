@@ -29,15 +29,17 @@ void SingleTerm::toXML(std::fstream &outputFile, const std::string &indentation)
 Node::SymbolTable SingleTerm::toVMCommands(VMCommands &vmCommands, Node::SymbolTable symbolTable) const {
   if (term_.isIntegerConstant()) {
     vmCommands.add(VMCommand(
-          VMCommand::Operation::PUSH, VMCommand::Segment::CONSTANT, static_cast<std::int16_t>(std::stoi(term_.val()))));
+          VMCommand::Operation::PUSH, VMCommand::Segment::CONSTANT,
+          static_cast<Word>(std::stoi(term_.val()))));
   } else if (term_.isStringConstant()) {
     const std::string str = term_.val();
     vmCommands.add(VMCommand(
-          VMCommand::Operation::PUSH, VMCommand::Segment::CONSTANT, static_cast<std::int16_t>(str.length())));
+          VMCommand::Operation::PUSH, VMCommand::Segment::CONSTANT,
+          static_cast<Word>(str.length())));
     vmCommands.add(VMCommand(VMCommand::Operation::CALL, "String.new", 1));
     for (char c : str) {
       vmCommands.add(VMCommand(VMCommand::Operation::PUSH, VMCommand::Segment::CONSTANT,
-            static_cast<std::int16_t>(c)));
+            static_cast<Word>(c)));
       vmCommands.add(VMCommand(VMCommand::Operation::CALL, "String.appendChar", 2));
     }
   } else if (term_.isKeyword("true")) {
@@ -52,25 +54,29 @@ Node::SymbolTable SingleTerm::toVMCommands(VMCommands &vmCommands, Node::SymbolT
     auto it = symbolTable.localTable.find(term_.val()), end = symbolTable.localTable.end();
     if (it != end) {
       vmCommands.add(VMCommand(
-            VMCommand::Operation::PUSH, VMCommand::Segment::LOCAL, static_cast<std::int16_t>(it->second.idx)));
+            VMCommand::Operation::PUSH, VMCommand::Segment::LOCAL,
+            static_cast<Word>(it->second.idx)));
     } else {
       // Argument variable
       it = symbolTable.argumentTable.find(term_.val()), end = symbolTable.argumentTable.end();
       if (it != end) {
         vmCommands.add(VMCommand(
-              VMCommand::Operation::PUSH, VMCommand::Segment::ARGUMENT, static_cast<std::int16_t>(it->second.idx)));
+              VMCommand::Operation::PUSH, VMCommand::Segment::ARGUMENT,
+              static_cast<Word>(it->second.idx)));
       } else {
         // Field variable
         it = symbolTable.fieldTable.find(term_.val()), end = symbolTable.fieldTable.end();
         if (it != end) {
           vmCommands.add(VMCommand(
-                VMCommand::Operation::PUSH, VMCommand::Segment::THIS, static_cast<std::int16_t>(it->second.idx)));
+                VMCommand::Operation::PUSH, VMCommand::Segment::THIS,
+                static_cast<Word>(it->second.idx)));
         } else {
           // Static variable
           it = symbolTable.staticTable.find(term_.val()), end = symbolTable.staticTable.end();
           if (it != end) {
             vmCommands.add(VMCommand(
-                  VMCommand::Operation::PUSH, VMCommand::Segment::STATIC, static_cast<std::int16_t>(it->second.idx)));
+                  VMCommand::Operation::PUSH, VMCommand::Segment::STATIC,
+                  static_cast<Word>(it->second.idx)));
           } else {
             throw std::runtime_error("Line " + std::to_string(term_.lineNumber()) +
                 ": Identifier \"" + term_.val() + "\" is not defined");
@@ -116,25 +122,29 @@ Node::SymbolTable ArrayElementTerm::toVMCommands(VMCommands &vmCommands, Node::S
   auto it = symbolTable.localTable.find(name_.val()), end = symbolTable.localTable.end();
   if (it != end) {
     vmCommands.add(VMCommand(
-          VMCommand::Operation::PUSH, VMCommand::Segment::LOCAL, static_cast<std::int16_t>(it->second.idx)));
+          VMCommand::Operation::PUSH, VMCommand::Segment::LOCAL,
+          static_cast<Word>(it->second.idx)));
   } else {
     // Argument variable
     it = symbolTable.argumentTable.find(name_.val()), end = symbolTable.argumentTable.end();
     if (it != end) {
       vmCommands.add(VMCommand(
-            VMCommand::Operation::PUSH, VMCommand::Segment::ARGUMENT, static_cast<std::int16_t>(it->second.idx)));
+            VMCommand::Operation::PUSH, VMCommand::Segment::ARGUMENT,
+            static_cast<Word>(it->second.idx)));
     } else {
       // Field variable
       it = symbolTable.fieldTable.find(name_.val()), end = symbolTable.fieldTable.end();
       if (it != end) {
         vmCommands.add(VMCommand(
-              VMCommand::Operation::PUSH, VMCommand::Segment::THIS, static_cast<std::int16_t>(it->second.idx)));
+              VMCommand::Operation::PUSH, VMCommand::Segment::THIS,
+              static_cast<Word>(it->second.idx)));
       } else {
         // Static variable
         it = symbolTable.staticTable.find(name_.val()), end = symbolTable.staticTable.end();
         if (it != end) {
           vmCommands.add(VMCommand(
-                VMCommand::Operation::PUSH, VMCommand::Segment::STATIC, static_cast<std::int16_t>(it->second.idx)));
+                VMCommand::Operation::PUSH, VMCommand::Segment::STATIC,
+                static_cast<Word>(it->second.idx)));
         } else {
           throw std::runtime_error("Line " + std::to_string(name_.lineNumber()) +
               ": Identifier \"" + name_.val() + "\" is not defined");
