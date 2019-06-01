@@ -10,6 +10,9 @@ let reset;
 let density;
 let consoleLogText;
 
+// DEBUG
+var debugMessage;
+
 function readFile() {
   if (fileIdx == -1) {
     return;
@@ -48,11 +51,11 @@ function setup() {
   };
 
   setTimeout(() => {
-    const memory = new Int16Array(24577);
-    const buf = Module._malloc(memory.length * 2);
-    bufBegin = buf / 2;
+    const memory = new Int32Array(24577); // Change to 32-bit
+    const buf = Module._malloc(memory.length * memory.BYTES_PER_ELEMENT);
+    bufBegin = buf / memory.BYTES_PER_ELEMENT;
     bufEnd = bufBegin + memory.length;
-    Module.HEAP16.set(memory, bufBegin);
+    Module.HEAP32.set(memory, bufBegin); // Change to 32-bit
     Module.ccall('SetMemoryPtr', null, ['number'], [buf]);
 
     const fileInput = document.getElementById('fileInput');
@@ -113,7 +116,7 @@ function nextFrame() {
     start = false;
   }
 
-  const memory = Module.HEAP16.subarray(bufBegin, bufEnd);
+  const memory = Module.HEAP32.subarray(bufBegin, bufEnd);
   loadPixels();
   let x = 0, y = 0;
   for (let i = 16384; i < 24576; ++i) {

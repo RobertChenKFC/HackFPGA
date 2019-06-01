@@ -15,26 +15,35 @@ class Main {
 
         let loop = true;
         while (loop) {
-            do Main.init();
-            do Main.randomize();
-
             let c = Keyboard.keyPressed();
             if (c = 49) {
+                do Main.init();
+                do Main.randomize();
                 do Main.bubbleSort();
             }
             if (c = 50) {
+                do Main.init();
+                do Main.randomize();
                 do Main.selectionSort();
             }
             if (c = 51) {
+                do Main.init();
+                do Main.randomize();
                 do Main.mergeSort();
             }
             if (c = 52) {
+                do Main.init();
+                do Main.randomize();
                 do Main.quickSort();
             }
             if (c = 53) {
+                do Main.init();
+                do Main.randomize();
                 do Main.heapSort();
             }
             if (c = 54) {
+                do Main.init();
+                do Main.randomize();
                 do Main.radixSort();
             }
             if (c = 81) {
@@ -63,7 +72,6 @@ class Main {
 
     function void randomize() {
         var int i, a, b, t;
-
         let i = 0;
         while (i < 1024) {
             let a = Main.mod(Main.rand(), 255);

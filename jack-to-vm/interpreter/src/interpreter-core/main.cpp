@@ -11,10 +11,10 @@ extern "C" {
   VMCommands vmCommands;
 
   bool CompileFile(char *inputFileName, char *input);
-  void SetMemoryPtr(std::int16_t *ptr);
+  void SetMemoryPtr(Word *ptr);
   bool InitializeExecution();
   bool Execute(std::size_t steps);
-  void SetKey(std::int16_t key);
+  void SetKey(Word key);
   void Reset();
   void Clear();
 
@@ -25,25 +25,26 @@ extern "C" {
       vmCommands.add(parser.toVMCommands());
 
       EM_ASM_({
-        console.log('Compiled ' + Pointer_stringify($0));
+        console.log('Compiled ' + UTF8ToString($0, 256));
       }, inputFileName);
 
       return true;
     } catch (const std::exception &e) {
       EM_ASM_({
-        console.log(Pointer_stringify($0) + ', ' + Pointer_stringify($1));
+        console.log(UTF8ToString($0, 256) + ', ' +
+          UTF8ToString($1, 256));
       }, inputFileName, e.what());
 
       return false;
     }
   }
 
-  void SetMemoryPtr(std::int16_t *ptr) {
+  void SetMemoryPtr(Word *ptr) {
     try {
       vmCommands.setMemoryPtr(ptr);
     } catch (const std::exception &e) {
       EM_ASM_({
-        console.log(Pointer_stringify($0));
+        console.log(UTF8ToString($0, 256));
       }, e.what());
     }
   }
@@ -64,7 +65,7 @@ extern "C" {
       return true;
     } catch (const std::exception &e){
       EM_ASM_({
-        console.log(Pointer_stringify($0));
+        console.log(UTF8ToString($0, 256));
       }, e.what());
 
       return false;
@@ -77,13 +78,14 @@ extern "C" {
       done = vmCommands.execute(steps);
     } catch (const std::exception &e) {
       EM_ASM_({
-        console.log(Pointer_stringify($0));
+        // console.log(UTF8ToString($0, 256));
+        debugMessage = UTF8ToString($0, 256);
       }, e.what());
     }
     return done;
   }
 
-  void SetKey(std::int16_t key) {
+  void SetKey(Word key) {
     vmCommands.setKey(key);
   }
 
