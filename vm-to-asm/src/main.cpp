@@ -10,6 +10,8 @@
 #include <filesystem>
 #include <vector>
 
+using Word = std::int32_t;
+
 enum class Segment {
   CONSTANT,
   LOCAL,
@@ -40,7 +42,7 @@ void BinaryOperation(std::fstream &outputFile, char operation) {
     outputFile << "M=D" << operation << "M" << std::endl;
 }
 
-std::int16_t labelNum = 0;
+Word labelNum = 0;
 void CompareOperation(std::fstream &outputFile, const std::string &operation) {
   outputFile << "@SP" << std::endl
     << "AM=M-1" << std::endl
@@ -207,8 +209,8 @@ void Pop(std::fstream &outputFile, Segment segment, const std::string &value) {
     << "M=M-D" << std::endl;
 }
 
-std::int16_t returnNum = 0;
-void Call(std::fstream &outputFile, const std::string &label, std::int16_t nArgs) {
+Word returnNum = 0;
+void Call(std::fstream &outputFile, const std::string &label, Word nArgs) {
   std::string returnLabel = "TRANSLATOR_RETURN" + std::to_string(returnNum++);
   Push(outputFile, Segment::CONSTANT, returnLabel);
   Push(outputFile, Segment::VALUE, "LCL");
@@ -349,13 +351,13 @@ void Translate(std::fstream &outputFile, const std::string &inputFileName) {
         << "D;JNE" << std::endl;
     } else if (cmd == "function") {
       std::string label;
-      std::int16_t nVars;
+      Word nVars;
       input >> label >> nVars;
       outputFile << "(" << label << ")" << std::endl;
       while (nVars--) Push(outputFile, Segment::CONSTANT, "0");
     } else if (cmd == "call") {
       std::string label;
-      std::int16_t nArgs;
+      Word nArgs;
       input >> label >> nArgs;
       Call(outputFile, label, nArgs);
     } else if (cmd == "return") {
