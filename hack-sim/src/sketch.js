@@ -43,8 +43,8 @@ function setup() {
   };
 
   setTimeout(() => {
-    const memory = Module._malloc(memorySize * 2); // int16 - two bytes long
-    memoryBegin = memory / 2;
+    const memory = Module._malloc(memorySize * 4); // int32 - four bytes long
+    memoryBegin = memory / 4;
     memoryEnd = memoryBegin + memorySize;
     Module.ccall('SetMemoryPtr', null, ['number'], [memory]);
 
@@ -109,7 +109,7 @@ function draw() {
 function nextFrame() {
   Module.ccall('Execute', 'number', ['number'], [speed]);
 
-  const memoryArr = Module.HEAP16.subarray(memoryBegin, memoryEnd);
+  const memoryArr = Module.HEAP32.subarray(memoryBegin, memoryEnd);
   loadPixels();
   let x = 0, y = 0;
   for (let i = 16384; i < 24576; ++i) {

@@ -6,13 +6,15 @@
 #include <stdexcept>
 #include <sstream>
 
-void PrintBinary(std::fstream &out, std::int16_t x, int bits = 15) {
+using Word = std::int32_t;
+
+void PrintBinary(std::fstream &out, Word x, int bits = 31) {
   std::string s;
   while (bits--)
     out << ((x >> bits) & 1);
 }
 
-std::unordered_map<std::string, std::int16_t> baseSymbolTable;
+std::unordered_map<std::string, Word> baseSymbolTable;
 std::unordered_map<std::string, std::string> destinations;
 std::unordered_map<std::string, std::string> computations;
 std::unordered_map<std::string, std::string> jumps;
@@ -24,7 +26,7 @@ void Initialize() {
   baseSymbolTable["THAT"] =   4;
   baseSymbolTable["SCREEN"] = 16384;
   baseSymbolTable["KBD"] =    24576;
-  for (std::int16_t i = 0; i < 16; ++i)
+  for (Word i = 0; i < 16; ++i)
     baseSymbolTable["R" + std::to_string(i)] = i;
 
   destinations[""]    = "000";
@@ -87,10 +89,10 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
 
   std::string line;
 
-  std::unordered_map<std::string, std::int16_t> symbolTable(baseSymbolTable);
-  std::unordered_map<std::string, std::int16_t> labelTable;
-  std::int16_t hackLineNumber = 0;
-  std::int16_t symbolNumber = 16;
+  std::unordered_map<std::string, Word> symbolTable(baseSymbolTable);
+  std::unordered_map<std::string, Word> labelTable;
+  Word hackLineNumber = 0;
+  Word symbolNumber = 16;
   int asmLineNumber = 0;
   while (std::getline(inputFile, line)) {
     std::stringstream input(line);
@@ -122,15 +124,6 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
     char front;
     input >> front;
 
-    // DEBUG
-    /*
-    std::string noNewline = line;
-    while (!noNewline.empty() && std::isspace(noNewline.back()))
-      noNewline.pop_back();
-    std::cout << "line got: " << noNewline
-      << " (length " << noNewline.length() << ")" << std::endl;
-    */
-
     if (front == '@') {
       // A instruction
       outputFile << "0";
@@ -138,12 +131,9 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
       std::string addressStr;
       input >> addressStr;
 
-      // DEBUG
-      // std::cout << "Address: " << addressStr << std::endl;
-
-      std::int16_t address;
+      Word address;
       if (IsNumber(addressStr)) {
-        address = static_cast<std::int16_t>(std::stoi(addressStr));
+        address = static_cast<Word>(std::stoi(addressStr));
       } else {
         auto addressIt = labelTable.find(addressStr);
         if (addressIt == labelTable.end()) {
@@ -161,12 +151,10 @@ void Assemble(const std::string &inputFileName, const std::string &outputFileNam
       outputFile << std::endl;
     } else if (front != '(' && front != '/' && !std::isspace(front)) {
       // C instruction
-      outputFile << "111";
+      outputFile << "1111111111111111111";
 
       while (std::isspace(line.back()))
         line.pop_back();
-      // DEBUG
-      // std::cout << "Current C instruction: " << line << std::endl;
 
       auto destPos = line.find('=');
       std::string destination;
