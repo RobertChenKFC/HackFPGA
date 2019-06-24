@@ -8,13 +8,31 @@
  * Note: Jack compilers implement multiplication and division using OS method calls.
  */
 class Math {
+    static Array masks_, pows_;
 
     /** Initializes the library. */
     function void init() {
+        // TODO: Change array sizes to 31 items
+        var int i, mask;
+
+        let masks_ = Array.new(15);
+        let pows_ = Array.new(15);
+        let i = 0;
+        let mask = 1;
+        while (i < 15) {
+            let masks_[i] = mask;
+            let i = i + 1;
+            let mask = mask + mask;
+        }
+        return;
     }
 
     /** Returns the absolute value of x. */
     function int abs(int x) {
+        if (x < 0) {
+            return -x;
+        }
+        return x;
     }
 
     /** Returns the product of x and y. 
@@ -23,6 +41,35 @@ class Math {
      *  the Jack expressions x*y and multiply(x,y) return the same value.
      */
     function int multiply(int x, int y) {
+        // TODO: change multiplication to 32 bit
+        var int mask, ret;
+        var bool neg;
+
+        let neg = false;
+        if (x < 0) {
+            let x = -x;
+            let neg = ~neg;
+        }
+        if (y < 0) {
+            let y = -y;
+            let neg = ~neg;
+        }
+
+        let mask = 1;
+        let ret = 0;
+        while (mask > 0) {  // Shift until MSB is set, which means mask < 0
+            if (~((mask & y) = 0)) {
+                let ret = ret + x;
+            }
+
+            let x = x + x;
+            let mask = mask + mask;
+        }
+
+        if (neg) {
+            return -ret;
+        }
+        return ret;
     }
 
     /** Returns the integer part of x/y.
@@ -31,17 +78,91 @@ class Math {
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
     function int divide(int x, int y) {
+        // TODO: change division to 32 bit
+        var int i, ret, cur;
+        var bool neg, continue;
+
+        if (y = 0) {
+            do Sys.error(3);
+            return 0;
+        }
+
+        let neg = false;
+        if (x < 0) {
+            let x = -x;
+            let neg = ~neg;
+        }
+        if (y < 0) {
+            let y = -y;
+            let neg = ~neg;
+        }
+
+        let i = 0;
+        let ret = y;
+        let continue = true;
+        while ((i < 15) & continue) {    // Calculate y << i, 0 <= i <= 14, MSB won't be used
+            let pows_[i] = ret;
+            let i = i + 1;
+            let ret = ret + ret;
+            if ((ret > x) | (ret < 0)) {
+                let continue = false;
+            }
+        }
+
+        let i = i - 1;
+        let ret = 0;
+        let cur = 0;
+        while (~(i < 0)) {
+            if (~((cur + pows_[i]) > x)) {
+                let ret = ret | masks_[i];
+                let cur = cur + pows_[i];
+            }
+            let i = i - 1;
+        }
+
+        if (neg) {
+            return -ret;
+        }
+        return ret;
     }
 
     /** Returns the integer part of the square root of x. */
     function int sqrt(int x) {
+        // Change square root to 32 bit
+        var int i, ret, cur, sq;
+
+        if (x < 0) {
+            do Sys.error(4);
+            return 0;
+        }
+
+        let i = 14;         // Try setting the i-th bit, 0 <= i <= 14
+        let ret = 0;
+        while (~(i < 0)) {
+            let cur = ret | masks_[i];
+            let sq = cur * cur;
+            if (~((sq < cur) | (sq > x) | (sq < 0))) {
+                let ret = cur;
+            }
+            let i = i - 1;
+        }
+
+        return ret;
     }
 
     /** Returns the greater number. */
     function int max(int a, int b) {
+        if (a > b) {
+            return a;
+        }
+        return b;
     }
 
     /** Returns the smaller number. */
     function int min(int a, int b) {
+        if (a < b) {
+            return a;
+        }
+        return b;
     }
 }
