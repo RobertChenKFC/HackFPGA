@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(WARNING_FLAGS -Wall -Wextra -Wconversion
     -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast
-    -Wshadow -Wfloat-equal -Weffc++ -Wmost)
+    -Wshadow -Wfloat-equal -Weffc++)
 
 project(JackCompiler)
 

@@ -166,8 +166,10 @@ class Screen {
         }
         if (x2 > x1) {
             let dx = 1;
+            let x2 = x2 + 1;
         } else {
             let dx = -1;
+            let x2 = x2 - 1;
         }
         while (~(x1 = x2)) {
             do Screen.drawLine(x1, y1, x1, y2);

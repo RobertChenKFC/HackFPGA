@@ -16,7 +16,7 @@ class Memory {
     function void init() {
         let ram_ = 0;
         let free_ = 2048;
-        let free_[0] = 14436; // maxiumum free block 16384 - 2048
+        let free_[0] = 14336; // maxiumum free block 16384 - 2048
         let free_[1] = 0;
         return;
     }
@@ -53,7 +53,7 @@ class Memory {
         let allocSize = size + 1;
         let cur = free_;
         let prev = 0;
-        let bestDiff = 14437; // maximum free block 16384 - 2048
+        let bestDiff = 14337; // maximum free block 16384 - 2048
         let continue = true;
 
         while ((~(cur = 0)) & continue) {
@@ -70,7 +70,7 @@ class Memory {
             let cur = cur[1];
         }
 
-        if (bestDiff = 14437) {
+        if (bestDiff = 14337) {
             do Sys.error(6);
             return 0;
         }

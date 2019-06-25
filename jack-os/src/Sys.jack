@@ -11,16 +11,16 @@ class Sys {
     /** Performs all the initializations required by the OS. */
     function void init() {
         // Dependencies:
-        // Array: none (no init)
+        // Array: Memory (Array.new)
         // Keyboard: none
         // Math: Array
         // Memory: none
         // Output: Array
         // Screen: Array
         // String: none (no init)
+        do Memory.init();
         do Keyboard.init();
         do Math.init();
-        do Memory.init();
         do Output.init();
         do Screen.init();
         do Main.main();
