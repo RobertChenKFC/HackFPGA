@@ -10,34 +10,193 @@
  * the screen is indexed (0,0).
  */
 class Screen {
+    static boolean color_;
+    static Array setMask_, clearMask_;
+    static Array screen_;
 
     /** Initializes the Screen. */
     function void init() {
+        var int i, mask;
+        let color_ = true;
+        let setMask_ = Array.new(16);
+        let clearMask_ = Array.new(16);
+        let i = 0;
+        let mask = 1;
+        while (i < 16) {
+            let setMask_[i] = mask;
+            let clearMask_[i] = ~mask;
+            let mask = mask + mask;
+            let i = i + 1;
+        }
+        let screen_ = 16384;
+        return;
     }
 
     /** Erases the entire screen. */
     function void clearScreen() {
+        var int i;
+        let i = 0;
+        while (i < 8192) {
+            let screen_[i] = 0;
+            let i = i + 1;
+        }
+        return;
     }
 
     /** Sets the current color, to be used for all subsequent drawXXX commands.
      *  Black is represented by true, white by false. */
     function void setColor(boolean b) {
+        let color_ = b;
+        return;
     }
 
     /** Draws the (x,y) pixel, using the current color. */
     function void drawPixel(int x, int y) {
+        var int col, bit, pos;
+        if ((x < 0) | (x > 511) | (y < 0) | (y > 255)) {
+            do Sys.error(7);
+            return;
+        }
+        let col = x / 16;
+        let bit = x - (col * 16);
+        let pos = y * 32 + col;     // 512 / 16 = 32
+        if (color_) {
+            let screen_[pos] = screen_[pos] | setMask_[bit];
+        } else {
+            let screen_[pos] = screen_[pos] & clearMask_[bit];
+        }
+        return;
     }
 
     /** Draws a line from pixel (x1,y1) to pixel (x2,y2), using the current color. */
     function void drawLine(int x1, int y1, int x2, int y2) {
+        var int t;
+        var int dx, dy, a, b, diff;
+
+        if ((x1 < 0) | (x1 > 511) | (y1 < 0) | (y1 > 255) |
+            (x2 < 0) | (x2 > 511) | (y2 < 0) | (y2 > 255)) {
+            do Sys.error(8);
+            return;
+        }
+
+        // TODO: do optimization on drawing horizontal/vertical lines
+        let a = 0;
+        let b = 0;
+        let dx = x2 - x1;
+        let dy = y2 - y1;
+        if (y1 = y2) {
+            // Horizontal line
+            if (dx > 0) {
+                while (~(a > dx)) {
+                    do Screen.drawPixel(x1 + a, y1);
+                    let a = a + 1;
+                }
+            } else {
+                let dx = -dx;
+                while (~(a > dx)) {
+                    do Screen.drawPixel(x1 - a, y1);
+                    let a = a + 1;
+                }
+            }
+            return;
+        }
+        if (x1 = x2) {
+            // Vertical line
+            if (dy > 0) {
+                while (~(b > dy)) {
+                    do Screen.drawPixel(x1, y1 + b);
+                    let b = b + 1;
+                }
+            } else {
+                let dy = -dy;
+                while (~(b > dy)) {
+                    do Screen.drawPixel(x1, y1 - b);
+                    let b = b + 1;
+                }
+            }
+            return;
+        }
+
+        if (dx < 0) {
+            let x1 = x2;
+            let y1 = y2;
+            let dx = -dx;
+            let dy = -dy;
+        }
+
+        let diff = 0;
+        if (dy > 0) {
+            // Top left - bottom right line
+            while (~((a > dx) | (b > dy))) {
+                do Screen.drawPixel(x1 + a, y1 + b);
+                if (diff < 0) {
+                    let b = b + 1;
+                    let diff = diff + dx;
+                } else {
+                    let a = a + 1;
+                    let diff = diff - dy;
+                }
+            }
+        } else {
+            // Bottom right - top left line
+            let dy = -dy;
+            while (~((a > dx) | (b > dy))) {
+                do Screen.drawPixel(x1 + a, y1 + b);
+                if (diff < 0) {
+                    let a = a + 1;
+                    let diff = diff + dy;
+                } else {
+                    let b = b - 1;
+                    let diff = diff - dx;
+                }
+            }
+        }
+        return;
     }
 
     /** Draws a filled rectangle whose top left corner is (x1, y1)
      * and bottom right corner is (x2,y2), using the current color. */
     function void drawRectangle(int x1, int y1, int x2, int y2) {
+        // TODO: optimize to draw longer rectangle width
+        var int dx;
+        if ((x1 < 0) | (x1 > 511) | (y1 < 0) | (y1 > 255) |
+            (x2 < 0) | (x2 > 511) | (y2 < 0) | (y2 > 255)) {
+            do Sys.error(9);
+            return;
+        }
+        if (x2 > x1) {
+            let dx = 1;
+        } else {
+            let dx = -1;
+        }
+        while (~(x1 = x2)) {
+            do Screen.drawLine(x1, y1, x1, y2);
+            let x1 = x1 + dx;
+        }
+        return;
     }
 
     /** Draws a filled circle of radius r<=181 around (x,y), using the current color. */
     function void drawCircle(int x, int y, int r) {
+        // TODO: do optimization of drawing circles without square root
+        var int dx, dy, dyMax;
+        var int rSq;
+        if ((x < 0) | (x > 511) | (y < 0) | (y > 255)) {
+            do Sys.error(12);
+            return;
+        }
+        if ((r < 0) | (r > 181)) {
+            do Sys.error(13);
+            return;
+        }
+        let dy = -r;
+        let dyMax = r + 1;
+        let rSq = r * r;
+        while (dy < dyMax) {
+            let dx = Math.sqrt(rSq - (dy * dy));
+            do Screen.drawLine(x - dx, y + dy, x + dx, y + dy);
+            let dy = dy + 1;
+        }
+        return;
     }
 }
