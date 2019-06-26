@@ -215,87 +215,6 @@ pop this 1
 push constant 0
 return
 label END_IF9
-push argument 1
-push constant 0
-lt
-push argument 1
-neg
-push constant 0
-lt
-and
-not
-if-goto END_IF10
-push constant 45
-push this 0
-push constant 0
-add
-pop pointer 1
-pop that 0
-push constant 50
-push this 0
-push constant 1
-add
-pop pointer 1
-pop that 0
-push constant 49
-push this 0
-push constant 2
-add
-pop pointer 1
-pop that 0
-push constant 52
-push this 0
-push constant 3
-add
-pop pointer 1
-pop that 0
-push constant 55
-push this 0
-push constant 4
-add
-pop pointer 1
-pop that 0
-push constant 52
-push this 0
-push constant 5
-add
-pop pointer 1
-pop that 0
-push constant 56
-push this 0
-push constant 6
-add
-pop pointer 1
-pop that 0
-push constant 51
-push this 0
-push constant 7
-add
-pop pointer 1
-pop that 0
-push constant 54
-push this 0
-push constant 8
-add
-pop pointer 1
-pop that 0
-push constant 52
-push this 0
-push constant 9
-add
-pop pointer 1
-pop that 0
-push constant 56
-push this 0
-push constant 10
-add
-pop pointer 1
-pop that 0
-push constant 11
-pop this 1
-push constant 0
-return
-label END_IF10
 push constant 0
 pop this 1
 push constant 0
@@ -304,7 +223,7 @@ push argument 1
 push constant 0
 lt
 not
-if-goto END_IF11
+if-goto END_IF10
 push constant 45
 push this 0
 push constant 0
@@ -318,7 +237,7 @@ push constant 1
 pop local 0
 push constant 1
 pop this 1
-label END_IF11
+label END_IF10
 label WHILE1
 push argument 1
 push constant 0

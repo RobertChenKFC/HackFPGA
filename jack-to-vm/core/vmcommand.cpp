@@ -423,21 +423,6 @@ bool VMCommands::execute(std::size_t steps) {
           push_(VMCommand::Segment::CONSTANT, 0);
         break;
       case VMCommand::Operation::CALL:
-        /* TODO: eventually change jack-os to 32-bit since
-           this is just a hack to make multiplication and
-           division work. */
-        if (vmCommand.str_ == "Math.multiply") {
-          memory_[memory_[SP] - 2] =
-            memory_[memory_[SP] - 2] * memory_[memory_[SP] - 1];
-          --memory_[SP];
-          break;
-        } else if (vmCommand.str_ == "Math.divide") {
-          memory_[memory_[SP] - 2] =
-            memory_[memory_[SP] - 2] / memory_[memory_[SP] - 1];
-          --memory_[SP];
-          break;
-        }
-
         push_(VMCommand::Segment::CONSTANT, static_cast<Word>(pos + 1));
         push_(VMCommand::Segment::CONSTANT, memory_[LCL]);
         push_(VMCommand::Segment::CONSTANT, memory_[ARG]);

@@ -10,6 +10,9 @@ neg
 pop static 3
 push constant 255
 pop static 4
+push constant 11
+call String.new 1
+pop static 5
 push constant 0
 return
 function Output.initMap 1
@@ -1630,19 +1633,13 @@ goto WHILE2
 label END_WHILE2
 push constant 0
 return
-function Output.printInt 1
-push constant 6
-call String.new 1
-pop local 0
-push local 0
+function Output.printInt 0
+push static 5
 push argument 0
 call String.setInt 2
 pop temp 0
-push local 0
+push static 5
 call Output.printString 1
-pop temp 0
-push local 0
-call String.dispose 1
 pop temp 0
 push constant 0
 return

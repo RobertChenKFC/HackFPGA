@@ -20,14 +20,16 @@ class Output {
     static Array charMaps; 
     static int i_, j_;
     static int leftMask_, rightMask_;
+    static String str_;
 
     /** Initializes the screen, and locates the cursor at the screen's top-left. */
     function void init() {
         do Output.initMap();
         let i_ = 0;
         let j_ = 0;
-        let leftMask_ = -256;  // 65280 = 255 << 8
+        let leftMask_ = -256;       // 65280 = 255 << 8
         let rightMask_ = 255;
+        let str_ = String.new(11);  // Max length string: -2147483648
         return;
     }
 
@@ -253,12 +255,8 @@ class Output {
     /** Displays the given integer starting at the cursor location,
      *  and advances the cursor appropriately. */
     function void printInt(int i) {
-        // TODO: change printInt to 32 bit
-        var String str;
-        let str = String.new(6);    // Max length string: -32767
-        do str.setInt(i);
-        do Output.printString(str);
-        do str.dispose();
+        do str_.setInt(i);
+        do Output.printString(str_);
         return;
     }
 

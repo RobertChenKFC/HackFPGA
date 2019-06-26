@@ -9,21 +9,25 @@
  */
 class Math {
     static Array masks_, pows_;
+    static int INT_MIN, INT_MAX, HALF_INT_MAX;
 
     /** Initializes the library. */
     function void init() {
-        // TODO: Change array sizes to 31 items
         var int i, mask;
 
-        let masks_ = Array.new(15);
-        let pows_ = Array.new(15);
+        let masks_ = Array.new(31);
+        let pows_ = Array.new(31);
         let i = 0;
         let mask = 1;
-        while (i < 15) {
+        while (i < 31) {
             let masks_[i] = mask;
             let i = i + 1;
             let mask = mask + mask;
         }
+        let INT_MIN = -1073741824;
+        let INT_MIN = INT_MIN + INT_MIN;
+        let INT_MAX = 2147483647;
+        let HALF_INT_MAX = 1073741823;
         return;
     }
 
@@ -41,7 +45,6 @@ class Math {
      *  the Jack expressions x*y and multiply(x,y) return the same value.
      */
     function int multiply(int x, int y) {
-        // TODO: change multiplication to 32 bit
         var int mask, ret;
         var bool neg;
 
@@ -78,16 +81,11 @@ class Math {
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
     function int divide(int x, int y) {
-        // TODO: change division to 32 bit
-        var int i, ret, cur;
-        var bool neg, continue;
-
-        if (y = 0) {
-            do Sys.error(3);
-            return 0;
-        }
+        var bool neg, check, cont;
+        var int ret, i;
 
         let neg = false;
+        let check = false;
         if (x < 0) {
             let x = -x;
             let neg = ~neg;
@@ -97,27 +95,44 @@ class Math {
             let neg = ~neg;
         }
 
-        let i = 0;
-        let ret = y;
-        let continue = true;
-        while ((i < 15) & continue) {    // Calculate y << i, 0 <= i <= 14, MSB won't be used
-            let pows_[i] = ret;
-            let i = i + 1;
-            let ret = ret + ret;
-            if ((ret > x) | (ret < 0)) {
-                let continue = false;
+        if (y = INT_MIN) {
+            if (x = INT_MIN) {
+                return 1;
             }
+            return 0;
+        }
+        if (x = INT_MIN) {
+            if (y = 1) {
+                return x;
+            }
+            let x = INT_MAX;
+            let check = true;
         }
 
-        let i = i - 1;
+        let ret = y;
+        let i = 0;
+        let cont = true;
+        while ((i < 31) & cont) {
+            let pows_[i] = ret;
+            let i = i + 1;
+            if (ret > HALF_INT_MAX) {
+                let cont = false;
+            }
+            let ret = ret + ret;
+        }
+
         let ret = 0;
-        let cur = 0;
-        while (~(i < 0)) {
-            if (~((cur + pows_[i]) > x)) {
+        let i = i - 1;
+        while (i > -1) {
+            if (~(x < pows_[i])) {
                 let ret = ret | masks_[i];
-                let cur = cur + pows_[i];
+                let x = x - pows_[i];
             }
             let i = i - 1;
+        }
+
+        if (check & (x + 1 = y)) {
+            let ret = ret + 1;
         }
 
         if (neg) {
@@ -128,7 +143,6 @@ class Math {
 
     /** Returns the integer part of the square root of x. */
     function int sqrt(int x) {
-        // Change square root to 32 bit
         var int i, ret, cur, sq;
 
         if (x < 0) {
@@ -136,7 +150,7 @@ class Math {
             return 0;
         }
 
-        let i = 14;         // Try setting the i-th bit, 0 <= i <= 14
+        let i = 30;         // Try setting the i-th bit, 0 <= i <= 30
         let ret = 0;
         while (~(i < 0)) {
             let cur = ret | masks_[i];

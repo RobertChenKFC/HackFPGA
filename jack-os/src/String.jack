@@ -116,6 +116,23 @@ class String {
             return;
         }
 
+        if ((val < 0) & ((-val) < 0)) {
+            // INT_MIN: -2147483648
+            let str_[0] = 45;
+            let str_[1] = 50;
+            let str_[2] = 49;
+            let str_[3] = 52;
+            let str_[4] = 55;
+            let str_[5] = 52;
+            let str_[6] = 56;
+            let str_[7] = 51;
+            let str_[8] = 54;
+            let str_[9] = 52;
+            let str_[10] = 56;
+            let len_ = 11;
+            return;
+        }
+
         let len_ = 0;
         let i = 0;
         if (val < 0) {
