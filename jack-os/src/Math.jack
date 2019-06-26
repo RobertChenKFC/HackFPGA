@@ -84,6 +84,11 @@ class Math {
         var bool neg, check, cont;
         var int ret, i;
 
+        if (y = 0) {
+            do Sys.error(3);
+            return 0;
+        }
+
         let neg = false;
         let check = false;
         if (x < 0) {
