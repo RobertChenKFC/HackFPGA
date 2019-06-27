@@ -1,8 +1,17 @@
 class Main {
   function void main() {
     var int i;
+    var int x, sum;
 
-    do Screen.drawCircle(300, 150, 10);
+    let i = 0;
+    let sum = 0;
+    while (i < 10) {
+      let x = Keyboard.readInt("Number: ");
+      let sum = sum + x;
+      let i = i + 1;
+    }
+    do Output.printString("The total is ");
+    do Output.printInt(sum);
 
     return;
   }

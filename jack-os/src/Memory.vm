@@ -171,7 +171,7 @@ eq
 not
 if-goto ELSE6
 push local 6
-push constant 0
+push constant 1
 add
 pop pointer 1
 push that 0
@@ -179,12 +179,12 @@ pop static 1
 goto END_IF6
 label ELSE6
 push local 6
-push constant 0
+push constant 1
 add
 pop pointer 1
 push that 0
 push local 7
-push constant 0
+push constant 1
 add
 pop pointer 1
 pop that 0

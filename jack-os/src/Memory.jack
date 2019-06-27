@@ -83,9 +83,9 @@ class Memory {
         } else {
             // Remove entire block
             if (bestPrev = 0) {
-                let free_ = best[0];
+                let free_ = best[1];
             } else {
-                let bestPrev[0] = best[0];
+                let bestPrev[1] = best[1];
             }
             let ret = best + 1;
         }
