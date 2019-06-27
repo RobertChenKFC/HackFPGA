@@ -71,7 +71,7 @@ class Screen {
     /** Draws a line from pixel (x1,y1) to pixel (x2,y2), using the current color. */
     function void drawLine(int x1, int y1, int x2, int y2) {
         var int t;
-        var int dx, dy, a, b, diff;
+        var int dx, dy, a, b, c, d, diff;
 
         if ((x1 < 0) | (x1 > 511) | (y1 < 0) | (y1 > 255) |
             (x2 < 0) | (x2 > 511) | (y2 < 0) | (y2 > 255)) {
@@ -79,39 +79,84 @@ class Screen {
             return;
         }
 
-        // TODO: do optimization on drawing horizontal/vertical lines
-        let a = 0;
-        let b = 0;
         let dx = x2 - x1;
         let dy = y2 - y1;
+        let diff = 0;
         if (y1 = y2) {
             // Horizontal line
-            if (dx > 0) {
-                while (~(a > dx)) {
-                    do Screen.drawPixel(x1 + a, y1);
-                    let a = a + 1;
-                }
+            if (dx < 0) {
+                let t = x1;
+                let x1 = x2;
+                let x2 = t;
+            }
+            let a = x1 / 16;
+            let b = x1 - (a * 16);
+            let c = x2 / 16;
+            if (a = c) {
+                let d = x2 - (c * 16);
             } else {
-                let dx = -dx;
-                while (~(a > dx)) {
-                    do Screen.drawPixel(x1 - a, y1);
-                    let a = a + 1;
+                let d = 16;
+            }
+            let t = y1 * 32 + a;     // 512 / 16 = 32
+            while (~((b = 0) | (b = d))) {
+                if (color_) {
+                    let screen_[t] = screen_[t] | setMask_[b];
+                } else {
+                    let screen_[t] = screen_[t] & clearMask_[b];
                 }
+                let b = b + 1;
+            }
+            if (a = c) {
+                return;
+            }
+            if (b = 16) {
+                let a = a + 1;
+                let t = t + 1;
+            }
+            let d = x2 - (c * 16);
+            while (a < c) {
+                if (color_) {
+                    let screen_[t] = -1;
+                } else {
+                    let screen_[t] = 0;
+                }
+                let t = t + 1;
+                let a = a + 1;
+            }
+            let b = 0;
+            while (~(b > d)) {
+                if (color_) {
+                    let screen_[t] = screen_[t] | setMask_[b];
+                } else {
+                    let screen_[t] = screen_[t] & clearMask_[b];
+                }
+                let b = b + 1;
             }
             return;
         }
         if (x1 = x2) {
             // Vertical line
-            if (dy > 0) {
-                while (~(b > dy)) {
-                    do Screen.drawPixel(x1, y1 + b);
-                    let b = b + 1;
+            if (dy < 0) {
+                let t = y1;
+                let y1 = y2;
+                let y2 = t;
+            }
+            let a = x1 / 16;
+            let b = x1 - (a * 16);
+            let t = y1 * 32 + a;
+            if (color_) {
+                let c = setMask_[b];
+                while (~(y1 > y2)) {
+                    let screen_[t] = screen_[t] | c;
+                    let y1 = y1 + 1;
+                    let t = t + 32;
                 }
             } else {
-                let dy = -dy;
-                while (~(b > dy)) {
-                    do Screen.drawPixel(x1, y1 - b);
-                    let b = b + 1;
+                let c = clearMask_[b];
+                while (~(y1 > y2)) {
+                    let screen_[t] = screen_[t] & c;
+                    let y1 = y1 + 1;
+                    let t = t + 32;
                 }
             }
             return;
@@ -124,6 +169,8 @@ class Screen {
             let dy = -dy;
         }
 
+        let a = 0;
+        let b = 0;
         let diff = 0;
         if (dy > 0) {
             // Top left - bottom right line
@@ -157,32 +204,65 @@ class Screen {
     /** Draws a filled rectangle whose top left corner is (x1, y1)
      * and bottom right corner is (x2,y2), using the current color. */
     function void drawRectangle(int x1, int y1, int x2, int y2) {
-        // TODO: optimize to draw longer rectangle width
-        var int dx;
+        var int dx, dy;
+
         if ((x1 < 0) | (x1 > 511) | (y1 < 0) | (y1 > 255) |
             (x2 < 0) | (x2 > 511) | (y2 < 0) | (y2 > 255)) {
             do Sys.error(9);
             return;
         }
-        if (x2 > x1) {
-            let dx = 1;
-            let x2 = x2 + 1;
+
+        let dx = x2 - x1;
+        if (dx < 0) {
+            let dx = -dx;
+        }
+
+        let dy = y2 - y1;
+        if (dy < 0) {
+            let dy = -dy;
+        }
+        let dy = dy + dy;
+        let dy = dy + dy;
+        let dy = dy + dy;       // dy * 8 since horizontal lines has potential
+                                // speedup of 8 times
+
+        if (dx > dy) {
+            // Draw horizontal lines
+            if (y1 < y2) {
+                let dy = 1;
+                let y2 = y2 + 1;
+            } else {
+                let dy = -1;
+                let y2 = y2 - 1;
+            }
+            while (~(y1 = y2)) {
+                do Screen.drawLine(x1, y1, x2, y1);
+                let y1 = y1 + dy;
+            }
         } else {
-            let dx = -1;
-            let x2 = x2 - 1;
+            // Draw vertical lines
+            if (x1 < x2) {
+                let dx = 1;
+                let x2 = x2 + 1;
+            } else {
+                let dx = -1;
+                let x2 = x2 - 1;
+            }
+            while (~(x1 = x2)) {
+                do Screen.drawLine(x1, y1, x1, y2);
+                let x1 = x1 + dx;
+            }
         }
-        while (~(x1 = x2)) {
-            do Screen.drawLine(x1, y1, x1, y2);
-            let x1 = x1 + dx;
-        }
+
         return;
     }
 
     /** Draws a filled circle of radius r<=181 around (x,y), using the current color. */
     function void drawCircle(int x, int y, int r) {
-        // TODO: do optimization of drawing circles without square root
-        var int dx, dy, dyMax;
-        var int rSq;
+        // Using the "Mid-Point Circle Drawing Algorithm"
+        // Reference: https://www.geeksforgeeks.org/mid-point-circle-drawing-algorithm/
+        var int xk, yk, pk;
+
         if ((x < 0) | (x > 511) | (y < 0) | (y > 255)) {
             do Sys.error(12);
             return;
@@ -191,13 +271,28 @@ class Screen {
             do Sys.error(13);
             return;
         }
-        let dy = -r;
-        let dyMax = r + 1;
-        let rSq = r * r;
-        while (dy < dyMax) {
-            let dx = Math.sqrt(rSq - (dy * dy));
-            do Screen.drawLine(x - dx, y + dy, x + dx, y + dy);
-            let dy = dy + 1;
+
+        if (r = 0) {
+            return;
+        }
+
+        let xk = r;
+        let yk = 0;
+        let pk = 1 - r;
+        do Screen.drawLine(x - xk, y - yk, x + xk, y - yk);
+        do Screen.drawLine(x - xk, y + yk, x + xk, y + yk);
+        while (xk > yk) {
+            let yk = yk + 1;
+            if (pk > 0) {
+                let xk = xk - 1;
+                let pk = pk + yk + yk - xk - xk + 1;
+            } else {
+                let pk = pk + yk + yk + 1;
+            }
+            do Screen.drawLine(x - xk, y - yk, x + xk, y - yk);
+            do Screen.drawLine(x - xk, y + yk, x + xk, y + yk);
+            do Screen.drawLine(x - yk, y - xk, x + yk, y - xk);
+            do Screen.drawLine(x - yk, y + xk, x + yk, y + xk);
         }
         return;
     }

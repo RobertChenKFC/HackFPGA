@@ -4,43 +4,43 @@ pop static 0
 push constant 0
 return
 function Keyboard.keyPressed 0
-push constant 0
 push static 0
+push constant 0
 add
 pop pointer 1
 push that 0
 return
 function Keyboard.readChar 1
-label WHILE_EXP0
-push constant 0
+label WHILE0
 push static 0
+push constant 0
 add
 pop pointer 1
 push that 0
 push constant 0
 eq
 not
-if-goto WHILE_END0
-goto WHILE_EXP0
-label WHILE_END0
-push constant 0
+if-goto END_WHILE0
+goto WHILE0
+label END_WHILE0
 push static 0
+push constant 0
 add
 pop pointer 1
 push that 0
 pop local 0
-label WHILE_EXP1
-push constant 0
+label WHILE1
 push static 0
+push constant 0
 add
 pop pointer 1
 push that 0
 push local 0
 eq
 not
-if-goto WHILE_END1
-goto WHILE_EXP1
-label WHILE_END1
+if-goto END_WHILE1
+goto WHILE1
+label END_WHILE1
 push local 0
 call Output.printChar 1
 pop temp 0
@@ -53,44 +53,42 @@ pop temp 0
 push constant 64
 call String.new 1
 pop local 2
-label WHILE_EXP0
-push constant 0
+label WHILE2
+push constant 1
+neg
 not
-not
-if-goto WHILE_END0
+if-goto END_WHILE2
 call Keyboard.readChar 0
 pop local 1
 push local 1
 push constant 128
 eq
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
+not
+if-goto ELSE0
 push local 2
 return
-goto IF_END0
-label IF_FALSE0
+goto END_IF0
+label ELSE0
 push local 1
 push constant 129
 eq
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
+not
+if-goto ELSE1
 push local 2
 call String.eraseLastChar 1
 pop temp 0
-goto IF_END1
-label IF_FALSE1
+goto END_IF1
+label ELSE1
 push local 2
 push local 1
 call String.appendChar 2
 pop temp 0
-label IF_END1
-label IF_END0
+label END_IF1
+label END_IF0
 push local 1
 pop local 0
-goto WHILE_EXP0
-label WHILE_END0
+goto WHILE2
+label END_WHILE2
 push local 2
 return
 function Keyboard.readInt 2

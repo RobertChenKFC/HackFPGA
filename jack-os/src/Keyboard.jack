@@ -49,7 +49,6 @@ class Keyboard {
         while (kbd_[0] = 0) {}
         let key = kbd_[0];
         while (kbd_[0] = key) {}
-        do Output.printChar(key);
         return key;
     }
 
@@ -59,22 +58,28 @@ class Keyboard {
      * and returns its value. Also handles user backspaces.
      */
     function String readLine(String message) {
-        var char prev, key;
+        var char key;
         var String str;
         do Output.printString(message);
         let str = String.new(64);
         while (true) {
             let key = Keyboard.readChar();
             if (key = 128) {            // newline = 128
+                do Output.println();
                 return str;
             } else {
                 if (key = 129) {        // backspace = 129
-                    do str.eraseLastChar();
+                    if (str.length() > 0) {
+                        do Output.backSpace();
+                        do Output.printChar(32);
+                        do Output.backSpace();
+                        do str.eraseLastChar();
+                    }
                 } else {
+                    do Output.printChar(key);
                     do str.appendChar(key);
                 }
             }
-            let prev = key;
         }
         // This will never happen
         return str;
