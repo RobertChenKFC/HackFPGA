@@ -1,1 +1,119 @@
-../../jack-os/src/Keyboard.vm
+function Keyboard.init 0
+push constant 24576
+pop static 0
+push constant 0
+return
+function Keyboard.keyPressed 0
+push static 0
+push constant 0
+add
+pop pointer 1
+push that 0
+return
+function Keyboard.readChar 1
+label WHILE28
+push static 0
+push constant 0
+add
+pop pointer 1
+push that 0
+push constant 0
+eq
+not
+if-goto END_WHILE28
+goto WHILE28
+label END_WHILE28
+push static 0
+push constant 0
+add
+pop pointer 1
+push that 0
+pop local 0
+label WHILE29
+push static 0
+push constant 0
+add
+pop pointer 1
+push that 0
+push local 0
+eq
+not
+if-goto END_WHILE29
+goto WHILE29
+label END_WHILE29
+push local 0
+return
+function Keyboard.readLine 2
+push argument 0
+call Output.printString 1
+pop temp 0
+push constant 64
+call String.new 1
+pop local 1
+label WHILE30
+push constant 1
+neg
+not
+if-goto END_WHILE30
+call Keyboard.readChar 0
+pop local 0
+push local 0
+push constant 128
+eq
+not
+if-goto ELSE77
+call Output.println 0
+pop temp 0
+push local 1
+return
+goto END_IF77
+label ELSE77
+push local 0
+push constant 129
+eq
+not
+if-goto ELSE78
+push local 1
+call String.length 1
+push constant 0
+gt
+not
+if-goto END_IF79
+call Output.backSpace 0
+pop temp 0
+push constant 32
+call Output.printChar 1
+pop temp 0
+call Output.backSpace 0
+pop temp 0
+push local 1
+call String.eraseLastChar 1
+pop temp 0
+label END_IF79
+goto END_IF78
+label ELSE78
+push local 0
+call Output.printChar 1
+pop temp 0
+push local 1
+push local 0
+call String.appendChar 2
+pop temp 0
+label END_IF78
+label END_IF77
+goto WHILE30
+label END_WHILE30
+push local 1
+return
+function Keyboard.readInt 2
+push argument 0
+call Keyboard.readLine 1
+pop local 0
+push local 0
+call String.intValue 1
+pop local 1
+push local 0
+call String.dispose 1
+pop temp 0
+push local 1
+return

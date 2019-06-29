@@ -61,24 +61,24 @@ push local 0
 push constant 128
 eq
 not
-if-goto ELSE0
+if-goto ELSE1
 call Output.println 0
 pop temp 0
 push local 1
 return
-goto END_IF0
-label ELSE0
+goto END_IF1
+label ELSE1
 push local 0
 push constant 129
 eq
 not
-if-goto ELSE1
+if-goto ELSE2
 push local 1
 call String.length 1
 push constant 0
 gt
 not
-if-goto END_IF2
+if-goto END_IF3
 call Output.backSpace 0
 pop temp 0
 push constant 32
@@ -89,9 +89,9 @@ pop temp 0
 push local 1
 call String.eraseLastChar 1
 pop temp 0
-label END_IF2
-goto END_IF1
-label ELSE1
+label END_IF3
+goto END_IF2
+label ELSE2
 push local 0
 call Output.printChar 1
 pop temp 0
@@ -99,8 +99,8 @@ push local 1
 push local 0
 call String.appendChar 2
 pop temp 0
+label END_IF2
 label END_IF1
-label END_IF0
 goto WHILE2
 label END_WHILE2
 push local 1

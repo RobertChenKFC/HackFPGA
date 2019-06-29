@@ -37,7 +37,12 @@ function setup() {
       return;
     }
 
-    Module.ccall('ReadProgram', null, ['string'], [event.target.result]);
+    const programStr = event.target.result;
+    const bufferSize = Module.lengthBytesUTF8(programStr);
+    const bufferPtr = Module._malloc(bufferSize + 1);
+    Module.stringToUTF8(programStr, bufferPtr, bufferSize + 1);
+    Module.ccall('ReadProgram', null, ['number'], [bufferPtr]);
+    Module._free(bufferPtr);
 
     execute.removeAttribute('disabled');
   };

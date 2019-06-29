@@ -12,12 +12,12 @@ push constant 0
 pop local 0
 push constant 1
 pop local 1
-label WHILE0
+label WHILE12
 push local 0
 push constant 16
 lt
 not
-if-goto END_WHILE0
+if-goto END_WHILE12
 push local 1
 push static 1
 push local 0
@@ -39,8 +39,8 @@ push local 0
 push constant 1
 add
 pop local 0
-goto WHILE0
-label END_WHILE0
+goto WHILE12
+label END_WHILE12
 push constant 16384
 pop static 3
 push constant 0
@@ -48,12 +48,12 @@ return
 function Screen.clearScreen 1
 push constant 0
 pop local 0
-label WHILE1
+label WHILE13
 push local 0
 push constant 8192
 lt
 not
-if-goto END_WHILE1
+if-goto END_WHILE13
 push constant 0
 push static 3
 push local 0
@@ -64,8 +64,8 @@ push local 0
 push constant 1
 add
 pop local 0
-goto WHILE1
-label END_WHILE1
+goto WHILE13
+label END_WHILE13
 push constant 0
 return
 function Screen.setColor 0
@@ -90,13 +90,13 @@ push constant 255
 gt
 or
 not
-if-goto END_IF0
+if-goto END_IF39
 push constant 7
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF0
+label END_IF39
 push argument 0
 push constant 16
 call Math.divide 2
@@ -115,7 +115,7 @@ add
 pop local 2
 push static 0
 not
-if-goto ELSE1
+if-goto ELSE40
 push static 3
 push local 2
 add
@@ -132,8 +132,8 @@ push local 2
 add
 pop pointer 1
 pop that 0
-goto END_IF1
-label ELSE1
+goto END_IF40
+label ELSE40
 push static 3
 push local 2
 add
@@ -150,7 +150,7 @@ push local 2
 add
 pop pointer 1
 pop that 0
-label END_IF1
+label END_IF40
 push constant 0
 return
 function Screen.drawLine 8
@@ -186,13 +186,13 @@ push constant 255
 gt
 or
 not
-if-goto END_IF2
+if-goto END_IF41
 push constant 8
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF2
+label END_IF41
 push argument 2
 push argument 0
 sub
@@ -207,19 +207,19 @@ push argument 1
 push argument 3
 eq
 not
-if-goto END_IF3
+if-goto END_IF42
 push local 1
 push constant 0
 lt
 not
-if-goto END_IF4
+if-goto END_IF43
 push argument 0
 pop local 0
 push argument 2
 pop argument 0
 push local 0
 pop argument 2
-label END_IF4
+label END_IF43
 push argument 0
 push constant 16
 call Math.divide 2
@@ -238,25 +238,25 @@ push local 3
 push local 5
 eq
 not
-if-goto ELSE5
+if-goto ELSE44
 push argument 2
 push local 5
 push constant 16
 call Math.multiply 2
 sub
 pop local 6
-goto END_IF5
-label ELSE5
+goto END_IF44
+label ELSE44
 push constant 16
 pop local 6
-label END_IF5
+label END_IF44
 push argument 1
 push constant 32
 call Math.multiply 2
 push local 3
 add
 pop local 0
-label WHILE2
+label WHILE14
 push local 4
 push constant 0
 eq
@@ -266,10 +266,10 @@ eq
 or
 not
 not
-if-goto END_WHILE2
+if-goto END_WHILE14
 push static 0
 not
-if-goto ELSE6
+if-goto ELSE45
 push static 3
 push local 0
 add
@@ -286,8 +286,8 @@ push local 0
 add
 pop pointer 1
 pop that 0
-goto END_IF6
-label ELSE6
+goto END_IF45
+label ELSE45
 push static 3
 push local 0
 add
@@ -304,26 +304,26 @@ push local 0
 add
 pop pointer 1
 pop that 0
-label END_IF6
+label END_IF45
 push local 4
 push constant 1
 add
 pop local 4
-goto WHILE2
-label END_WHILE2
+goto WHILE14
+label END_WHILE14
 push local 3
 push local 5
 eq
 not
-if-goto END_IF7
+if-goto END_IF46
 push constant 0
 return
-label END_IF7
+label END_IF46
 push local 4
 push constant 16
 eq
 not
-if-goto END_IF8
+if-goto END_IF47
 push local 3
 push constant 1
 add
@@ -332,22 +332,22 @@ push local 0
 push constant 1
 add
 pop local 0
-label END_IF8
+label END_IF47
 push argument 2
 push local 5
 push constant 16
 call Math.multiply 2
 sub
 pop local 6
-label WHILE3
+label WHILE15
 push local 3
 push local 5
 lt
 not
-if-goto END_WHILE3
+if-goto END_WHILE15
 push static 0
 not
-if-goto ELSE9
+if-goto ELSE48
 push constant 1
 neg
 push static 3
@@ -355,15 +355,15 @@ push local 0
 add
 pop pointer 1
 pop that 0
-goto END_IF9
-label ELSE9
+goto END_IF48
+label ELSE48
 push constant 0
 push static 3
 push local 0
 add
 pop pointer 1
 pop that 0
-label END_IF9
+label END_IF48
 push local 0
 push constant 1
 add
@@ -372,20 +372,20 @@ push local 3
 push constant 1
 add
 pop local 3
-goto WHILE3
-label END_WHILE3
+goto WHILE15
+label END_WHILE15
 push constant 0
 pop local 4
-label WHILE4
+label WHILE16
 push local 4
 push local 6
 gt
 not
 not
-if-goto END_WHILE4
+if-goto END_WHILE16
 push static 0
 not
-if-goto ELSE10
+if-goto ELSE49
 push static 3
 push local 0
 add
@@ -402,8 +402,8 @@ push local 0
 add
 pop pointer 1
 pop that 0
-goto END_IF10
-label ELSE10
+goto END_IF49
+label ELSE49
 push static 3
 push local 0
 add
@@ -420,33 +420,33 @@ push local 0
 add
 pop pointer 1
 pop that 0
-label END_IF10
+label END_IF49
 push local 4
 push constant 1
 add
 pop local 4
-goto WHILE4
-label END_WHILE4
+goto WHILE16
+label END_WHILE16
 push constant 0
 return
-label END_IF3
+label END_IF42
 push argument 0
 push argument 2
 eq
 not
-if-goto END_IF11
+if-goto END_IF50
 push local 2
 push constant 0
 lt
 not
-if-goto END_IF12
+if-goto END_IF51
 push argument 1
 pop local 0
 push argument 3
 pop argument 1
 push local 0
 pop argument 3
-label END_IF12
+label END_IF51
 push argument 0
 push constant 16
 call Math.divide 2
@@ -465,20 +465,20 @@ add
 pop local 0
 push static 0
 not
-if-goto ELSE13
+if-goto ELSE52
 push static 1
 push local 4
 add
 pop pointer 1
 push that 0
 pop local 5
-label WHILE5
+label WHILE17
 push argument 1
 push argument 3
 gt
 not
 not
-if-goto END_WHILE5
+if-goto END_WHILE17
 push static 3
 push local 0
 add
@@ -499,23 +499,23 @@ push local 0
 push constant 32
 add
 pop local 0
-goto WHILE5
-label END_WHILE5
-goto END_IF13
-label ELSE13
+goto WHILE17
+label END_WHILE17
+goto END_IF52
+label ELSE52
 push static 2
 push local 4
 add
 pop pointer 1
 push that 0
 pop local 5
-label WHILE6
+label WHILE18
 push argument 1
 push argument 3
 gt
 not
 not
-if-goto END_WHILE6
+if-goto END_WHILE18
 push static 3
 push local 0
 add
@@ -536,17 +536,17 @@ push local 0
 push constant 32
 add
 pop local 0
-goto WHILE6
-label END_WHILE6
-label END_IF13
+goto WHILE18
+label END_WHILE18
+label END_IF52
 push constant 0
 return
-label END_IF11
+label END_IF50
 push local 1
 push constant 0
 lt
 not
-if-goto END_IF14
+if-goto END_IF53
 push argument 2
 pop argument 0
 push argument 3
@@ -557,7 +557,7 @@ pop local 1
 push local 2
 neg
 pop local 2
-label END_IF14
+label END_IF53
 push constant 0
 pop local 3
 push constant 0
@@ -568,8 +568,8 @@ push local 2
 push constant 0
 gt
 not
-if-goto ELSE15
-label WHILE7
+if-goto ELSE54
+label WHILE19
 push local 3
 push local 1
 gt
@@ -579,7 +579,7 @@ gt
 or
 not
 not
-if-goto END_WHILE7
+if-goto END_WHILE19
 push argument 0
 push local 3
 add
@@ -592,7 +592,7 @@ push local 7
 push constant 0
 lt
 not
-if-goto ELSE16
+if-goto ELSE55
 push local 4
 push constant 1
 add
@@ -601,8 +601,8 @@ push local 7
 push local 1
 add
 pop local 7
-goto END_IF16
-label ELSE16
+goto END_IF55
+label ELSE55
 push local 3
 push constant 1
 add
@@ -611,15 +611,15 @@ push local 7
 push local 2
 sub
 pop local 7
-label END_IF16
-goto WHILE7
-label END_WHILE7
-goto END_IF15
-label ELSE15
+label END_IF55
+goto WHILE19
+label END_WHILE19
+goto END_IF54
+label ELSE54
 push local 2
 neg
 pop local 2
-label WHILE8
+label WHILE20
 push local 3
 push local 1
 gt
@@ -629,7 +629,7 @@ gt
 or
 not
 not
-if-goto END_WHILE8
+if-goto END_WHILE20
 push argument 0
 push local 3
 add
@@ -642,7 +642,7 @@ push local 7
 push constant 0
 lt
 not
-if-goto ELSE17
+if-goto ELSE56
 push local 3
 push constant 1
 add
@@ -651,8 +651,8 @@ push local 7
 push local 2
 add
 pop local 7
-goto END_IF17
-label ELSE17
+goto END_IF56
+label ELSE56
 push local 4
 push constant 1
 sub
@@ -661,10 +661,10 @@ push local 7
 push local 1
 sub
 pop local 7
-label END_IF17
-goto WHILE8
-label END_WHILE8
-label END_IF15
+label END_IF56
+goto WHILE20
+label END_WHILE20
+label END_IF54
 push constant 0
 return
 function Screen.drawRectangle 2
@@ -700,13 +700,13 @@ push constant 255
 gt
 or
 not
-if-goto END_IF18
+if-goto END_IF57
 push constant 9
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF18
+label END_IF57
 push argument 2
 push argument 0
 sub
@@ -715,11 +715,11 @@ push local 0
 push constant 0
 lt
 not
-if-goto END_IF19
+if-goto END_IF58
 push local 0
 neg
 pop local 0
-label END_IF19
+label END_IF58
 push argument 3
 push argument 1
 sub
@@ -728,11 +728,11 @@ push local 1
 push constant 0
 lt
 not
-if-goto END_IF20
+if-goto END_IF59
 push local 1
 neg
 pop local 1
-label END_IF20
+label END_IF59
 push local 1
 push local 1
 add
@@ -749,20 +749,20 @@ push local 0
 push local 1
 gt
 not
-if-goto ELSE21
+if-goto ELSE60
 push argument 1
 push argument 3
 lt
 not
-if-goto ELSE22
+if-goto ELSE61
 push constant 1
 pop local 1
 push argument 3
 push constant 1
 add
 pop argument 3
-goto END_IF22
-label ELSE22
+goto END_IF61
+label ELSE61
 push constant 1
 neg
 pop local 1
@@ -770,14 +770,14 @@ push argument 3
 push constant 1
 sub
 pop argument 3
-label END_IF22
-label WHILE9
+label END_IF61
+label WHILE21
 push argument 1
 push argument 3
 eq
 not
 not
-if-goto END_WHILE9
+if-goto END_WHILE21
 push argument 0
 push argument 1
 push argument 2
@@ -788,23 +788,23 @@ push argument 1
 push local 1
 add
 pop argument 1
-goto WHILE9
-label END_WHILE9
-goto END_IF21
-label ELSE21
+goto WHILE21
+label END_WHILE21
+goto END_IF60
+label ELSE60
 push argument 0
 push argument 2
 lt
 not
-if-goto ELSE23
+if-goto ELSE62
 push constant 1
 pop local 0
 push argument 2
 push constant 1
 add
 pop argument 2
-goto END_IF23
-label ELSE23
+goto END_IF62
+label ELSE62
 push constant 1
 neg
 pop local 0
@@ -812,14 +812,14 @@ push argument 2
 push constant 1
 sub
 pop argument 2
-label END_IF23
-label WHILE10
+label END_IF62
+label WHILE22
 push argument 0
 push argument 2
 eq
 not
 not
-if-goto END_WHILE10
+if-goto END_WHILE22
 push argument 0
 push argument 1
 push argument 0
@@ -830,9 +830,9 @@ push argument 0
 push local 0
 add
 pop argument 0
-goto WHILE10
-label END_WHILE10
-label END_IF21
+goto WHILE22
+label END_WHILE22
+label END_IF60
 push constant 0
 return
 function Screen.drawCircle 3
@@ -852,13 +852,13 @@ push constant 255
 gt
 or
 not
-if-goto END_IF24
+if-goto END_IF63
 push constant 12
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF24
+label END_IF63
 push argument 2
 push constant 0
 lt
@@ -867,21 +867,21 @@ push constant 181
 gt
 or
 not
-if-goto END_IF25
+if-goto END_IF64
 push constant 13
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF25
+label END_IF64
 push argument 2
 push constant 0
 eq
 not
-if-goto END_IF26
+if-goto END_IF65
 push constant 0
 return
-label END_IF26
+label END_IF65
 push argument 2
 pop local 0
 push constant 0
@@ -918,12 +918,12 @@ push local 1
 add
 call Screen.drawLine 4
 pop temp 0
-label WHILE11
+label WHILE23
 push local 0
 push local 1
 gt
 not
-if-goto END_WHILE11
+if-goto END_WHILE23
 push local 1
 push constant 1
 add
@@ -932,7 +932,7 @@ push local 2
 push constant 0
 gt
 not
-if-goto ELSE27
+if-goto ELSE66
 push local 0
 push constant 1
 sub
@@ -949,8 +949,8 @@ sub
 push constant 1
 add
 pop local 2
-goto END_IF27
-label ELSE27
+goto END_IF66
+label ELSE66
 push local 2
 push local 1
 add
@@ -959,7 +959,7 @@ add
 push constant 1
 add
 pop local 2
-label END_IF27
+label END_IF66
 push argument 0
 push local 0
 sub
@@ -1016,7 +1016,7 @@ push local 0
 add
 call Screen.drawLine 4
 pop temp 0
-goto WHILE11
-label END_WHILE11
+goto WHILE23
+label END_WHILE23
 push constant 0
 return

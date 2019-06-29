@@ -1,4 +1,4 @@
-function Sys.init 0
+function Sys.init 1
 call Memory.init 0
 pop temp 0
 call Keyboard.init 0
@@ -13,6 +13,13 @@ call Main.main 0
 pop temp 0
 call Sys.halt 0
 pop temp 0
+push constant 1
+neg
+push local 0
+push constant 0
+add
+pop pointer 1
+pop that 0
 push constant 0
 return
 function Sys.halt 0

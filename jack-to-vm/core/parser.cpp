@@ -21,8 +21,6 @@ void Parser::reset() {
 }
 
 Nodes Parser::parse() const {
-  reset();
-
   auto tokenizer = input_.empty() ? Tokenizer(inputFileName_) : Tokenizer(inputFileName_, input_);
   Tokens tokens = tokenizer.tokenize();
 

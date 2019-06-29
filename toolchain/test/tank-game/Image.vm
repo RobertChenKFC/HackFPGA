@@ -65,42 +65,42 @@ push argument 3
 push constant 0
 eq
 not
-if-goto ELSE0
+if-goto ELSE40
 push argument 1
 pop local 0
-goto END_IF0
-label ELSE0
+goto END_IF40
+label ELSE40
 push argument 3
 push constant 1
 eq
 not
-if-goto ELSE1
+if-goto ELSE41
 push this 1
 push argument 2
 sub
 push constant 1
 sub
 pop local 0
-goto END_IF1
-label ELSE1
+goto END_IF41
+label ELSE41
 push argument 3
 push constant 2
 eq
 not
-if-goto ELSE2
+if-goto ELSE42
 push this 0
 push argument 1
 sub
 push constant 1
 sub
 pop local 0
-goto END_IF2
-label ELSE2
+goto END_IF42
+label ELSE42
 push argument 2
 pop local 0
-label END_IF2
-label END_IF1
-label END_IF0
+label END_IF42
+label END_IF41
+label END_IF40
 push local 0
 return
 function Image._turn_y 1
@@ -110,42 +110,42 @@ push argument 3
 push constant 0
 eq
 not
-if-goto ELSE3
+if-goto ELSE43
 push argument 2
 pop local 0
-goto END_IF3
-label ELSE3
+goto END_IF43
+label ELSE43
 push argument 3
 push constant 1
 eq
 not
-if-goto ELSE4
+if-goto ELSE44
 push argument 1
 pop local 0
-goto END_IF4
-label ELSE4
+goto END_IF44
+label ELSE44
 push argument 3
 push constant 2
 eq
 not
-if-goto ELSE5
+if-goto ELSE45
 push this 1
 push argument 2
 sub
 push constant 1
 sub
 pop local 0
-goto END_IF5
-label ELSE5
+goto END_IF45
+label ELSE45
 push this 0
 push argument 1
 sub
 push constant 1
 sub
 pop local 0
-label END_IF5
-label END_IF4
-label END_IF3
+label END_IF45
+label END_IF44
+label END_IF43
 push local 0
 return
 function Image.draw 7
@@ -157,20 +157,20 @@ push constant 0
 pop local 3
 push constant 1
 pop local 2
-label WHILE0
+label WHILE14
 push local 0
 push this 1
 lt
 not
-if-goto END_WHILE0
+if-goto END_WHILE14
 push constant 0
 pop local 1
-label WHILE1
+label WHILE15
 push local 1
 push this 0
 lt
 not
-if-goto END_WHILE1
+if-goto END_WHILE15
 push local 2
 push this 2
 push local 3
@@ -211,41 +211,41 @@ push constant 256
 lt
 and
 not
-if-goto END_IF6
+if-goto END_IF46
 push local 5
 push local 6
 call Screen.drawPixel 2
 pop temp 0
-label END_IF6
+label END_IF46
 push local 2
 push constant 0
 lt
 not
-if-goto ELSE7
+if-goto ELSE47
 push constant 1
 pop local 2
 push local 3
 push constant 1
 add
 pop local 3
-goto END_IF7
-label ELSE7
+goto END_IF47
+label ELSE47
 push local 2
 push local 2
 add
 pop local 2
-label END_IF7
+label END_IF47
 push local 1
 push constant 1
 add
 pop local 1
-goto WHILE1
-label END_WHILE1
+goto WHILE15
+label END_WHILE15
 push local 0
 push constant 1
 add
 pop local 0
-goto WHILE0
-label END_WHILE0
+goto WHILE14
+label END_WHILE14
 push constant 0
 return

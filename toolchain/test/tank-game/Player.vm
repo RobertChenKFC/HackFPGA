@@ -15,62 +15,62 @@ push this 0
 call Tank.dead 1
 not
 not
-if-goto END_IF0
+if-goto END_IF94
 call Keyboard.keyPressed 0
 pop local 0
 push local 0
 push constant 131
 eq
 not
-if-goto ELSE1
+if-goto ELSE95
 push this 0
 push constant 0
 call Tank.move 2
 pop temp 0
-goto END_IF1
-label ELSE1
+goto END_IF95
+label ELSE95
 push local 0
 push constant 132
 eq
 not
-if-goto ELSE2
+if-goto ELSE96
 push this 0
 push constant 1
 call Tank.move 2
 pop temp 0
-goto END_IF2
-label ELSE2
+goto END_IF96
+label ELSE96
 push local 0
 push constant 133
 eq
 not
-if-goto ELSE3
+if-goto ELSE97
 push this 0
 push constant 2
 call Tank.move 2
 pop temp 0
-goto END_IF3
-label ELSE3
+goto END_IF97
+label ELSE97
 push local 0
 push constant 130
 eq
 not
-if-goto ELSE4
+if-goto ELSE98
 push this 0
 push constant 3
 call Tank.move 2
 pop temp 0
-goto END_IF4
-label ELSE4
+goto END_IF98
+label ELSE98
 push local 0
 push constant 0
 eq
 not
-if-goto ELSE5
+if-goto ELSE99
 push constant 0
 pop this 1
-goto END_IF5
-label ELSE5
+goto END_IF99
+label ELSE99
 push local 0
 push constant 32
 eq
@@ -78,21 +78,21 @@ push this 1
 not
 and
 not
-if-goto END_IF6
+if-goto END_IF100
 call Cheat.get_nocd 0
 not
 not
-if-goto END_IF7
+if-goto END_IF101
 push constant 1
 neg
 pop this 1
-label END_IF7
+label END_IF101
 call Cheat.get_seperate 0
 push constant 1
 neg
 eq
 not
-if-goto ELSE8
+if-goto ELSE102
 push this 0
 push constant 0
 call Tank.shoot 2
@@ -109,20 +109,20 @@ push this 0
 push constant 3
 call Tank.shoot 2
 pop temp 0
-goto END_IF8
-label ELSE8
+goto END_IF102
+label ELSE102
 push this 0
 push this 0
 call Tank.get_dir 1
 call Tank.shoot 2
 pop temp 0
-label END_IF8
-label END_IF6
-label END_IF5
-label END_IF4
-label END_IF3
-label END_IF2
-label END_IF1
-label END_IF0
+label END_IF102
+label END_IF100
+label END_IF99
+label END_IF98
+label END_IF97
+label END_IF96
+label END_IF95
+label END_IF94
 push constant 0
 return

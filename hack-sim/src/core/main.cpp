@@ -29,7 +29,7 @@ using Word = std::int32_t;
 
 extern "C" {
   constexpr Word KBD = 24576;
-  constexpr std::size_t ROM_SIZE = 1000000; // Change to 32 bit allows this
+  constexpr std::size_t ROM_SIZE = 10000000; // Change to 32 bit allows this
 
   Word *program = nullptr;
   Word *memory = nullptr;

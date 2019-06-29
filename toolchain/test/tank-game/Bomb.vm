@@ -44,7 +44,7 @@ push this 0
 push constant 3
 eq
 not
-if-goto END_IF0
+if-goto END_IF7
 push this 1
 push constant 8
 call Math.multiply 2
@@ -68,7 +68,7 @@ call Memory.deAlloc 1
 pop temp 0
 push constant 0
 return
-label END_IF0
+label END_IF7
 push static 0
 push this 0
 add

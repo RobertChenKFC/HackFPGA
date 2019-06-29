@@ -19,7 +19,8 @@ args = parser.parse_args()
 
 input_files = args.input
 output_file = args.o
-jack_os = glob.glob('jack-os/*.vm')
+jack_os_jack = glob.glob('jack-os/*.jack')
+jack_os_vm = glob.glob('jack-os/*.vm')
 
 if output_file:
     output_name, _ = os.path.splitext(output_file)
@@ -33,12 +34,10 @@ for input_file in input_files:
         exit(0)
 
 # TODO: change JackCompiler to output .vm files to specific location
-subprocess.call(['./JackCompiler'] + input_files)
-# print(['./JackCompiler'] + input_files)
+subprocess.call(['./JackCompiler'] + input_files + jack_os_jack)
 input_files = replace_extension(input_files, '.vm')
 output_asm = ['-o', '/tmp/tmp.asm']
-subprocess.call(['./VMTranslator'] + input_files + jack_os + output_asm)
-# print(['./VMTranslator'] + input_files + ['jack-os/*.vm'] + output_asm)
+subprocess.call(['./VMTranslator'] + input_files + jack_os_vm +
+                output_asm)
 subprocess.call(['./HackAssembler', '/tmp/tmp.asm'])
 os.rename('/tmp/tmp.hack', output_file)
-# print(['./HackAssembler', '/tmp/tmp.asm'])

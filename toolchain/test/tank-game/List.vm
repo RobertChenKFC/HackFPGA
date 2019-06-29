@@ -26,11 +26,11 @@ push this 2
 push constant 0
 eq
 not
-if-goto END_IF0
+if-goto END_IF48
 push constant 1
 neg
 return
-label END_IF0
+label END_IF48
 push constant 0
 return
 function List.next 0
@@ -40,10 +40,10 @@ push this 2
 push constant 0
 eq
 not
-if-goto END_IF1
+if-goto END_IF49
 push constant 0
 return
-label END_IF1
+label END_IF49
 push this 2
 pop this 1
 push this 2
@@ -61,10 +61,10 @@ push this 2
 push constant 0
 eq
 not
-if-goto END_IF2
+if-goto END_IF50
 push constant 0
 return
-label END_IF2
+label END_IF50
 push this 2
 call Node.get_data 1
 return
@@ -86,26 +86,26 @@ push this 2
 push constant 0
 eq
 not
-if-goto END_IF3
+if-goto END_IF51
 push constant 0
 return
-label END_IF3
+label END_IF51
 push this 1
 push constant 0
 eq
 not
-if-goto ELSE4
+if-goto ELSE52
 push this 2
 call Node.get_next 1
 pop this 0
-goto END_IF4
-label ELSE4
+goto END_IF52
+label ELSE52
 push this 1
 push this 2
 call Node.get_next 1
 call Node.set_next 2
 pop temp 0
-label END_IF4
+label END_IF52
 push this 2
 pop local 0
 push this 2

@@ -1,0 +1,22 @@
+class Main {
+  function void main() {
+    var int i;
+    let i = 1;
+    while (~(i > 20)) {
+      do Output.printInt(i);
+      do Output.printString("! = ");
+      do Output.printInt(Main.factorial(i));
+      do Output.println();
+      let i = i + 1;
+    }
+
+    return;
+  }
+
+  function int factorial(int n) {
+    if ((n = 0) | (n = 1)) {
+      return 1;
+    }
+    return n * Main.factorial(n - 1);
+  }
+}

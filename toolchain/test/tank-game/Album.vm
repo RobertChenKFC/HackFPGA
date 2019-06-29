@@ -5699,10 +5699,10 @@ push argument 0
 push constant 1
 eq
 not
-if-goto END_IF0
+if-goto END_IF4
 push static 0
 return
-label END_IF0
+label END_IF4
 push static 1
 return
 function Album.get_soft 0
@@ -5722,24 +5722,24 @@ push argument 0
 push constant 1
 eq
 not
-if-goto ELSE1
+if-goto ELSE5
 push static 6
 return
-goto END_IF1
-label ELSE1
+goto END_IF5
+label ELSE5
 push argument 0
 push constant 2
 eq
 not
-if-goto ELSE2
+if-goto ELSE6
 push static 7
 return
-goto END_IF2
-label ELSE2
+goto END_IF6
+label ELSE6
 push static 8
 return
-label END_IF2
-label END_IF1
+label END_IF6
+label END_IF5
 function Album.get_board 0
 push static 15
 return

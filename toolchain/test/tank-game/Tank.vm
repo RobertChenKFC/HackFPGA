@@ -190,14 +190,14 @@ push argument 1
 push constant 0
 eq
 not
-if-goto END_IF0
+if-goto END_IF105
 push this 6
 push constant 1
 eq
 call Cheat.get_triple 0
 and
 not
-if-goto END_IF1
+if-goto END_IF106
 push this 3
 push this 4
 push argument 1
@@ -218,7 +218,7 @@ pop local 0
 push local 0
 call Game.add_bullet 1
 pop temp 0
-label END_IF1
+label END_IF106
 push this 3
 push constant 1
 add
@@ -227,67 +227,67 @@ push argument 1
 push this 6
 call Bullet.new 4
 pop local 0
-label END_IF0
+label END_IF105
 push argument 1
 push constant 1
 eq
 not
-if-goto END_IF2
-push this 6
-push constant 1
-eq
-call Cheat.get_triple 0
-and
-not
-if-goto END_IF3
-push this 3
-push constant 2
-add
-push this 4
-push argument 1
-push this 6
-call Bullet.new 4
-pop local 0
-push local 0
-call Game.add_bullet 1
-pop temp 0
-push this 3
-push constant 2
-add
-push this 4
-push constant 2
-add
-push argument 1
-push this 6
-call Bullet.new 4
-pop local 0
-push local 0
-call Game.add_bullet 1
-pop temp 0
-label END_IF3
-push this 3
-push constant 2
-add
-push this 4
-push constant 1
-add
-push argument 1
-push this 6
-call Bullet.new 4
-pop local 0
-label END_IF2
-push argument 1
-push constant 2
-eq
-not
-if-goto END_IF4
+if-goto END_IF107
 push this 6
 push constant 1
 eq
 call Cheat.get_triple 0
 and
 not
-if-goto END_IF5
+if-goto END_IF108
+push this 3
+push constant 2
+add
+push this 4
+push argument 1
+push this 6
+call Bullet.new 4
+pop local 0
+push local 0
+call Game.add_bullet 1
+pop temp 0
+push this 3
+push constant 2
+add
+push this 4
+push constant 2
+add
+push argument 1
+push this 6
+call Bullet.new 4
+pop local 0
+push local 0
+call Game.add_bullet 1
+pop temp 0
+label END_IF108
+push this 3
+push constant 2
+add
+push this 4
+push constant 1
+add
+push argument 1
+push this 6
+call Bullet.new 4
+pop local 0
+label END_IF107
+push argument 1
+push constant 2
+eq
+not
+if-goto END_IF109
+push this 6
+push constant 1
+eq
+call Cheat.get_triple 0
+and
+not
+if-goto END_IF110
 push this 3
 push this 4
 push constant 2
@@ -312,7 +312,7 @@ pop local 0
 push local 0
 call Game.add_bullet 1
 pop temp 0
-label END_IF5
+label END_IF110
 push this 3
 push constant 1
 add
@@ -323,19 +323,19 @@ push argument 1
 push this 6
 call Bullet.new 4
 pop local 0
-label END_IF4
+label END_IF109
 push argument 1
 push constant 3
 eq
 not
-if-goto END_IF6
+if-goto END_IF111
 push this 6
 push constant 1
 eq
 call Cheat.get_triple 0
 and
 not
-if-goto END_IF7
+if-goto END_IF112
 push this 3
 push this 4
 push argument 1
@@ -356,7 +356,7 @@ pop local 0
 push local 0
 call Game.add_bullet 1
 pop temp 0
-label END_IF7
+label END_IF112
 push this 3
 push this 4
 push constant 1
@@ -365,7 +365,7 @@ push argument 1
 push this 6
 call Bullet.new 4
 pop local 0
-label END_IF6
+label END_IF111
 push local 0
 call Game.add_bullet 1
 pop temp 0
@@ -408,7 +408,7 @@ add
 call Map.check 5
 not
 not
-if-goto ELSE8
+if-goto ELSE113
 push this 0
 push this 1
 push this 2
@@ -417,8 +417,8 @@ call Image.draw 4
 pop temp 0
 push constant 0
 return
-goto END_IF8
-label ELSE8
+goto END_IF113
+label ELSE113
 push static 5
 push this 3
 push static 0
@@ -455,7 +455,7 @@ push this 5
 push constant 0
 eq
 not
-if-goto ELSE9
+if-goto ELSE114
 push this 4
 push constant 1
 sub
@@ -464,13 +464,13 @@ push this 2
 push constant 8
 sub
 pop this 2
-goto END_IF9
-label ELSE9
+goto END_IF114
+label ELSE114
 push this 5
 push constant 1
 eq
 not
-if-goto ELSE10
+if-goto ELSE115
 push this 3
 push constant 1
 add
@@ -479,13 +479,13 @@ push this 1
 push constant 8
 add
 pop this 1
-goto END_IF10
-label ELSE10
+goto END_IF115
+label ELSE115
 push this 5
 push constant 2
 eq
 not
-if-goto ELSE11
+if-goto ELSE116
 push this 4
 push constant 1
 add
@@ -494,13 +494,13 @@ push this 2
 push constant 8
 add
 pop this 2
-goto END_IF11
-label ELSE11
+goto END_IF116
+label ELSE116
 push this 5
 push constant 3
 eq
 not
-if-goto END_IF12
+if-goto END_IF117
 push this 3
 push constant 1
 sub
@@ -509,10 +509,10 @@ push this 1
 push constant 8
 sub
 pop this 1
-label END_IF12
-label END_IF11
-label END_IF10
-label END_IF9
+label END_IF117
+label END_IF116
+label END_IF115
+label END_IF114
 push this 0
 push this 1
 push this 2
@@ -567,7 +567,7 @@ add
 push constant 0
 call Map.update 6
 pop temp 0
-label END_IF8
+label END_IF113
 push constant 1
 neg
 return
@@ -624,7 +624,7 @@ add
 lt
 and
 not
-if-goto END_IF13
+if-goto END_IF118
 call Cheat.get_imba 0
 not
 push this 6
@@ -632,26 +632,26 @@ push constant 2
 eq
 or
 not
-if-goto END_IF14
+if-goto END_IF119
 push this 7
 push constant 1
 sub
 pop this 7
-label END_IF14
+label END_IF119
 push this 7
 push constant 0
 eq
 not
-if-goto END_IF15
+if-goto END_IF120
 push pointer 0
 call Tank._die 1
 pop temp 0
 push constant 2
 return
-label END_IF15
+label END_IF120
 push constant 1
 return
-label END_IF13
+label END_IF118
 push constant 0
 return
 function Tank._die 0

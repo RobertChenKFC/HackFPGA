@@ -21,6 +21,7 @@ extern "C" {
   bool CompileFile(char *inputFileName, char *input) {
     try {
       Tokenizer::init();
+      Parser::reset();
       Parser parser(inputFileName, input);
       vmCommands.add(parser.toVMCommands());
 

@@ -17,7 +17,8 @@ set_target_properties(HackSimulator PROPERTIES LINK_FLAGS "\
         -s EXPORTED_FUNCTIONS='[\"_ReadProgram\", \"_SetMemoryPtr\",\
         \"_InitializeExecution\", \"_Execute\", \"_SetKey\", \"_Reset\",\
         \"_Clear\"]'\
-        -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\"]'\
+        -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"lengthBytesUTF8\",\
+        \"stringToUTF8\"]'\
         -s DISABLE_EXCEPTION_CATCHING=0\
         --pre-js prefix.js\
         --post-js postfix.js")

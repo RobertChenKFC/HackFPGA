@@ -1,17 +1,8 @@
 class Main {
-  function void main() {
-    var int i;
-    var int x, sum;
+  static int x;
 
-    let i = 0;
-    let sum = 0;
-    while (i < 10) {
-      let x = Keyboard.readInt("Number: ");
-      let sum = sum + x;
-      let i = i + 1;
-    }
-    do Output.printString("The total is ");
-    do Output.printInt(sum);
+  function void main() {
+    do Output.printString("Debug from main");
 
     return;
   }

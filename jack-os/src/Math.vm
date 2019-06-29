@@ -9,12 +9,12 @@ push constant 0
 pop local 0
 push constant 1
 pop local 1
-label WHILE0
+label WHILE3
 push local 0
 push constant 31
 lt
 not
-if-goto END_WHILE0
+if-goto END_WHILE3
 push local 1
 push static 0
 push local 0
@@ -29,8 +29,8 @@ push local 1
 push local 1
 add
 pop local 1
-goto WHILE0
-label END_WHILE0
+goto WHILE3
+label END_WHILE3
 push constant 1073741824
 neg
 pop static 2
@@ -49,11 +49,11 @@ push argument 0
 push constant 0
 lt
 not
-if-goto END_IF0
+if-goto END_IF4
 push argument 0
 neg
 return
-label END_IF0
+label END_IF4
 push argument 0
 return
 function Math.multiply 3
@@ -63,36 +63,36 @@ push argument 0
 push constant 0
 lt
 not
-if-goto END_IF1
+if-goto END_IF5
 push argument 0
 neg
 pop argument 0
 push local 2
 not
 pop local 2
-label END_IF1
+label END_IF5
 push argument 1
 push constant 0
 lt
 not
-if-goto END_IF2
+if-goto END_IF6
 push argument 1
 neg
 pop argument 1
 push local 2
 not
 pop local 2
-label END_IF2
+label END_IF6
 push constant 1
 pop local 0
 push constant 0
 pop local 1
-label WHILE1
+label WHILE4
 push local 0
 push constant 0
 gt
 not
-if-goto END_WHILE1
+if-goto END_WHILE4
 push local 0
 push argument 1
 and
@@ -100,12 +100,12 @@ push constant 0
 eq
 not
 not
-if-goto END_IF3
+if-goto END_IF7
 push local 1
 push argument 0
 add
 pop local 1
-label END_IF3
+label END_IF7
 push argument 0
 push argument 0
 add
@@ -114,15 +114,15 @@ push local 0
 push local 0
 add
 pop local 0
-goto WHILE1
-label END_WHILE1
+goto WHILE4
+label END_WHILE4
 push local 2
 not
-if-goto END_IF4
+if-goto END_IF8
 push local 1
 neg
 return
-label END_IF4
+label END_IF8
 push local 1
 return
 function Math.divide 5
@@ -130,13 +130,13 @@ push argument 1
 push constant 0
 eq
 not
-if-goto END_IF5
+if-goto END_IF9
 push constant 3
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF5
+label END_IF9
 push constant 0
 pop local 0
 push constant 0
@@ -145,61 +145,61 @@ push argument 0
 push constant 0
 lt
 not
-if-goto END_IF6
+if-goto END_IF10
 push argument 0
 neg
 pop argument 0
 push local 0
 not
 pop local 0
-label END_IF6
+label END_IF10
 push argument 1
 push constant 0
 lt
 not
-if-goto END_IF7
+if-goto END_IF11
 push argument 1
 neg
 pop argument 1
 push local 0
 not
 pop local 0
-label END_IF7
+label END_IF11
 push argument 1
 push static 2
 eq
 not
-if-goto END_IF8
+if-goto END_IF12
 push argument 0
 push static 2
 eq
 not
-if-goto END_IF9
+if-goto END_IF13
 push constant 1
 return
-label END_IF9
+label END_IF13
 push constant 0
 return
-label END_IF8
+label END_IF12
 push argument 0
 push static 2
 eq
 not
-if-goto END_IF10
+if-goto END_IF14
 push argument 1
 push constant 1
 eq
 not
-if-goto END_IF11
+if-goto END_IF15
 push argument 0
 return
-label END_IF11
+label END_IF15
 push static 3
 pop argument 0
 push constant 1
 neg
 pop local 1
-label END_IF10
+label END_IF14
 push argument 1
 pop local 3
 push constant 0
@@ -207,14 +207,14 @@ pop local 4
 push constant 1
 neg
 pop local 2
-label WHILE2
+label WHILE5
 push local 4
 push constant 31
 lt
 push local 2
 and
 not
-if-goto END_WHILE2
+if-goto END_WHILE5
 push local 3
 push static 1
 push local 4
@@ -229,29 +229,29 @@ push local 3
 push static 4
 gt
 not
-if-goto END_IF12
+if-goto END_IF16
 push constant 0
 pop local 2
-label END_IF12
+label END_IF16
 push local 3
 push local 3
 add
 pop local 3
-goto WHILE2
-label END_WHILE2
+goto WHILE5
+label END_WHILE5
 push constant 0
 pop local 3
 push local 4
 push constant 1
 sub
 pop local 4
-label WHILE3
+label WHILE6
 push local 4
 push constant 1
 neg
 gt
 not
-if-goto END_WHILE3
+if-goto END_WHILE6
 push argument 0
 push static 1
 push local 4
@@ -261,7 +261,7 @@ push that 0
 lt
 not
 not
-if-goto END_IF13
+if-goto END_IF17
 push local 3
 push static 0
 push local 4
@@ -278,13 +278,13 @@ pop pointer 1
 push that 0
 sub
 pop argument 0
-label END_IF13
+label END_IF17
 push local 4
 push constant 1
 sub
 pop local 4
-goto WHILE3
-label END_WHILE3
+goto WHILE6
+label END_WHILE6
 push local 1
 push argument 0
 push constant 1
@@ -293,19 +293,19 @@ push argument 1
 eq
 and
 not
-if-goto END_IF14
+if-goto END_IF18
 push local 3
 push constant 1
 add
 pop local 3
-label END_IF14
+label END_IF18
 push local 0
 not
-if-goto END_IF15
+if-goto END_IF19
 push local 3
 neg
 return
-label END_IF15
+label END_IF19
 push local 3
 return
 function Math.sqrt 4
@@ -313,24 +313,24 @@ push argument 0
 push constant 0
 lt
 not
-if-goto END_IF16
+if-goto END_IF20
 push constant 4
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF16
+label END_IF20
 push constant 30
 pop local 0
 push constant 0
 pop local 1
-label WHILE4
+label WHILE7
 push local 0
 push constant 0
 lt
 not
 not
-if-goto END_WHILE4
+if-goto END_WHILE7
 push local 1
 push static 0
 push local 0
@@ -356,16 +356,16 @@ lt
 or
 not
 not
-if-goto END_IF17
+if-goto END_IF21
 push local 2
 pop local 1
-label END_IF17
+label END_IF21
 push local 0
 push constant 1
 sub
 pop local 0
-goto WHILE4
-label END_WHILE4
+goto WHILE7
+label END_WHILE7
 push local 1
 return
 function Math.max 0
@@ -373,10 +373,10 @@ push argument 0
 push argument 1
 gt
 not
-if-goto END_IF18
+if-goto END_IF22
 push argument 0
 return
-label END_IF18
+label END_IF22
 push argument 1
 return
 function Math.min 0
@@ -384,9 +384,9 @@ push argument 0
 push argument 1
 lt
 not
-if-goto END_IF19
+if-goto END_IF23
 push argument 0
 return
-label END_IF19
+label END_IF23
 push argument 1
 return

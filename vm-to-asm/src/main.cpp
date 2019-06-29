@@ -370,12 +370,15 @@ void Translate(std::fstream &outputFile, const std::string &inputFileName) {
   }
 }
 
-void Bootstrap(std::fstream &outputFile) {
+void Bootstrap(std::fstream &outputFile, bool init) {
   outputFile << "@256" << std::endl
     << "D=A" << std::endl
     << "@SP" << std::endl
+    << "M=D" << std::endl
+    << "@LCL" << std::endl
     << "M=D" << std::endl;
-  Call(outputFile, "Sys.init", 0);
+  if (init) Call(outputFile, "Sys.init", 0);
+  else Call(outputFile, "Main.main", 0);
 }
 
 void PrintHelp() {
@@ -383,7 +386,8 @@ void PrintHelp() {
     << "    ./VMTranslator FILE.vm...    Translates all FILE.vm." << std::endl
     << "Options: " << std::endl
     << "    --help                       Display this information." << std::endl
-    << "    --no-bootstrap               Translate vm-file without bootstrap code." << std::endl;
+    << "    --no-bootstrap               Translate vm-file without bootstrap code." << std::endl
+    << "    --no-init                    Translate vm-file without calling Sys.init." << std::endl;
 }
 
 int main(int argc, char **argv) {
@@ -391,6 +395,7 @@ int main(int argc, char **argv) {
   std::vector<std::string> inputFileNames;
   std::string outputFileName = "out.asm";
   bool bootstrap = true;
+  bool init = true;
   for (int i = 1; i < argc; ++i) {
     std::string arg = argv[i];
     if (arg.front() == '-') {
@@ -406,6 +411,8 @@ int main(int argc, char **argv) {
         ++i;
       } else if (arg == "--no-bootstrap") {
         bootstrap = false;
+      } else if (arg == "--no-init") {
+        init = false;
       } else {
         std::cout << "Unknown option \"" << arg << "\"" << std::endl;
       }
@@ -419,7 +426,7 @@ int main(int argc, char **argv) {
   }
 
   std::fstream outputFile(outputFileName, std::ios::out);
-  if (bootstrap) Bootstrap(outputFile);
+  if (bootstrap) Bootstrap(outputFile, init);
   for (const auto &inputFileName : inputFileNames) {
     try {
       Translate(outputFile, inputFileName);

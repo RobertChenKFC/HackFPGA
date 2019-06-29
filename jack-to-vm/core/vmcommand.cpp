@@ -320,7 +320,7 @@ void VMCommands::initExecution() {
 
   for (std::size_t i = 0; i < 24577; ++i)
     memory_[i] = 0;
-  memory_[SP] = STACK;
+  memory_[SP] = memory_[LCL] = STACK;
 
   std::unordered_map<std::string, std::size_t> functionTable;
   std::unordered_map<std::string, std::size_t> labelTable;
@@ -464,7 +464,7 @@ void VMCommands::reset() {
   curPos_ = startPos_;
   for (std::size_t i = 0; i < 24577; ++i)
     memory_[i] = 0;
-  memory_[SP] = STACK;
+  memory_[SP] = memory_[LCL] = STACK;
 }
 
 Word VMCommands::numStatics_ = 0;

@@ -56,12 +56,12 @@ pop temp 0
 push static 2
 call List.reset 1
 pop temp 0
-label WHILE0
+label WHILE1
 push static 2
 call List.end 1
 not
 not
-if-goto END_WHILE0
+if-goto END_WHILE1
 push static 2
 call List.get 1
 pop local 1
@@ -70,7 +70,7 @@ call Tank.get_type 1
 push constant 1
 eq
 not
-if-goto ELSE0
+if-goto ELSE27
 push local 1
 push static 9
 call Tank.set_live 2
@@ -78,8 +78,8 @@ pop temp 0
 push local 1
 call Player.new 1
 pop static 5
-goto END_IF0
-label ELSE0
+goto END_IF27
+label ELSE27
 push static 7
 push constant 1
 add
@@ -91,12 +91,12 @@ push static 3
 push local 0
 call List.insert 2
 pop temp 0
-label END_IF0
+label END_IF27
 push static 2
 call List.next 1
 pop temp 0
-goto WHILE0
-label END_WHILE0
+goto WHILE1
+label END_WHILE1
 push static 7
 pop static 8
 push static 9
@@ -107,24 +107,24 @@ pop temp 0
 push constant 0
 return
 function Game.run 4
-label WHILE1
+label WHILE2
 push static 6
 push constant 0
 eq
 not
-if-goto END_WHILE1
+if-goto END_WHILE2
 push static 5
 call Player.play 1
 pop temp 0
 push static 3
 call List.reset 1
 pop temp 0
-label WHILE2
+label WHILE3
 push static 3
 call List.end 1
 not
 not
-if-goto END_WHILE2
+if-goto END_WHILE3
 push static 3
 call List.get 1
 pop local 0
@@ -134,25 +134,25 @@ pop temp 0
 push static 3
 call List.next 1
 pop temp 0
-goto WHILE2
-label END_WHILE2
+goto WHILE3
+label END_WHILE3
 push constant 0
 pop local 3
-label WHILE3
+label WHILE4
 push local 3
 push constant 2
 lt
 not
-if-goto END_WHILE3
+if-goto END_WHILE4
 push static 1
 call List.reset 1
 pop temp 0
-label WHILE4
+label WHILE5
 push static 1
 call List.end 1
 not
 not
-if-goto END_WHILE4
+if-goto END_WHILE5
 push static 1
 call List.get 1
 pop local 1
@@ -160,33 +160,33 @@ push local 1
 call Bullet.move 1
 not
 not
-if-goto ELSE1
+if-goto ELSE28
 push static 1
 call List.delete 1
 pop temp 0
-goto END_IF1
-label ELSE1
+goto END_IF28
+label ELSE28
 push static 1
 call List.next 1
 pop temp 0
-label END_IF1
-goto WHILE4
-label END_WHILE4
+label END_IF28
+goto WHILE5
+label END_WHILE5
 push local 3
 push constant 1
 add
 pop local 3
-goto WHILE3
-label END_WHILE3
+goto WHILE4
+label END_WHILE4
 push static 4
 call List.reset 1
 pop temp 0
-label WHILE5
+label WHILE6
 push static 4
 call List.end 1
 not
 not
-if-goto END_WHILE5
+if-goto END_WHILE6
 push static 4
 call List.get 1
 pop local 2
@@ -194,52 +194,52 @@ push local 2
 call Bomb.explode 1
 not
 not
-if-goto ELSE2
+if-goto ELSE29
 push static 4
 call List.delete 1
 pop temp 0
-goto END_IF2
-label ELSE2
+goto END_IF29
+label ELSE29
 push static 4
 call List.next 1
 pop temp 0
-label END_IF2
-goto WHILE5
-label END_WHILE5
+label END_IF29
+goto WHILE6
+label END_WHILE6
 call Keyboard.keyPressed 0
 push constant 81
 eq
 not
-if-goto END_IF3
+if-goto END_IF30
 push constant 2
 return
-label END_IF3
-goto WHILE1
-label END_WHILE1
+label END_IF30
+goto WHILE2
+label END_WHILE2
 push constant 1
 neg
 pop local 3
-label WHILE6
+label WHILE7
 push local 3
 not
-if-goto END_WHILE6
+if-goto END_WHILE7
 push static 4
 call List.reset 1
 pop temp 0
 push static 4
 call List.end 1
 not
-if-goto ELSE4
+if-goto ELSE31
 push constant 0
 pop local 3
-goto END_IF4
-label ELSE4
-label WHILE7
+goto END_IF31
+label ELSE31
+label WHILE8
 push static 4
 call List.end 1
 not
 not
-if-goto END_WHILE7
+if-goto END_WHILE8
 push static 4
 call List.get 1
 pop local 2
@@ -247,24 +247,24 @@ push local 2
 call Bomb.explode 1
 not
 not
-if-goto ELSE5
+if-goto ELSE32
 push static 4
 call List.delete 1
 pop temp 0
-goto END_IF5
-label ELSE5
+goto END_IF32
+label ELSE32
 push static 4
 call List.next 1
 pop temp 0
-label END_IF5
-goto WHILE7
-label END_WHILE7
-label END_IF4
+label END_IF32
+goto WHILE8
+label END_WHILE8
+label END_IF31
 push constant 100
 call Sys.wait 1
 pop temp 0
-goto WHILE6
-label END_WHILE6
+goto WHILE7
+label END_WHILE7
 push constant 300
 call Sys.wait 1
 pop temp 0
@@ -277,12 +277,12 @@ pop temp 0
 push static 2
 call List.reset 1
 pop temp 0
-label WHILE8
+label WHILE9
 push static 2
 call List.end 1
 not
 not
-if-goto END_WHILE8
+if-goto END_WHILE9
 push static 2
 call List.get 1
 pop local 2
@@ -292,20 +292,20 @@ pop temp 0
 push local 2
 call Memory.deAlloc 1
 pop temp 0
-goto WHILE8
-label END_WHILE8
+goto WHILE9
+label END_WHILE9
 push static 2
 call Memory.deAlloc 1
 pop temp 0
 push static 3
 call List.reset 1
 pop temp 0
-label WHILE9
+label WHILE10
 push static 3
 call List.end 1
 not
 not
-if-goto END_WHILE9
+if-goto END_WHILE10
 push static 3
 call List.get 1
 pop local 0
@@ -315,20 +315,20 @@ pop temp 0
 push local 0
 call Memory.deAlloc 1
 pop temp 0
-goto WHILE9
-label END_WHILE9
+goto WHILE10
+label END_WHILE10
 push static 3
 call Memory.deAlloc 1
 pop temp 0
 push static 1
 call List.reset 1
 pop temp 0
-label WHILE10
+label WHILE11
 push static 1
 call List.end 1
 not
 not
-if-goto END_WHILE10
+if-goto END_WHILE11
 push static 1
 call List.get 1
 pop local 1
@@ -338,20 +338,20 @@ pop temp 0
 push local 1
 call Memory.deAlloc 1
 pop temp 0
-goto WHILE10
-label END_WHILE10
+goto WHILE11
+label END_WHILE11
 push static 1
 call Memory.deAlloc 1
 pop temp 0
 push static 4
 call List.reset 1
 pop temp 0
-label WHILE11
+label WHILE12
 push static 4
 call List.end 1
 not
 not
-if-goto END_WHILE11
+if-goto END_WHILE12
 push static 4
 call List.get 1
 pop local 3
@@ -361,8 +361,8 @@ pop temp 0
 push local 3
 call Memory.deAlloc 1
 pop temp 0
-goto WHILE11
-label END_WHILE11
+goto WHILE12
+label END_WHILE12
 push static 4
 call Memory.deAlloc 1
 pop temp 0
@@ -392,12 +392,12 @@ function Game.attack_tank 3
 push static 2
 call List.reset 1
 pop temp 0
-label WHILE12
+label WHILE13
 push static 2
 call List.end 1
 not
 not
-if-goto END_WHILE12
+if-goto END_WHILE13
 push static 2
 call List.get 1
 pop local 0
@@ -413,39 +413,39 @@ push local 1
 push constant 1
 eq
 not
-if-goto ELSE6
+if-goto ELSE33
 push local 2
 push constant 2
 eq
 not
-if-goto ELSE7
+if-goto ELSE34
 call Game.over 0
 pop temp 0
-goto END_IF7
-label ELSE7
+goto END_IF34
+label ELSE34
 push local 2
 push constant 1
 eq
 not
-if-goto END_IF8
+if-goto END_IF35
 call Cheat.get_imba 0
 not
 not
-if-goto END_IF9
+if-goto END_IF36
 push static 9
 push constant 1
 sub
 pop static 9
-label END_IF9
-label END_IF8
-label END_IF7
-goto END_IF6
-label ELSE6
+label END_IF36
+label END_IF35
+label END_IF34
+goto END_IF33
+label ELSE33
 push local 2
 push constant 2
 eq
 not
-if-goto ELSE10
+if-goto ELSE37
 push static 7
 push constant 1
 sub
@@ -458,29 +458,29 @@ push static 7
 push constant 0
 eq
 not
-if-goto END_IF11
+if-goto END_IF38
 push constant 1
 pop static 6
-label END_IF11
-goto END_IF10
-label ELSE10
+label END_IF38
+goto END_IF37
+label ELSE37
 push local 2
 push constant 1
 eq
 not
-if-goto END_IF12
+if-goto END_IF39
 push static 10
 push constant 100
 add
 pop static 10
-label END_IF12
-label END_IF10
-label END_IF6
+label END_IF39
+label END_IF37
+label END_IF33
 push static 2
 call List.next 1
 pop temp 0
-goto WHILE12
-label END_WHILE12
+goto WHILE13
+label END_WHILE13
 push static 9
 push static 7
 push static 10
