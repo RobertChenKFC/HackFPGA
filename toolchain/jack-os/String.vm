@@ -10,23 +10,23 @@ push this 2
 push constant 0
 lt
 not
-if-goto END_IF37
+if-goto END_IF65
 push constant 14
 call Sys.error 1
 pop temp 0
 push pointer 0
 return
-label END_IF37
+label END_IF65
 push this 2
 push constant 0
 eq
 not
 not
-if-goto END_IF38
+if-goto END_IF66
 push this 2
 call Memory.alloc 1
 pop this 0
-label END_IF38
+label END_IF66
 push pointer 0
 return
 function String.dispose 0
@@ -37,11 +37,11 @@ push constant 0
 eq
 not
 not
-if-goto END_IF39
+if-goto END_IF67
 push this 0
 call Memory.deAlloc 1
 pop temp 0
-label END_IF39
+label END_IF67
 push constant 0
 return
 function String.length 0
@@ -57,13 +57,13 @@ push this 2
 lt
 not
 not
-if-goto END_IF40
+if-goto END_IF68
 push constant 15
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF40
+label END_IF68
 push this 0
 push argument 1
 add
@@ -78,13 +78,13 @@ push this 2
 lt
 not
 not
-if-goto END_IF41
+if-goto END_IF69
 push constant 16
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF41
+label END_IF69
 push argument 2
 push this 0
 push argument 1
@@ -101,13 +101,13 @@ push this 2
 lt
 not
 not
-if-goto END_IF42
+if-goto END_IF70
 push constant 17
 call Sys.error 1
 pop temp 0
 push pointer 0
 return
-label END_IF42
+label END_IF70
 push argument 1
 push this 0
 push this 1
@@ -128,13 +128,13 @@ push constant 0
 gt
 not
 not
-if-goto END_IF43
+if-goto END_IF71
 push constant 18
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF43
+label END_IF71
 push this 1
 push constant 1
 sub
@@ -154,21 +154,21 @@ push that 0
 push constant 45
 eq
 not
-if-goto END_IF44
+if-goto END_IF72
 push constant 1
 neg
 pop local 2
 push constant 1
 pop local 0
-label END_IF44
+label END_IF72
 push constant 0
 pop local 1
-label WHILE13
+label WHILE15
 push local 0
 push this 1
 lt
 not
-if-goto END_WHILE13
+if-goto END_WHILE15
 push local 1
 push constant 10
 call Math.multiply 2
@@ -185,15 +185,15 @@ push local 0
 push constant 1
 add
 pop local 0
-goto WHILE13
-label END_WHILE13
+goto WHILE15
+label END_WHILE15
 push local 2
 not
-if-goto END_IF45
+if-goto END_IF73
 push local 1
 neg
 return
-label END_IF45
+label END_IF73
 push local 1
 return
 function String.setInt 3
@@ -203,7 +203,7 @@ push argument 1
 push constant 0
 eq
 not
-if-goto END_IF46
+if-goto END_IF74
 push constant 48
 push this 0
 push constant 0
@@ -214,7 +214,7 @@ push constant 1
 pop this 1
 push constant 0
 return
-label END_IF46
+label END_IF74
 push argument 1
 push constant 0
 lt
@@ -224,7 +224,7 @@ push constant 0
 lt
 and
 not
-if-goto END_IF47
+if-goto END_IF75
 push constant 45
 push this 0
 push constant 0
@@ -295,7 +295,7 @@ push constant 11
 pop this 1
 push constant 0
 return
-label END_IF47
+label END_IF75
 push constant 0
 pop this 1
 push constant 0
@@ -304,7 +304,7 @@ push argument 1
 push constant 0
 lt
 not
-if-goto END_IF48
+if-goto END_IF76
 push constant 45
 push this 0
 push constant 0
@@ -318,14 +318,14 @@ push constant 1
 pop local 0
 push constant 1
 pop this 1
-label END_IF48
-label WHILE14
+label END_IF76
+label WHILE16
 push argument 1
 push constant 0
 eq
 not
 not
-if-goto END_WHILE14
+if-goto END_WHILE16
 push argument 1
 push constant 10
 call Math.divide 2
@@ -348,18 +348,18 @@ push this 1
 push constant 1
 add
 pop this 1
-goto WHILE14
-label END_WHILE14
+goto WHILE16
+label END_WHILE16
 push this 1
 push constant 1
 sub
 pop local 1
-label WHILE15
+label WHILE17
 push local 0
 push local 1
 lt
 not
-if-goto END_WHILE15
+if-goto END_WHILE17
 push this 0
 push local 0
 add
@@ -390,8 +390,8 @@ push local 1
 push constant 1
 sub
 pop local 1
-goto WHILE15
-label END_WHILE15
+goto WHILE17
+label END_WHILE17
 push constant 0
 return
 function String.newLine 0

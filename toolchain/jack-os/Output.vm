@@ -1452,10 +1452,10 @@ push constant 126
 gt
 or
 not
-if-goto END_IF22
+if-goto END_IF50
 push constant 0
 pop argument 0
-label END_IF22
+label END_IF50
 push static 0
 push argument 0
 add
@@ -1479,13 +1479,13 @@ push constant 63
 gt
 or
 not
-if-goto END_IF23
+if-goto END_IF51
 push constant 20
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF23
+label END_IF51
 push argument 0
 pop static 1
 push argument 1
@@ -1514,13 +1514,13 @@ and
 push constant 0
 eq
 not
-if-goto ELSE24
-label WHILE9
+if-goto ELSE52
+label WHILE11
 push local 2
 push constant 11
 lt
 not
-if-goto END_WHILE9
+if-goto END_WHILE11
 push local 1
 call Memory.peek 1
 pop local 3
@@ -1544,16 +1544,16 @@ push local 1
 push constant 32
 add
 pop local 1
-goto WHILE9
-label END_WHILE9
-goto END_IF24
-label ELSE24
-label WHILE10
+goto WHILE11
+label END_WHILE11
+goto END_IF52
+label ELSE52
+label WHILE12
 push local 2
 push constant 11
 lt
 not
-if-goto END_WHILE10
+if-goto END_WHILE12
 push local 1
 call Memory.peek 1
 pop local 3
@@ -1579,9 +1579,9 @@ push local 1
 push constant 32
 add
 pop local 1
-goto WHILE10
-label END_WHILE10
-label END_IF24
+goto WHILE12
+label END_WHILE12
+label END_IF52
 push static 2
 push constant 1
 add
@@ -1590,7 +1590,7 @@ push static 2
 push constant 64
 eq
 not
-if-goto END_IF25
+if-goto END_IF53
 push static 1
 push constant 1
 add
@@ -1601,11 +1601,11 @@ push static 1
 push constant 23
 eq
 not
-if-goto END_IF26
+if-goto END_IF54
 push constant 0
 pop static 1
-label END_IF26
-label END_IF25
+label END_IF54
+label END_IF53
 push constant 0
 return
 function Output.printString 2
@@ -1614,12 +1614,12 @@ pop local 0
 push argument 0
 call String.length 1
 pop local 1
-label WHILE11
+label WHILE13
 push local 0
 push local 1
 lt
 not
-if-goto END_WHILE11
+if-goto END_WHILE13
 push argument 0
 push local 0
 call String.charAt 2
@@ -1629,8 +1629,8 @@ push local 0
 push constant 1
 add
 pop local 0
-goto WHILE11
-label END_WHILE11
+goto WHILE13
+label END_WHILE13
 push constant 0
 return
 function Output.printInt 0
@@ -1654,10 +1654,10 @@ push static 1
 push constant 23
 eq
 not
-if-goto END_IF27
+if-goto END_IF55
 push constant 0
 pop static 1
-label END_IF27
+label END_IF55
 push constant 0
 return
 function Output.backSpace 0
@@ -1670,7 +1670,7 @@ push constant 1
 neg
 eq
 not
-if-goto END_IF28
+if-goto END_IF56
 push static 1
 push constant 1
 sub
@@ -1682,12 +1682,12 @@ push constant 1
 neg
 eq
 not
-if-goto END_IF29
+if-goto END_IF57
 push constant 23
 pop static 1
 push constant 63
 pop static 2
-label END_IF29
-label END_IF28
+label END_IF57
+label END_IF56
 push constant 0
 return

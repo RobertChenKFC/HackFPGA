@@ -4,13 +4,13 @@ push constant 0
 gt
 not
 not
-if-goto END_IF1
+if-goto END_IF29
 push constant 2
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF1
+label END_IF29
 push argument 0
 call Memory.alloc 1
 return
