@@ -1,0 +1,82 @@
+[
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/JackCompiler.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/JackCompiler.dir/src/main.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/compiler/src/main.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/src/main.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/classnode.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/classnode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/classnode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/declarationnode.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/declarationnode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/declarationnode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/donode.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/donode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/donode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/expression.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/expression.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/expression.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/ifnode.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/ifnode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/ifnode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/letnode.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/letnode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/letnode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/node.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/node.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/node.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/parser.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/parser.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/parser.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/returnnode.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/returnnode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/returnnode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/subroutinecall.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/subroutinecall.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/subroutinecall.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/subroutinenode.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/subroutinenode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/subroutinenode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/term.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/term.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/term.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/tokenizer.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/tokenizer.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/tokenizer.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/vmcommand.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/vmcommand.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/vmcommand.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/core.dir/includes_CXX.rsp -g -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/core.dir/whilenode.cpp.o -c /home/robert/Programming/HackFPGA/jack-to-vm/core/whilenode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/jack-to-vm/core/whilenode.cpp"
+}
+]

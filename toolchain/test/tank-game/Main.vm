@@ -292,13 +292,13 @@ push constant 320
 push constant 130
 call Scalable.draw 3
 pop temp 0
-label WHILE16
+label WHILE35
 push local 0
 push constant 3
 eq
 not
 not
-if-goto END_WHILE16
+if-goto END_WHILE35
 push constant 1
 pop local 1
 push local 3
@@ -312,29 +312,29 @@ push constant 1
 eq
 or
 not
-if-goto END_IF53
+if-goto END_IF67
 call Game.init 0
 pop temp 0
 push local 0
 push constant 0
 eq
 not
-if-goto ELSE54
+if-goto ELSE68
 push constant 1
 pop local 2
-goto END_IF54
-label ELSE54
+goto END_IF68
+label ELSE68
 push local 4
 call Menu.run 1
 push constant 1
 add
 pop local 2
-label END_IF54
+label END_IF68
 push local 2
 push constant 4
 eq
 not
-if-goto ELSE55
+if-goto ELSE69
 push constant 100
 call Game.ready 1
 pop temp 0
@@ -356,15 +356,15 @@ push constant 320
 push constant 130
 call Scalable.draw 3
 pop temp 0
-goto END_IF55
-label ELSE55
+goto END_IF69
+label ELSE69
 push local 2
 push constant 0
 eq
 not
 not
-if-goto END_IF56
-label WHILE17
+if-goto END_IF70
+label WHILE36
 push local 1
 push constant 1
 eq
@@ -373,7 +373,7 @@ push constant 4
 lt
 and
 not
-if-goto END_WHILE17
+if-goto END_WHILE36
 call Screen.clearScreen 0
 pop temp 0
 push constant 12
@@ -403,15 +403,15 @@ push local 2
 push constant 1
 add
 pop local 2
-goto WHILE17
-label END_WHILE17
+goto WHILE36
+label END_WHILE36
 call Cheat.init 0
 pop temp 0
 push local 1
 push constant 1
 eq
 not
-if-goto END_IF57
+if-goto END_IF71
 push constant 4
 call Game.ready 1
 pop temp 0
@@ -419,13 +419,13 @@ call Game.run 0
 pop local 1
 call Game.close 0
 pop temp 0
-label END_IF57
+label END_IF71
 push local 1
 push constant 1
 neg
 eq
 not
-if-goto END_IF58
+if-goto END_IF72
 push constant 5
 call Game.ready 1
 pop temp 0
@@ -433,7 +433,7 @@ call Game.run 0
 pop local 1
 call Game.close 0
 pop temp 0
-label END_IF58
+label END_IF72
 call Screen.clearScreen 0
 pop temp 0
 push local 6
@@ -446,14 +446,14 @@ push constant 320
 push constant 130
 call Scalable.draw 3
 pop temp 0
-label END_IF56
-label END_IF55
-label END_IF53
+label END_IF70
+label END_IF69
+label END_IF67
 push local 0
 push constant 2
 eq
 not
-if-goto END_IF59
+if-goto END_IF73
 call Cheat.init 0
 pop temp 0
 call Author.draw 0
@@ -472,60 +472,60 @@ push constant 320
 push constant 130
 call Scalable.draw 3
 pop temp 0
-label END_IF59
+label END_IF73
 push local 0
 push constant 4
 eq
 not
-if-goto END_IF60
+if-goto END_IF74
 call Cheat.set_penetrate 0
 pop temp 0
-label END_IF60
+label END_IF74
 push local 0
 push constant 5
 eq
 not
-if-goto END_IF61
+if-goto END_IF75
 call Cheat.set_seperate 0
 pop temp 0
-label END_IF61
+label END_IF75
 push local 0
 push constant 6
 eq
 not
-if-goto END_IF62
+if-goto END_IF76
 call Cheat.set_triple 0
 pop temp 0
-label END_IF62
+label END_IF76
 push local 0
 push constant 7
 eq
 not
-if-goto END_IF63
+if-goto END_IF77
 call Cheat.set_nocd 0
 pop temp 0
-label END_IF63
+label END_IF77
 push local 0
 push constant 8
 eq
 not
-if-goto END_IF64
+if-goto END_IF78
 call Cheat.set_all_soft 0
 pop temp 0
-label END_IF64
+label END_IF78
 push local 0
 push constant 9
 eq
 not
-if-goto END_IF65
+if-goto END_IF79
 call Cheat.set_imba 0
 pop temp 0
-label END_IF65
+label END_IF79
 push local 0
 push constant 10
 eq
 not
-if-goto END_IF66
+if-goto END_IF80
 call Cheat.set_penetrate 0
 pop temp 0
 call Cheat.set_seperate 0
@@ -538,8 +538,8 @@ call Cheat.set_all_soft 0
 pop temp 0
 call Cheat.set_imba 0
 pop temp 0
-label END_IF66
-goto WHILE16
-label END_WHILE16
+label END_IF80
+goto WHILE35
+label END_WHILE35
 push constant 0
 return

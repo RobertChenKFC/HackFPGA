@@ -39,7 +39,7 @@ eq
 or
 not
 not
-if-goto END_IF14
+if-goto END_IF98
 push this 0
 push constant 8
 call Math.multiply 2
@@ -58,7 +58,7 @@ push constant 7
 add
 call Image.clear 4
 pop temp 0
-label END_IF14
+label END_IF98
 push constant 0
 pop local 1
 push this 2
@@ -72,7 +72,7 @@ neg
 gt
 and
 not
-if-goto ELSE15
+if-goto ELSE99
 push this 1
 push constant 1
 sub
@@ -80,8 +80,8 @@ pop this 1
 push constant 1
 neg
 pop local 1
-goto END_IF15
-label ELSE15
+goto END_IF99
+label ELSE99
 push this 2
 push constant 1
 eq
@@ -92,7 +92,7 @@ push constant 45
 lt
 and
 not
-if-goto ELSE16
+if-goto ELSE100
 push this 0
 push constant 1
 add
@@ -100,8 +100,8 @@ pop this 0
 push constant 1
 neg
 pop local 1
-goto END_IF16
-label ELSE16
+goto END_IF100
+label ELSE100
 push this 2
 push constant 2
 eq
@@ -112,7 +112,7 @@ push constant 30
 lt
 and
 not
-if-goto ELSE17
+if-goto ELSE101
 push this 1
 push constant 1
 add
@@ -120,8 +120,8 @@ pop this 1
 push constant 1
 neg
 pop local 1
-goto END_IF17
-label ELSE17
+goto END_IF101
+label ELSE101
 push this 2
 push constant 3
 eq
@@ -133,7 +133,7 @@ neg
 gt
 and
 not
-if-goto END_IF18
+if-goto END_IF102
 push this 0
 push constant 1
 sub
@@ -141,13 +141,13 @@ pop this 0
 push constant 1
 neg
 pop local 1
-label END_IF18
-label END_IF17
-label END_IF16
-label END_IF15
+label END_IF102
+label END_IF101
+label END_IF100
+label END_IF99
 push local 1
 not
-if-goto END_IF19
+if-goto END_IF103
 push static 1
 push this 0
 push this 1
@@ -157,7 +157,7 @@ push local 0
 push constant 0
 eq
 not
-if-goto END_IF20
+if-goto END_IF104
 push static 0
 push this 0
 push constant 8
@@ -171,7 +171,7 @@ pop temp 0
 push constant 1
 neg
 return
-label END_IF20
+label END_IF104
 push local 0
 push constant 1
 eq
@@ -180,17 +180,17 @@ push constant 2
 eq
 or
 not
-if-goto END_IF21
+if-goto END_IF105
 push this 0
 push this 1
 call Game.attack_tank 2
 pop temp 0
-label END_IF21
+label END_IF105
 push local 0
 push constant 3
 eq
 not
-if-goto END_IF22
+if-goto END_IF106
 push static 1
 push this 0
 push this 1
@@ -199,12 +199,12 @@ push this 1
 push constant 0
 call Map.update 6
 pop temp 0
-label END_IF22
+label END_IF106
 push local 0
 push constant 5
 eq
 not
-if-goto END_IF23
+if-goto END_IF107
 push constant 21
 push constant 27
 call Bomb.new 2
@@ -212,7 +212,7 @@ call Game.add_bomb 1
 pop temp 0
 call Game.over 0
 pop temp 0
-label END_IF23
+label END_IF107
 push local 0
 push constant 4
 eq
@@ -227,12 +227,12 @@ neg
 eq
 and
 not
-if-goto END_IF24
+if-goto END_IF108
 push constant 1
 neg
 return
-label END_IF24
-label END_IF19
+label END_IF108
+label END_IF103
 push pointer 0
 call Memory.deAlloc 1
 pop temp 0

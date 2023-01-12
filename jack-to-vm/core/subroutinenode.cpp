@@ -61,8 +61,8 @@ void SubroutineNode::toXML(std::fstream &outputFile, const std::string &indentat
 }
 
 Node::SymbolTable SubroutineNode::toVMCommands(VMCommands &vmCommands, Node::SymbolTable symbolTable) const {
-  auto it = children_.begin();
-  while ((*it)->isDeclaration()) {
+  auto it = children_.begin(), end = children_.end();
+  while (it != end && (*it)->isDeclaration()) {
     symbolTable = (*it)->toVMCommands(vmCommands, symbolTable);
     ++it;
   }
@@ -96,7 +96,6 @@ Node::SymbolTable SubroutineNode::toVMCommands(VMCommands &vmCommands, Node::Sym
   }
 
   bool hasReturnStatement = false;
-  auto end = children_.end();
   while (it != end) {
     (*it)->toVMCommands(vmCommands, symbolTable);
     if ((*it)->hasReturnStatement())

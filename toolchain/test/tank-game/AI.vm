@@ -17,39 +17,39 @@ push this 0
 call Tank.dead 1
 not
 not
-if-goto END_IF0
+if-goto END_IF112
 call Rand.rand 0
 push constant 2
 and
 push constant 0
 eq
 not
-if-goto ELSE1
+if-goto ELSE113
 push this 0
 push this 1
 call Tank.move 2
 not
 not
-if-goto END_IF2
+if-goto END_IF114
 call Rand.rand 0
 push constant 3
 and
 pop this 1
-label END_IF2
-goto END_IF1
-label ELSE1
+label END_IF114
+goto END_IF113
+label ELSE113
 call Rand.rand 0
 push constant 20
 lt
 not
-if-goto END_IF3
+if-goto END_IF115
 push this 0
 push this 0
 call Tank.get_dir 1
 call Tank.shoot 2
 pop temp 0
-label END_IF3
-label END_IF1
-label END_IF0
+label END_IF115
+label END_IF113
+label END_IF112
 push constant 0
 return

@@ -24,25 +24,25 @@ call String.charAt 2
 push argument 1
 eq
 not
-if-goto ELSE25
+if-goto ELSE37
 push this 1
 push constant 1
 add
 pop this 1
-goto END_IF25
-label ELSE25
+goto END_IF37
+label ELSE37
 push constant 0
 pop this 1
-label END_IF25
+label END_IF37
 push this 1
 push this 0
 call String.length 1
 eq
 not
-if-goto END_IF26
+if-goto END_IF38
 push constant 1
 neg
 return
-label END_IF26
+label END_IF38
 push constant 0
 return

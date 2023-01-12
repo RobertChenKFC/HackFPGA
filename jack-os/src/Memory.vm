@@ -38,24 +38,24 @@ push argument 0
 push constant 0
 lt
 not
-if-goto END_IF24
+if-goto END_IF164
 push constant 5
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF24
+label END_IF164
 push static 1
 push constant 0
 eq
 not
-if-goto END_IF25
+if-goto END_IF165
 push constant 6
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF25
+label END_IF165
 push argument 0
 push constant 1
 add
@@ -69,7 +69,7 @@ pop local 5
 push constant 1
 neg
 pop local 4
-label WHILE8
+label WHILE69
 push local 2
 push constant 0
 eq
@@ -77,7 +77,7 @@ not
 push local 4
 and
 not
-if-goto END_WHILE8
+if-goto END_WHILE69
 push local 2
 push constant 0
 add
@@ -95,7 +95,7 @@ push local 5
 lt
 and
 not
-if-goto END_IF26
+if-goto END_IF166
 push local 1
 pop local 5
 push local 2
@@ -107,11 +107,11 @@ push constant 1
 gt
 not
 not
-if-goto END_IF27
+if-goto END_IF167
 push constant 0
 pop local 4
-label END_IF27
-label END_IF26
+label END_IF167
+label END_IF166
 push local 2
 pop local 3
 push local 2
@@ -120,24 +120,24 @@ add
 pop pointer 1
 push that 0
 pop local 2
-goto WHILE8
-label END_WHILE8
+goto WHILE69
+label END_WHILE69
 push local 5
 push constant 14337
 eq
 not
-if-goto END_IF28
+if-goto END_IF168
 push constant 6
 call Sys.error 1
 pop temp 0
 push constant 0
 return
-label END_IF28
+label END_IF168
 push local 5
 push constant 1
 gt
 not
-if-goto ELSE29
+if-goto ELSE169
 push local 6
 push constant 0
 add
@@ -163,21 +163,21 @@ neg
 add
 pop pointer 1
 pop that 0
-goto END_IF29
-label ELSE29
+goto END_IF169
+label ELSE169
 push local 7
 push constant 0
 eq
 not
-if-goto ELSE30
+if-goto ELSE170
 push local 6
 push constant 1
 add
 pop pointer 1
 push that 0
 pop static 1
-goto END_IF30
-label ELSE30
+goto END_IF170
+label ELSE170
 push local 6
 push constant 1
 add
@@ -188,12 +188,12 @@ push constant 1
 add
 pop pointer 1
 pop that 0
-label END_IF30
+label END_IF170
 push local 6
 push constant 1
 add
 pop local 8
-label END_IF29
+label END_IF169
 push local 8
 return
 function Memory.deAlloc 0

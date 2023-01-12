@@ -16,41 +16,41 @@ pop temp 0
 push constant 0
 return
 function Sys.halt 0
-label WHILE27
+label WHILE66
 push constant 1
 neg
 not
-if-goto END_WHILE27
-goto WHILE27
-label END_WHILE27
+if-goto END_WHILE66
+goto WHILE66
+label END_WHILE66
 push constant 0
 return
 function Sys.wait 2
-label WHILE28
+label WHILE67
 push argument 0
 push constant 0
 eq
 not
 not
-if-goto END_WHILE28
-label WHILE29
+if-goto END_WHILE67
+label WHILE68
 push local 0
 push constant 32766
 lt
 not
-if-goto END_WHILE29
+if-goto END_WHILE68
 push local 0
 push constant 1
 add
 pop local 0
-goto WHILE29
-label END_WHILE29
+goto WHILE68
+label END_WHILE68
 push argument 0
 push constant 1
 sub
 pop argument 0
-goto WHILE28
-label END_WHILE28
+goto WHILE67
+label END_WHILE67
 push constant 0
 return
 function Sys.error 0

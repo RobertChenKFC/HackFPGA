@@ -157,20 +157,20 @@ push constant 0
 pop local 3
 push constant 1
 pop local 2
-label WHILE14
+label WHILE20
 push local 0
 push this 1
 lt
 not
-if-goto END_WHILE14
+if-goto END_WHILE20
 push constant 0
 pop local 1
-label WHILE15
+label WHILE21
 push local 1
 push this 0
 lt
 not
-if-goto END_WHILE15
+if-goto END_WHILE21
 push local 2
 push this 2
 push local 3
@@ -239,13 +239,13 @@ push local 1
 push constant 1
 add
 pop local 1
-goto WHILE15
-label END_WHILE15
+goto WHILE21
+label END_WHILE21
 push local 0
 push constant 1
 add
 pop local 0
-goto WHILE14
-label END_WHILE14
+goto WHILE20
+label END_WHILE20
 push constant 0
 return

@@ -13,20 +13,20 @@ call Array.new 1
 pop this 0
 push argument 0
 pop this 1
-label WHILE18
+label WHILE0
 push local 0
 push constant 10
 lt
 not
-if-goto END_WHILE18
+if-goto END_WHILE0
 push constant 0
 pop local 1
-label WHILE19
+label WHILE1
 push local 1
 push constant 15
 lt
 not
-if-goto END_WHILE19
+if-goto END_WHILE1
 push constant 0
 pop local 2
 push argument 0
@@ -45,16 +45,16 @@ eq
 call Cheat.get_all_soft 0
 and
 not
-if-goto END_IF67
+if-goto END_IF25
 push constant 3
 pop local 4
-label END_IF67
-label WHILE20
+label END_IF25
+label WHILE2
 push local 2
 push constant 3
 lt
 not
-if-goto END_WHILE20
+if-goto END_WHILE2
 push local 4
 push this 0
 push local 0
@@ -105,8 +105,8 @@ push local 2
 push constant 1
 add
 pop local 2
-goto WHILE20
-label END_WHILE20
+goto WHILE2
+label END_WHILE2
 push local 4
 push constant 1
 eq
@@ -115,7 +115,7 @@ push constant 2
 eq
 or
 not
-if-goto END_IF68
+if-goto END_IF26
 push argument 0
 push local 0
 push constant 15
@@ -136,19 +136,19 @@ push this 2
 push local 5
 call List.insert 2
 pop temp 0
-label END_IF68
+label END_IF26
 push local 1
 push constant 1
 add
 pop local 1
-goto WHILE19
-label END_WHILE19
+goto WHILE1
+label END_WHILE1
 push local 0
 push constant 1
 add
 pop local 0
-goto WHILE18
-label END_WHILE18
+goto WHILE0
+label END_WHILE0
 push this 1
 push constant 127
 add
@@ -157,23 +157,23 @@ push that 0
 push constant 0
 eq
 not
-if-goto END_IF69
+if-goto END_IF27
 push constant 20
 pop local 2
-label WHILE21
+label WHILE3
 push local 2
 push constant 25
 lt
 not
-if-goto END_WHILE21
+if-goto END_WHILE3
 push constant 25
 pop local 3
-label WHILE22
+label WHILE4
 push local 3
 push constant 30
 lt
 not
-if-goto END_WHILE22
+if-goto END_WHILE4
 push constant 5
 push this 0
 push local 2
@@ -188,22 +188,22 @@ push local 3
 push constant 1
 add
 pop local 3
-goto WHILE22
-label END_WHILE22
+goto WHILE4
+label END_WHILE4
 push local 2
 push constant 1
 add
 pop local 2
-goto WHILE21
-label END_WHILE21
+goto WHILE3
+label END_WHILE3
 push constant 18
 pop local 2
-label WHILE23
+label WHILE5
 push local 2
 push constant 27
 lt
 not
-if-goto END_WHILE23
+if-goto END_WHILE5
 push constant 3
 push this 0
 push constant 23
@@ -228,16 +228,16 @@ push local 2
 push constant 1
 add
 pop local 2
-goto WHILE23
-label END_WHILE23
+goto WHILE5
+label END_WHILE5
 push constant 25
 pop local 2
-label WHILE24
+label WHILE6
 push local 2
 push constant 30
 lt
 not
-if-goto END_WHILE24
+if-goto END_WHILE6
 push constant 3
 push this 0
 push local 2
@@ -282,9 +282,9 @@ push local 2
 push constant 1
 add
 pop local 2
-goto WHILE24
-label END_WHILE24
-label END_IF69
+goto WHILE6
+label END_WHILE6
+label END_IF27
 push pointer 0
 return
 function Map.debug_draw 3
@@ -294,20 +294,20 @@ call Album.get_soft 0
 pop local 2
 push constant 0
 pop local 0
-label WHILE25
+label WHILE7
 push local 0
 push constant 30
 lt
 not
-if-goto END_WHILE25
+if-goto END_WHILE7
 push constant 0
 pop local 1
-label WHILE26
+label WHILE8
 push local 1
 push constant 45
 lt
 not
-if-goto END_WHILE26
+if-goto END_WHILE8
 push this 0
 push local 0
 push constant 45
@@ -321,7 +321,7 @@ push constant 0
 eq
 not
 not
-if-goto END_IF70
+if-goto END_IF28
 push local 2
 push local 1
 push constant 8
@@ -332,19 +332,19 @@ call Math.multiply 2
 push constant 0
 call Image.draw 4
 pop temp 0
-label END_IF70
+label END_IF28
 push local 1
 push constant 1
 add
 pop local 1
-goto WHILE26
-label END_WHILE26
+goto WHILE8
+label END_WHILE8
 push local 0
 push constant 1
 add
 pop local 0
-goto WHILE25
-label END_WHILE25
+goto WHILE7
+label END_WHILE7
 push constant 0
 return
 function Map._draw_item 6
@@ -362,7 +362,7 @@ push argument 2
 push constant 0
 eq
 not
-if-goto END_IF71
+if-goto END_IF29
 push argument 1
 push constant 24
 call Math.multiply 2
@@ -381,12 +381,12 @@ push constant 23
 add
 call Image.clear 4
 pop temp 0
-label END_IF71
+label END_IF29
 push argument 2
 push constant 1
 eq
 not
-if-goto END_IF72
+if-goto END_IF30
 push local 4
 push argument 1
 push constant 24
@@ -397,12 +397,12 @@ call Math.multiply 2
 push constant 0
 call Image.draw 4
 pop temp 0
-label END_IF72
+label END_IF30
 push argument 2
 push constant 2
 eq
 not
-if-goto END_IF73
+if-goto END_IF31
 push local 5
 push argument 1
 push constant 24
@@ -413,28 +413,28 @@ call Math.multiply 2
 push constant 0
 call Image.draw 4
 pop temp 0
-label END_IF73
+label END_IF31
 push argument 2
 push constant 3
 eq
 not
-if-goto END_IF74
+if-goto END_IF32
 push constant 0
 pop local 0
-label WHILE27
+label WHILE9
 push local 0
 push constant 24
 lt
 not
-if-goto END_WHILE27
+if-goto END_WHILE9
 push constant 0
 pop local 1
-label WHILE28
+label WHILE10
 push local 1
 push constant 24
 lt
 not
-if-goto END_WHILE28
+if-goto END_WHILE10
 push local 2
 push argument 1
 push constant 24
@@ -453,20 +453,20 @@ push local 1
 push constant 8
 add
 pop local 1
-goto WHILE28
-label END_WHILE28
+goto WHILE10
+label END_WHILE10
 push local 0
 push constant 8
 add
 pop local 0
-goto WHILE27
-label END_WHILE27
-label END_IF74
+goto WHILE9
+label END_WHILE9
+label END_IF32
 push argument 2
 push constant 4
 eq
 not
-if-goto END_IF75
+if-goto END_IF33
 push local 3
 push argument 1
 push constant 24
@@ -477,7 +477,7 @@ call Math.multiply 2
 push constant 0
 call Image.draw 4
 pop temp 0
-label END_IF75
+label END_IF33
 push constant 0
 return
 function Map.draw 7
@@ -489,20 +489,20 @@ call Album.get_soft 0
 pop local 6
 push constant 0
 pop local 0
-label WHILE29
+label WHILE11
 push local 0
 push constant 10
 lt
 not
-if-goto END_WHILE29
+if-goto END_WHILE11
 push constant 0
 pop local 1
-label WHILE30
+label WHILE12
 push local 1
 push constant 15
 lt
 not
-if-goto END_WHILE30
+if-goto END_WHILE12
 push this 1
 push local 0
 push constant 15
@@ -522,14 +522,14 @@ push local 1
 push constant 1
 add
 pop local 1
-goto WHILE30
-label END_WHILE30
+goto WHILE12
+label END_WHILE12
 push local 0
 push constant 1
 add
 pop local 0
-goto WHILE29
-label END_WHILE29
+goto WHILE11
+label END_WHILE11
 push this 1
 push constant 127
 add
@@ -538,7 +538,7 @@ push that 0
 push constant 0
 eq
 not
-if-goto END_IF76
+if-goto END_IF34
 push local 5
 push constant 160
 push constant 200
@@ -547,12 +547,12 @@ call Image.draw 4
 pop temp 0
 push constant 0
 pop local 2
-label WHILE31
+label WHILE13
 push local 2
 push constant 9
 lt
 not
-if-goto END_WHILE31
+if-goto END_WHILE13
 push local 6
 push constant 144
 push local 2
@@ -577,16 +577,16 @@ push local 2
 push constant 1
 add
 pop local 2
-goto WHILE31
-label END_WHILE31
+goto WHILE13
+label END_WHILE13
 push constant 0
 pop local 2
-label WHILE32
+label WHILE14
 push local 2
 push constant 5
 lt
 not
-if-goto END_WHILE32
+if-goto END_WHILE14
 push local 6
 push constant 144
 push constant 200
@@ -611,16 +611,16 @@ push local 2
 push constant 1
 add
 pop local 2
-goto WHILE32
-label END_WHILE32
+goto WHILE14
+label END_WHILE14
 push constant 0
 pop local 2
-label WHILE33
+label WHILE15
 push local 2
 push constant 5
 lt
 not
-if-goto END_WHILE33
+if-goto END_WHILE15
 push local 6
 push constant 200
 push constant 200
@@ -645,9 +645,9 @@ push local 2
 push constant 1
 add
 pop local 2
-goto WHILE33
-label END_WHILE33
-label END_IF76
+goto WHILE15
+label END_WHILE15
+label END_IF34
 push constant 0
 return
 function Map.check 3
@@ -671,31 +671,31 @@ push constant 29
 gt
 or
 not
-if-goto END_IF77
+if-goto END_IF35
 push constant 1
 neg
 pop local 2
-label END_IF77
+label END_IF35
 push argument 1
 pop local 0
-label WHILE34
+label WHILE16
 push local 0
 push argument 3
 push constant 1
 add
 lt
 not
-if-goto END_WHILE34
+if-goto END_WHILE16
 push argument 2
 pop local 1
-label WHILE35
+label WHILE17
 push local 1
 push argument 4
 push constant 1
 add
 lt
 not
-if-goto END_WHILE35
+if-goto END_WHILE17
 push local 2
 push this 0
 push local 1
@@ -715,14 +715,14 @@ push local 1
 push constant 1
 add
 pop local 1
-goto WHILE35
-label END_WHILE35
+goto WHILE17
+label END_WHILE17
 push local 0
 push constant 1
 add
 pop local 0
-goto WHILE34
-label END_WHILE34
+goto WHILE16
+label END_WHILE16
 push local 2
 not
 return
@@ -733,7 +733,7 @@ push argument 5
 push constant 0
 eq
 not
-if-goto END_IF78
+if-goto END_IF36
 push argument 1
 push constant 8
 call Math.multiply 2
@@ -752,27 +752,27 @@ push constant 7
 add
 call Image.clear 4
 pop temp 0
-label END_IF78
+label END_IF36
 push argument 1
 pop local 0
-label WHILE36
+label WHILE18
 push local 0
 push argument 3
 push constant 1
 add
 lt
 not
-if-goto END_WHILE36
+if-goto END_WHILE18
 push argument 2
 pop local 1
-label WHILE37
+label WHILE19
 push local 1
 push argument 4
 push constant 1
 add
 lt
 not
-if-goto END_WHILE37
+if-goto END_WHILE19
 push argument 5
 push this 0
 push local 1
@@ -787,14 +787,14 @@ push local 1
 push constant 1
 add
 pop local 1
-goto WHILE37
-label END_WHILE37
+goto WHILE19
+label END_WHILE19
 push local 0
 push constant 1
 add
 pop local 0
-goto WHILE36
-label END_WHILE36
+goto WHILE18
+label END_WHILE18
 push constant 0
 return
 function Map.peek 0

@@ -315,7 +315,6 @@ void VMCommands::setKey(Word key) {
 
 void VMCommands::initExecution() {
   if (initializedExecution_) return;
-
   initializedExecution_ = true;
 
   for (std::size_t i = 0; i < 24577; ++i)
@@ -370,11 +369,17 @@ bool VMCommands::execute(std::size_t steps) {
     std::size_t returnPos;
     switch (vmCommand.op_) {
       case VMCommand::Operation::ADD:
-        memory_[memory_[SP] - 2] = memory_[memory_[SP] - 2] + memory_[memory_[SP] - 1];
+        memory_[memory_[SP] - 2] =
+            static_cast<int32_t>(static_cast<int16_t>(
+                static_cast<int16_t>(memory_[memory_[SP] - 2]) +
+                static_cast<int16_t>(memory_[memory_[SP] - 1])));
         --memory_[SP];
         break;
       case VMCommand::Operation::SUB:
-        memory_[memory_[SP] - 2] = memory_[memory_[SP] - 2] - memory_[memory_[SP] - 1];
+        memory_[memory_[SP] - 2] =
+            static_cast<int32_t>(static_cast<int16_t>(
+                static_cast<int16_t>(memory_[memory_[SP] - 2]) -
+                static_cast<int16_t>(memory_[memory_[SP] - 1])));
         --memory_[SP];
         break;
       case VMCommand::Operation::NEG:

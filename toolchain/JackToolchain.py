@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import argparse
 import subprocess
 import os
@@ -41,3 +43,14 @@ subprocess.call(['./VMTranslator'] + input_files + jack_os_vm +
                 output_asm)
 subprocess.call(['./HackAssembler', '/tmp/tmp.asm'])
 os.rename('/tmp/tmp.hack', output_file)
+
+# DEBUG
+output_asm = os.path.splitext(output_file)[0] + ".asm"
+with (
+    open("/tmp/tmp.asm", "r") as infile,
+    open(output_asm, "w") as outfile
+):
+    lines = infile.read().split("\n")
+    for line in lines:
+        if not line.startswith("("):
+            outfile.write(line + "\n")

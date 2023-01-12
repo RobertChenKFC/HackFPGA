@@ -15,11 +15,10 @@ add_subdirectory(../core core-build)
 add_executable(JackInterpreter src/interpreter-core/main.cpp)
 target_compile_options(JackInterpreter PRIVATE ${WARNING_FLAGS})
 set_target_properties(JackInterpreter PROPERTIES LINK_FLAGS "\
-        -s DEMANGLE_SUPPORT=1\
-        -s ALLOW_MEMORY_GROWTH=1\
+        -s ALLOW_MEMORY_GROWTH\
         -s EXPORTED_FUNCTIONS='[\"_CompileFile\", \"_SetMemoryPtr\",\
         \"_InitializeExecution\", \"_Execute\", \"_SetKey\", \"_Reset\",\
-        \"_Clear\"]'\
+        \"_Clear\",\"_malloc\",\"_free\"]'\
         -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\"]'\
         -s DISABLE_EXCEPTION_CATCHING=0\
         --embed-file jack-os\

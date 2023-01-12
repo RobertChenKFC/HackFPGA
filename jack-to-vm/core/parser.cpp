@@ -26,17 +26,15 @@ Nodes Parser::parse() const {
 
   std::vector<Token>::iterator it = tokens.begin(), end = tokens.end();
   Nodes nodes;
-  while (it != end) {
-    const Parser::ReturnType& ret = parseAny(it, end);
-    nodes.add(ret.parsedNode);
-    it = ret.endIterator;
-  }
+  const Parser::ReturnType& ret = parseClassNode(it, end);
+  nodes.add(ret.parsedNode);
   return nodes;
 }
 
 VMCommands Parser::toVMCommands() const {
   Nodes nodes = parse();
-  return nodes.toVMCommands();
+  auto vmCommands = nodes.toVMCommands();
+  return vmCommands;
 }
 
 void Parser::toXML(const std::string &outputFileName) const {
@@ -242,31 +240,27 @@ Parser::ExpressionReturnType Parser::parseExpression(const std::vector<Token>::i
   return ret;
 }
 
-
-Parser::ReturnType Parser::parseAny(const std::vector<Token>::iterator &begin,
+Parser::ReturnType Parser::parseStatement(
+    const std::vector<Token>::iterator &begin,
     const std::vector<Token>::iterator &end) const {
-  if (begin == end) throw std::runtime_error("Incomplete code");
-
-  if (begin->isKeyword("class")) {
-    return parseClassNode(begin, end);
-  } else if (begin->isKeyword("constructor") || begin->isKeyword("function") || begin->isKeyword("method")) {
-    return parseSubroutineNode(begin, end);
-  } else if (begin->isKeyword("var") || begin->isKeyword("static") || begin->isKeyword("field")) {
-    return parseDeclarationNode(begin, end);
-  } else if (begin->isKeyword("let")) {
-    return parseLetNode(begin, end);
-  } else if (begin->isKeyword("do")) {
-    return parseDoNode(begin, end);
-  } else if (begin->isKeyword("if")) {
-    return parseIfNode(begin, end);
-  } else if (begin->isKeyword("while")) {
-    return parseWhileNode(begin, end);
-  } else if (begin->isKeyword("return")) {
-    return parseReturnNode(begin, end);
+  const Token &keyword = *begin;
+  Parser::ReturnType ret;
+  if (keyword.isKeyword("let")) {
+    ret = parseLetNode(begin, end);
+  } else if (keyword.isKeyword("if")) {
+    ret = parseIfNode(begin, end);
+  } else if (keyword.isKeyword("while")) {
+    ret = parseWhileNode(begin, end);
+  } else if (keyword.isKeyword("do")) {
+    ret = parseDoNode(begin, end);
+  } else if (keyword.isKeyword("return")) {
+    ret = parseReturnNode(begin, end);
   } else {
-    throw std::runtime_error("Line " + std::to_string(begin->lineNumber()) +
-        ": Invalid keyword \"" + begin->val() + "\"");
+    throw std::runtime_error(
+        "Line " + std::to_string(keyword.lineNumber()) +
+        ": Expecting a statement, got \"" + keyword.val() + "\" instead");
   }
+  return ret;
 }
 
 Parser::ReturnType Parser::parseClassNode(const std::vector<Token>::iterator &begin,
@@ -289,8 +283,31 @@ Parser::ReturnType Parser::parseClassNode(const std::vector<Token>::iterator &be
 
   std::vector<Token>::iterator it = begin + 3;
   std::vector< std::unique_ptr<Node> > nodes;
+  bool expectingSubroutine = false;
   while (it != end && !it->isSymbol('}')) {
-    Parser::ReturnType ret = parseAny(it, end);
+    const Token &keyword = *it;
+    Parser::ReturnType ret;
+    if (keyword.isKeyword("static") || keyword.isKeyword("field")) {
+      if (expectingSubroutine) {
+        throw std::runtime_error(
+            "Line " + std::to_string(keyword.lineNumber()) +
+            ": Expecting subroutine declaration, got class variable " +
+            " declaration instead");
+      }
+      ret = parseDeclarationNode(it, end);
+    } else if (keyword.isKeyword("constructor") ||
+               keyword.isKeyword("function") ||
+               keyword.isKeyword("method")) {
+      ret = parseSubroutineNode(it, end);
+      expectingSubroutine = true;
+    } else {
+      throw std::runtime_error(
+          "Line " + std::to_string(keyword.lineNumber()) +
+          ": Expecting subroutine declaration" + 
+          (expectingSubroutine ? "" : " or class variable declaration") +
+          ", got token \"" + keyword.val() + "\" instead"
+      );
+    }
     nodes.push_back(std::move(ret.parsedNode));
     it = ret.endIterator;
   }
@@ -333,9 +350,31 @@ Parser::ReturnType Parser::parseSubroutineNode(const std::vector<Token>::iterato
 
   std::vector<Token>::iterator it = begin + 4;
   std::vector<Token> parameters;
+  int state = 0;
   while (it != end && !it->isSymbol(')')) {
-    parameters.push_back(*it);
+    const Token &token = *it;
+    switch (state) {
+      case 0:
+      case 1:
+        if (!token.isIdentifier() && !token.isKeyword("int") &&
+            !token.isKeyword("char") && !token.isKeyword("boolean")) {
+          throw std::runtime_error(
+            "Line " + std::to_string(token.lineNumber()) +
+            ": Expecting an identifier, \"int\", \"char\" or \"boolean\", " +
+            "got \"" + token.val() + "\" instead");
+        }
+        break;
+      case 2:
+        if (!token.isSymbol(',')) {
+          throw std::runtime_error(
+            "Line " + std::to_string(token.lineNumber()) +
+            ": Expecting a \",\", got \"" + token.val() + "\" instead");
+        }
+        break;
+    }
+    parameters.push_back(token);
     ++it;
+    state = (state + 1) % 3;
   }
   if (it == end) throw std::runtime_error("Line " + std::to_string((it - 1)->lineNumber()) +
       ": Incomplete subroutine declaration without parameter close symbol \")\"");
@@ -351,8 +390,27 @@ Parser::ReturnType Parser::parseSubroutineNode(const std::vector<Token>::iterato
 
   it += 2;
   std::vector< std::unique_ptr<Node> > nodes;
+  bool expectingStatement = false;
   while (it != end && !it->isSymbol('}')) {
-    Parser::ReturnType ret = parseAny(it, end);
+    const Token &token = *it;
+    Parser::ReturnType ret;
+    if (token.isKeyword("var")) {
+      if (expectingStatement) {
+        throw std::runtime_error("Line " + std::to_string(it->lineNumber()) +
+            ": Expecting a statement, got \"" + token.val() + "\" instead");
+      }
+      ret = parseDeclarationNode(it, end);
+    } else if (token.isKeyword("let") || token.isKeyword("if") ||
+               token.isKeyword("while") || token.isKeyword("do") ||
+               token.isKeyword("return")) {
+      expectingStatement = true;
+      ret = parseStatement(it, end);
+    } else {
+        throw std::runtime_error("Line " + std::to_string(it->lineNumber()) +
+            ": Expecting a statement" +
+            (expectingStatement ? "" : " or variable declaration") +
+            ", got \"" + token.val() + "\" instead");
+    }
     nodes.push_back(std::move(ret.parsedNode));
     it = ret.endIterator;
   }
@@ -383,9 +441,26 @@ Parser::ReturnType Parser::parseDeclarationNode(const std::vector<Token>::iterat
 
   std::vector<Token>::iterator it = begin + 2;
   std::vector<Token> variableList;
+  bool expectingComma = false;
   while (it != end && !it->isSymbol(';')) {
-    variableList.push_back(*it);
+    const Token &token = *it;
+    if (expectingComma) {
+      if (!token.isSymbol(',')) {
+        throw std::runtime_error(
+            "Line " + std::to_string(token.lineNumber()) +
+            ": Expecting \",\", got \"" + token.val() + "\" instead");
+      }
+    } else {
+      if (!token.isIdentifier()) {
+        throw std::runtime_error(
+            "Line " + std::to_string(token.lineNumber()) +
+            ": Expecting an identifier, got \"" + token.val() +
+            "\" instead");
+      }
+      variableList.push_back(token);
+    }
     ++it;
+    expectingComma = !expectingComma;
   }
   if (it == end) throw std::runtime_error("Line " + std::to_string((it - 1)->lineNumber()) +
       ": Invalid variable declaration without close symbol \";\"");
@@ -401,7 +476,6 @@ Parser::ReturnType Parser::parseDeclarationNode(const std::vector<Token>::iterat
 Parser::ReturnType Parser::parseLetNode(const std::vector<Token>::iterator &begin,
     const std::vector<Token>::iterator &end) const {
   const Token &keyword = *begin;
-
   if (begin + 1 == end)
     throw std::runtime_error("Line " + std::to_string(begin->lineNumber()) +
         ": Incomplete let statement without variable name");
@@ -410,6 +484,7 @@ Parser::ReturnType Parser::parseLetNode(const std::vector<Token>::iterator &begi
         ": Invalid let statement with variable name \"" + (begin + 1)->val() + "\"");
   const Token &name = *(begin + 1);
   if (begin + 2 != end && (begin + 2)->isSymbol('[')) {
+    // Let statement with array access
     const Token &idxOpen = *(begin + 2);
     Parser::ExpressionReturnType expRet1 = parseExpression(begin + 3, end);
     if (expRet1.endIterator == end)
@@ -443,6 +518,7 @@ Parser::ReturnType Parser::parseLetNode(const std::vector<Token>::iterator &begi
     };
     return ret;
   } else {
+    // Let statement without array access
     if (begin + 2 == end)
       throw std::runtime_error("Line " + std::to_string((begin + 1)->lineNumber()) +
           ": Incomplete let statement without equal symbol \"=\"");
@@ -518,7 +594,7 @@ Parser::ReturnType Parser::parseIfNode(const std::vector<Token>::iterator &begin
   std::vector< std::unique_ptr<Node> > nodes;
   std::vector<Token>::iterator it = expRet.endIterator + 2;
   while (it != end && !it->isSymbol('}')) {
-    Parser::ReturnType ret = parseAny(it, end);
+    Parser::ReturnType ret = parseStatement(it, end);
     nodes.push_back(std::move(ret.parsedNode));
     it = ret.endIterator;
   }
@@ -539,7 +615,7 @@ Parser::ReturnType Parser::parseIfNode(const std::vector<Token>::iterator &begin
 
     it += 3;
     while (it != end && !it->isSymbol('}')) {
-      Parser::ReturnType ret = parseAny(it, end);
+      Parser::ReturnType ret = parseStatement(it, end);
       nodes.push_back(std::move(ret.parsedNode));
       it = ret.endIterator;
     }
@@ -597,7 +673,7 @@ Parser::ReturnType Parser::parseWhileNode(const std::vector<Token>::iterator &be
   std::vector< std::unique_ptr<Node> > nodes;
   std::vector<Token>::iterator it = expRet.endIterator + 2;
   while (it != end && !it->isSymbol('}')) {
-    Parser::ReturnType ret = parseAny(it, end);
+    Parser::ReturnType ret = parseStatement(it, end);
     nodes.push_back(std::move(ret.parsedNode));
     it = ret.endIterator;
   }

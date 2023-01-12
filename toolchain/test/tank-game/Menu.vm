@@ -20,12 +20,12 @@ push constant 0
 pop local 0
 push constant 0
 pop this 5
-label WHILE41
+label WHILE38
 push local 0
 push this 4
 lt
 not
-if-goto END_WHILE41
+if-goto END_WHILE38
 push this 0
 push local 0
 add
@@ -37,17 +37,17 @@ call String.length 1
 push this 5
 gt
 not
-if-goto END_IF85
+if-goto END_IF81
 push local 1
 call String.length 1
 pop this 5
-label END_IF85
+label END_IF81
 push local 0
 push constant 1
 add
 pop local 0
-goto WHILE41
-label END_WHILE41
+goto WHILE38
+label END_WHILE38
 push pointer 0
 return
 function Menu._xor 3
@@ -63,12 +63,12 @@ add
 pop local 0
 push constant 0
 pop local 1
-label WHILE42
+label WHILE39
 push local 1
 push constant 352
 lt
 not
-if-goto END_WHILE42
+if-goto END_WHILE39
 push local 0
 push local 1
 add
@@ -80,7 +80,7 @@ and
 push constant 0
 eq
 not
-if-goto ELSE86
+if-goto ELSE82
 push constant 256
 neg
 push local 2
@@ -91,8 +91,8 @@ push local 2
 and
 or
 pop local 2
-goto END_IF86
-label ELSE86
+goto END_IF82
+label ELSE82
 push constant 256
 neg
 push local 2
@@ -103,7 +103,7 @@ not
 and
 or
 pop local 2
-label END_IF86
+label END_IF82
 push local 0
 push local 1
 add
@@ -115,8 +115,8 @@ push local 1
 push constant 32
 add
 pop local 1
-goto WHILE42
-label END_WHILE42
+goto WHILE39
+label END_WHILE39
 push constant 0
 return
 function Menu._draw_select 3
@@ -130,13 +130,13 @@ push that 0
 pop local 0
 push constant 0
 pop local 1
-label WHILE43
+label WHILE40
 push local 1
 push local 0
 call String.length 1
 lt
 not
-if-goto END_WHILE43
+if-goto END_WHILE40
 push this 2
 push this 1
 add
@@ -151,8 +151,8 @@ push local 1
 push constant 1
 add
 pop local 1
-goto WHILE43
-label END_WHILE43
+goto WHILE40
+label END_WHILE40
 push constant 0
 return
 function Menu._input 2
@@ -160,29 +160,29 @@ push argument 0
 pop pointer 0
 push constant 0
 pop local 1
-label WHILE44
+label WHILE41
 push local 1
 push constant 0
 eq
 not
-if-goto END_WHILE44
+if-goto END_WHILE41
 call Keyboard.keyPressed 0
 pop local 1
-goto WHILE44
-label END_WHILE44
-label WHILE45
+goto WHILE41
+label END_WHILE41
+label WHILE42
 push local 1
 push constant 0
 eq
 not
 not
-if-goto END_WHILE45
+if-goto END_WHILE42
 push local 1
 pop local 0
 call Keyboard.keyPressed 0
 pop local 1
-goto WHILE45
-label END_WHILE45
+goto WHILE42
+label END_WHILE42
 push local 0
 return
 function Menu._reset_cheat 1
@@ -191,12 +191,12 @@ pop pointer 0
 push this 7
 call List.reset 1
 pop temp 0
-label WHILE46
+label WHILE43
 push this 7
 call List.end 1
 not
 not
-if-goto END_WHILE46
+if-goto END_WHILE43
 push this 7
 call List.get 1
 pop local 0
@@ -206,8 +206,8 @@ pop temp 0
 push this 7
 call List.next 1
 pop temp 0
-goto WHILE46
-label END_WHILE46
+goto WHILE43
+label END_WHILE43
 push constant 0
 return
 function Menu._check_cheat 2
@@ -218,12 +218,12 @@ pop local 1
 push this 7
 call List.reset 1
 pop temp 0
-label WHILE47
+label WHILE44
 push this 7
 call List.end 1
 not
 not
-if-goto END_WHILE47
+if-goto END_WHILE44
 push this 7
 call List.get 1
 pop local 0
@@ -231,12 +231,12 @@ push local 0
 push argument 1
 call CheatCode.complete 2
 not
-if-goto END_IF87
+if-goto END_IF83
 push this 4
 push local 1
 add
 return
-label END_IF87
+label END_IF83
 push local 1
 push constant 1
 add
@@ -244,8 +244,8 @@ pop local 1
 push this 7
 call List.next 1
 pop temp 0
-goto WHILE47
-label END_WHILE47
+goto WHILE44
+label END_WHILE44
 push constant 2
 neg
 return
@@ -254,12 +254,12 @@ push argument 0
 pop pointer 0
 push constant 0
 pop local 0
-label WHILE48
+label WHILE45
 push local 0
 push this 4
 lt
 not
-if-goto END_WHILE48
+if-goto END_WHILE45
 push this 2
 push local 0
 push local 0
@@ -279,8 +279,8 @@ push local 0
 push constant 1
 add
 pop local 0
-goto WHILE48
-label END_WHILE48
+goto WHILE45
+label END_WHILE45
 push pointer 0
 call Menu._reset_cheat 1
 pop temp 0
@@ -291,13 +291,13 @@ pop temp 0
 push constant 2
 neg
 pop local 2
-label WHILE49
+label WHILE46
 push local 2
 push constant 2
 neg
 eq
 not
-if-goto END_WHILE49
+if-goto END_WHILE46
 push pointer 0
 call Menu._input 1
 pop local 1
@@ -310,7 +310,7 @@ push constant 2
 neg
 eq
 not
-if-goto END_IF88
+if-goto END_IF84
 push local 1
 push constant 131
 eq
@@ -319,7 +319,7 @@ push constant 0
 gt
 and
 not
-if-goto END_IF89
+if-goto END_IF85
 push pointer 0
 push constant 0
 call Menu._draw_select 2
@@ -332,7 +332,7 @@ push pointer 0
 push constant 1
 call Menu._draw_select 2
 pop temp 0
-label END_IF89
+label END_IF85
 push local 1
 push constant 133
 eq
@@ -343,7 +343,7 @@ push this 4
 lt
 and
 not
-if-goto END_IF90
+if-goto END_IF86
 push pointer 0
 push constant 0
 call Menu._draw_select 2
@@ -356,34 +356,34 @@ push pointer 0
 push constant 1
 call Menu._draw_select 2
 pop temp 0
-label END_IF90
+label END_IF86
 push local 1
 push constant 32
 eq
 not
-if-goto END_IF91
+if-goto END_IF87
 push this 1
 pop local 2
-label END_IF91
+label END_IF87
 push local 1
 push constant 81
 eq
 not
-if-goto END_IF92
+if-goto END_IF88
 push constant 1
 neg
 pop local 2
-label END_IF92
 label END_IF88
-goto WHILE49
-label END_WHILE49
+label END_IF84
+goto WHILE46
+label END_WHILE46
 push pointer 0
 push constant 0
 call Menu._draw_select 2
 pop temp 0
 push this 6
 not
-if-goto END_IF93
+if-goto END_IF89
 push constant 0
 call Screen.setColor 1
 pop temp 0
@@ -411,7 +411,7 @@ push constant 1
 sub
 call Screen.drawRectangle 4
 pop temp 0
-label END_IF93
+label END_IF89
 push local 2
 return
 function Menu.add_cheat 0

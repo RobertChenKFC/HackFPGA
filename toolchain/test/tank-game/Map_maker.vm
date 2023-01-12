@@ -150,12 +150,12 @@ call Array.new 1
 pop static 2
 push constant 0
 pop local 1
-label WHILE38
+label WHILE49
 push local 1
 push constant 150
 lt
 not
-if-goto END_WHILE38
+if-goto END_WHILE49
 push constant 0
 push static 2
 push local 1
@@ -166,19 +166,19 @@ push local 1
 push constant 1
 add
 pop local 1
-goto WHILE38
-label END_WHILE38
+goto WHILE49
+label END_WHILE49
 call Map_maker._draw_frame 0
 pop temp 0
 push constant 0
 pop local 0
-label WHILE39
+label WHILE50
 push local 0
 push constant 5
 eq
 not
 not
-if-goto END_WHILE39
+if-goto END_WHILE50
 push static 1
 call Menu.run 1
 pop local 0
@@ -192,13 +192,13 @@ eq
 or
 not
 not
-if-goto END_IF79
+if-goto END_IF92
 push local 0
 call Map_maker._edit 1
 pop temp 0
-label END_IF79
-goto WHILE39
-label END_WHILE39
+label END_IF92
+goto WHILE50
+label END_WHILE50
 push static 2
 return
 function Map_maker._edit 3
@@ -217,13 +217,13 @@ push local 0
 push local 1
 call Map_maker._draw_select 2
 pop temp 0
-label WHILE40
+label WHILE51
 push local 2
 push constant 81
 eq
 not
 not
-if-goto END_WHILE40
+if-goto END_WHILE51
 push constant 22
 push constant 63
 call Output.moveCursor 2
@@ -238,7 +238,7 @@ push constant 0
 gt
 and
 not
-if-goto END_IF80
+if-goto END_IF93
 push local 0
 push local 1
 push static 2
@@ -265,7 +265,7 @@ push local 0
 push local 1
 call Map_maker._draw_select 2
 pop temp 0
-label END_IF80
+label END_IF93
 push local 2
 push constant 132
 eq
@@ -274,7 +274,7 @@ push constant 14
 lt
 and
 not
-if-goto END_IF81
+if-goto END_IF94
 push local 0
 push local 1
 push static 2
@@ -301,7 +301,7 @@ push local 0
 push local 1
 call Map_maker._draw_select 2
 pop temp 0
-label END_IF81
+label END_IF94
 push local 2
 push constant 133
 eq
@@ -310,7 +310,7 @@ push constant 9
 lt
 and
 not
-if-goto END_IF82
+if-goto END_IF95
 push local 0
 push local 1
 push static 2
@@ -337,7 +337,7 @@ push local 0
 push local 1
 call Map_maker._draw_select 2
 pop temp 0
-label END_IF82
+label END_IF95
 push local 2
 push constant 130
 eq
@@ -346,7 +346,7 @@ push constant 0
 gt
 and
 not
-if-goto END_IF83
+if-goto END_IF96
 push local 0
 push local 1
 push static 2
@@ -373,12 +373,12 @@ push local 0
 push local 1
 call Map_maker._draw_select 2
 pop temp 0
-label END_IF83
+label END_IF96
 push local 2
 push constant 32
 eq
 not
-if-goto END_IF84
+if-goto END_IF97
 push argument 0
 push static 2
 push local 0
@@ -389,9 +389,9 @@ add
 add
 pop pointer 1
 pop that 0
-label END_IF84
-goto WHILE40
-label END_WHILE40
+label END_IF97
+goto WHILE51
+label END_WHILE51
 push local 0
 push local 1
 push static 2

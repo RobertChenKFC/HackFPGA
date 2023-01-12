@@ -25,20 +25,20 @@ push constant 1
 neg
 call Screen.setColor 1
 pop temp 0
-label WHILE50
+label WHILE47
 push local 0
 push this 1
 lt
 not
-if-goto END_WHILE50
+if-goto END_WHILE47
 push constant 0
 pop local 1
-label WHILE51
+label WHILE48
 push local 1
 push this 0
 lt
 not
-if-goto END_WHILE51
+if-goto END_WHILE48
 push local 2
 push this 3
 push local 3
@@ -50,7 +50,7 @@ push constant 0
 eq
 not
 not
-if-goto END_IF103
+if-goto END_IF90
 push local 1
 push this 2
 call Math.multiply 2
@@ -81,36 +81,36 @@ push constant 1
 sub
 call Screen.drawRectangle 4
 pop temp 0
-label END_IF103
+label END_IF90
 push local 2
 push constant 0
 lt
 not
-if-goto ELSE104
+if-goto ELSE91
 push constant 1
 pop local 2
 push local 3
 push constant 1
 add
 pop local 3
-goto END_IF104
-label ELSE104
+goto END_IF91
+label ELSE91
 push local 2
 push local 2
 add
 pop local 2
-label END_IF104
+label END_IF91
 push local 1
 push constant 1
 add
 pop local 1
-goto WHILE51
-label END_WHILE51
+goto WHILE48
+label END_WHILE48
 push local 0
 push constant 1
 add
 pop local 0
-goto WHILE50
-label END_WHILE50
+goto WHILE47
+label END_WHILE47
 push constant 0
 return

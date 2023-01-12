@@ -37,12 +37,16 @@ function setup() {
       return;
     }
 
-    const programStr = event.target.result;
-    const bufferSize = Module.lengthBytesUTF8(programStr);
-    const bufferPtr = Module._malloc(bufferSize + 1);
-    Module.stringToUTF8(programStr, bufferPtr, bufferSize + 1);
-    Module.ccall('ReadProgram', null, ['number'], [bufferPtr]);
-    Module._free(bufferPtr);
+    const uint8Arr = new Uint8Array(event.target.result);
+    const numBytes = uint8Arr.length * uint8Arr.BYTES_PER_ELEMENT;
+    const dataPtr = Module._malloc(numBytes);
+    const dataOnHeap = new Uint8Array(Module.HEAPU8.buffer, dataPtr, numBytes);
+    dataOnHeap.set(uint8Arr);
+
+    Module.ccall('ReadProgram', null, ['number', 'number'],
+                 [dataOnHeap.byteOffset, uint8Arr.length]);
+
+    Module._free(dataPtr);
 
     execute.removeAttribute('disabled');
   };
@@ -63,7 +67,7 @@ function setup() {
       consoleLogText.innerHTML = '';
     };
     fileInput.oninput = (event) => {
-      fileReader.readAsText(event.target.files[0]);
+      fileReader.readAsArrayBuffer(event.target.files[0]);
     };
 
     execute = select('#execute');

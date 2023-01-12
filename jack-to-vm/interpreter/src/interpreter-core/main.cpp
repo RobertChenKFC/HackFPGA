@@ -10,7 +10,7 @@
 extern "C" {
   VMCommands vmCommands;
 
-  bool CompileFile(char *inputFileName, char *input);
+  bool CompileFile(char *inputFileName, char *input, int length);
   void SetMemoryPtr(Word *ptr);
   bool InitializeExecution();
   bool Execute(std::size_t steps);
@@ -18,8 +18,9 @@ extern "C" {
   void Reset();
   void Clear();
 
-  bool CompileFile(char *inputFileName, char *input) {
+  bool CompileFile(char *inputFileName, char *inputArray, int length) {
     try {
+      std::string input(inputArray, inputArray + length);
       Tokenizer::init();
       Parser::reset();
       Parser parser(inputFileName, input);
@@ -61,6 +62,7 @@ extern "C" {
       vmCommands.add(VMCommands("jack-os/Screen.vm"));
       vmCommands.add(VMCommands("jack-os/String.vm"));
       vmCommands.add(VMCommands("jack-os/Sys.vm"));
+
       vmCommands.initExecution();
 
       return true;

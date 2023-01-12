@@ -16,7 +16,7 @@ set_target_properties(HackSimulator PROPERTIES LINK_FLAGS "\
         -s ALLOW_MEMORY_GROWTH=1\
         -s EXPORTED_FUNCTIONS='[\"_ReadProgram\", \"_SetMemoryPtr\",\
         \"_InitializeExecution\", \"_Execute\", \"_SetKey\", \"_Reset\",\
-        \"_Clear\"]'\
+        \"_Clear\",\"_malloc\",\"_free\"]'\
         -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"lengthBytesUTF8\",\
         \"stringToUTF8\"]'\
         -s DISABLE_EXCEPTION_CATCHING=0\

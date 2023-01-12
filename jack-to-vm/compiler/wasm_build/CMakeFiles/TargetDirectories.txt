@@ -1,0 +1,6 @@
+/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/CMakeFiles/JackCompiler.dir
+/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/CMakeFiles/edit_cache.dir
+/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/CMakeFiles/rebuild_cache.dir
+/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build/CMakeFiles/core.dir
+/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build/CMakeFiles/edit_cache.dir
+/home/robert/Programming/HackFPGA/jack-to-vm/compiler/wasm_build/core-build/CMakeFiles/rebuild_cache.dir

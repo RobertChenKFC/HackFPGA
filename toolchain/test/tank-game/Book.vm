@@ -6,7 +6,7 @@ push argument 0
 push constant 1
 eq
 not
-if-goto ELSE8
+if-goto ELSE61
 push constant 1
 push local 0
 push constant 0
@@ -907,13 +907,13 @@ push constant 149
 add
 pop pointer 1
 pop that 0
-goto END_IF8
-label ELSE8
+goto END_IF61
+label ELSE61
 push argument 0
 push constant 2
 eq
 not
-if-goto ELSE9
+if-goto ELSE62
 push constant 1
 push local 0
 push constant 0
@@ -1814,13 +1814,13 @@ push constant 149
 add
 pop pointer 1
 pop that 0
-goto END_IF9
-label ELSE9
+goto END_IF62
+label ELSE62
 push argument 0
 push constant 3
 eq
 not
-if-goto ELSE10
+if-goto ELSE63
 push constant 0
 push local 0
 push constant 0
@@ -2721,13 +2721,13 @@ push constant 149
 add
 pop pointer 1
 pop that 0
-goto END_IF10
-label ELSE10
+goto END_IF63
+label ELSE63
 push argument 0
 push constant 4
 eq
 not
-if-goto ELSE11
+if-goto ELSE64
 push constant 3
 push local 0
 push constant 0
@@ -3628,13 +3628,13 @@ push constant 149
 add
 pop pointer 1
 pop that 0
-goto END_IF11
-label ELSE11
+goto END_IF64
+label ELSE64
 push argument 0
 push constant 5
 eq
 not
-if-goto ELSE12
+if-goto ELSE65
 push constant 4
 push local 0
 push constant 0
@@ -4535,21 +4535,21 @@ push constant 149
 add
 pop pointer 1
 pop that 0
-goto END_IF12
-label ELSE12
+goto END_IF65
+label ELSE65
 push argument 0
 push constant 100
 eq
 not
-if-goto END_IF13
+if-goto END_IF66
 call Map_maker.make 0
 pop local 0
-label END_IF13
-label END_IF12
-label END_IF11
-label END_IF10
-label END_IF9
-label END_IF8
+label END_IF66
+label END_IF65
+label END_IF64
+label END_IF63
+label END_IF62
+label END_IF61
 push local 0
 call Map.new 1
 return

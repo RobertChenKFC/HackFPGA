@@ -48,9 +48,9 @@ public:
       const std::vector<Token>::iterator &end) const;
   ExpressionReturnType parseExpression(const std::vector<Token>::iterator &begin,
       const std::vector<Token>::iterator &end) const;
-
-  ReturnType parseAny(const std::vector<Token>::iterator &begin,
+  ReturnType parseStatement(const std::vector<Token>::iterator &begin,
       const std::vector<Token>::iterator &end) const;
+
   ReturnType parseClassNode(const std::vector<Token>::iterator &begin,
       const std::vector<Token>::iterator &end) const;
   ReturnType parseSubroutineNode(const std::vector<Token>::iterator &begin,

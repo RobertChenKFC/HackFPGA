@@ -10,14 +10,11 @@ let reset;
 let density;
 let consoleLogText;
 
-// DEBUG
-var debugMessage;
-
 function readFile() {
   if (fileIdx == -1) {
     return;
   } else if (fileIdx < files.length) {
-    fileReader.readAsText(files[fileIdx]);
+    fileReader.readAsArrayBuffer(files[fileIdx]);
   } else if (fileIdx == files.length) {
     if (Module.ccall('InitializeExecution')) {
       execute.removeAttribute('disabled');
@@ -42,10 +39,20 @@ function setup() {
       return;
     }
 
-    if (!Module.ccall('CompileFile', null, ['string', 'string'], [files[fileIdx].name, event.target.result]))
+    const uint8Arr = new Uint8Array(event.target.result);
+    const numBytes = uint8Arr.length * uint8Arr.BYTES_PER_ELEMENT;
+    const dataPtr = Module._malloc(numBytes);
+    const dataOnHeap = new Uint8Array(Module.HEAPU8.buffer, dataPtr, numBytes);
+    dataOnHeap.set(uint8Arr);
+
+    if (!Module.ccall(
+        'CompileFile', null, ['string', 'number', 'number'],
+        [files[fileIdx].name, dataOnHeap.byteOffset, uint8Arr.length]))
       fileIdx = -1;
     else
       ++fileIdx;
+
+    Module._free(dataPtr);
 
     readFile();
   };
