@@ -1,0 +1,12 @@
+/home/robert/Programming/HackFPGA/emulator/build/CMakeFiles/HackEmulator.dir
+/home/robert/Programming/HackFPGA/emulator/build/CMakeFiles/edit_cache.dir
+/home/robert/Programming/HackFPGA/emulator/build/CMakeFiles/rebuild_cache.dir
+/home/robert/Programming/HackFPGA/emulator/build/compiler-build/CMakeFiles/compiler.dir
+/home/robert/Programming/HackFPGA/emulator/build/compiler-build/CMakeFiles/edit_cache.dir
+/home/robert/Programming/HackFPGA/emulator/build/compiler-build/CMakeFiles/rebuild_cache.dir
+/home/robert/Programming/HackFPGA/emulator/build/translator-build/CMakeFiles/translator.dir
+/home/robert/Programming/HackFPGA/emulator/build/translator-build/CMakeFiles/edit_cache.dir
+/home/robert/Programming/HackFPGA/emulator/build/translator-build/CMakeFiles/rebuild_cache.dir
+/home/robert/Programming/HackFPGA/emulator/build/assembler-build/CMakeFiles/assembler.dir
+/home/robert/Programming/HackFPGA/emulator/build/assembler-build/CMakeFiles/edit_cache.dir
+/home/robert/Programming/HackFPGA/emulator/build/assembler-build/CMakeFiles/rebuild_cache.dir

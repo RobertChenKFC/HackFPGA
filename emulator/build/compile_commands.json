@@ -1,0 +1,92 @@
+[
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/HackEmulator.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -Wmost -Wno-dollar-in-identifier-extension -fwasm-exceptions -std=gnu++17 -o CMakeFiles/HackEmulator.dir/src/main.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/main.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/main.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/classnode.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/classnode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/classnode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/declarationnode.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/declarationnode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/declarationnode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/donode.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/donode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/donode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/expression.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/expression.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/expression.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/ifnode.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/ifnode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/ifnode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/letnode.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/letnode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/letnode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/node.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/node.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/node.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/parser.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/parser.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/parser.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/returnnode.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/returnnode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/returnnode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/subroutinecall.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/subroutinecall.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/subroutinecall.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/subroutinenode.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/subroutinenode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/subroutinenode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/term.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/term.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/term.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/tokenizer.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/tokenizer.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/tokenizer.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/vmcommand.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/vmcommand.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/vmcommand.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/compiler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/compiler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/compiler.dir/whilenode.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/compiler/whilenode.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/compiler/whilenode.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/translator-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/translator.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/translator.dir/translator.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/translator/translator.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/translator/translator.cpp"
+},
+{
+  "directory": "/home/robert/Programming/HackFPGA/emulator/build/assembler-build",
+  "command": "/home/robert/emsdk/upstream/emscripten/em++  @CMakeFiles/assembler.dir/includes_CXX.rsp -O3 -DNDEBUG -Wall -Wextra -Wconversion -Wunreachable-code -Wuninitialized -pedantic-errors -Wold-style-cast -Wshadow -Wfloat-equal -Weffc++ -std=gnu++17 -o CMakeFiles/assembler.dir/assembler.cpp.o -c /home/robert/Programming/HackFPGA/emulator/src/assembler/assembler.cpp",
+  "file": "/home/robert/Programming/HackFPGA/emulator/src/assembler/assembler.cpp"
+}
+]

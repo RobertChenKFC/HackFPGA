@@ -1,1 +1,0 @@
-/home/robert/emsdk/upstream/emscripten/em++ -g @CMakeFiles/JackCompiler.dir/objects1 -o JackCompiler.js @CMakeFiles/JackCompiler.dir/linkLibs.rsp

@@ -1,9 +1,0 @@
-class Main {
-  static int x;
-
-  function void main() {
-    do Output.printString("Debug from main");
-
-    return;
-  }
-}

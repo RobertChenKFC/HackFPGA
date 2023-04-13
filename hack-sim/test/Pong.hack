@@ -1,1 +1,0 @@
-../../asm-to-hack/test/Pong.hack
