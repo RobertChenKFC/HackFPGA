@@ -1,2 +1,0 @@
-/home/robert/emsdk/upstream/emscripten/emar qc libtranslator.a CMakeFiles/translator.dir/translator.cpp.o
-/home/robert/emsdk/upstream/emscripten/emranlib libtranslator.a

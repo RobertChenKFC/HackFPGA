@@ -1,2 +1,0 @@
-/home/robert/emsdk/upstream/emscripten/emar qc libassembler.a CMakeFiles/assembler.dir/assembler.cpp.o
-/home/robert/emsdk/upstream/emscripten/emranlib libassembler.a
