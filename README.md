@@ -4,6 +4,11 @@ including both the software and hardware (FPGA coming soon). The implementation
 details are mostly the same as those in nand2tetris, except for the fact that
 the CPU is extended to 32 bits to allow for a larger program address space.
 
+## Demo
+You can use the compiler and emulator toolchain directly on this
+[website](https://robertchenkfc.github.io/HackFPGA/). Simply specify all the Jack
+files you would like to compile and click "Execute" to run the Jack program.
+
 ## Overview
 This project contains the software development chain to implement programs for
 the Hack CPU of nand2tetris, and the designs to realize the Hack CPU using
