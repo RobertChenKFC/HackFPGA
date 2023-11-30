@@ -20,14 +20,14 @@ const RAM_SIZE = 24577;
 const ROM_SIZE = 512 * 1024;
 const WORD_SIZE = 4;
 const OS_FILES = [
-  "/os/Array.jack",
-  "/os/Keyboard.jack",
-  "/os/Math.jack",
-  "/os/Memory.jack",
-  "/os/Output.jack",
-  "/os/Screen.jack",
-  "/os/String.jack",
-  "/os/Sys.jack"
+  "os/Array.jack",
+  "os/Keyboard.jack",
+  "os/Math.jack",
+  "os/Memory.jack",
+  "os/Output.jack",
+  "os/Screen.jack",
+  "os/String.jack",
+  "os/Sys.jack"
 ];
 
 function saveFile(contents, filename, type = "text/plain") {
